@@ -1,18 +1,25 @@
-'use strict';
+/**
+ * This file acts as the controller in the backend 
+ * It serves information as required by the frontend through
+ * API get requests to the specified route 
+ */
 
-const express = require('express');
-const path = require('path');
-const app = express();
+// import statements 
+const express = require('express')
+const app = express() 
+const cors = require('cors');
+const searchRouter = require('./routes/Search');
+const landingRouter = require('./routes/Landing');
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+// constants here 
+const PORT = 3001
 
-app.use((req, res) => {
-    res.status(200).send('Hello, world!');
-});
+app.use(cors());
 
-// Start the server
-const PORT = process.env.PORT || 8080;
+// define routes here 
+app.use("/search", searchRouter);
+app.use("/", landingRouter);
+
 app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-    console.log('Press Ctrl+C to quit.');
-});
+    console.log("Server running on port 3001");
+})
