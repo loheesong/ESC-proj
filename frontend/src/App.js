@@ -1,20 +1,20 @@
 import './App.css';
-import axios from "axios";
-import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from "./routes/Home"
+import SearchDest from './routes/SearchDest';
 
 function App() {
-    const [info, setInfo] = useState([]);
-    useEffect(() => {
-        axios.get("http://localhost:3001").then((response) => {
-            console.log(response);
-            setInfo(response.data);
-        })
-    }, [])
+    // define routes here 
     return (
-        <div className="App">
-        {info}
-        </div>
-    );
+    <div className="App">
+        <Router>
+            <Routes>
+                <Route path='/' element={<Home/>}></Route>
+                <Route path='/search' element={<SearchDest/>}></Route>
+            </Routes>
+        </Router>
+    </div>
+)
 }
 
 export default App;
