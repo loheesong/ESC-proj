@@ -16,10 +16,12 @@ const PORT = 3001
 
 app.use(cors());
 
+
 // define routes here 
 app.use("/search", searchRouter);
 app.use("/", landingRouter);
 
 app.listen(PORT, () => {
     console.log("Server running on port 3001");
+    
 })

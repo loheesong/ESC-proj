@@ -1,3 +1,30 @@
+# TODO
+
+Pages:
+Search Location (routes) >EESOGNG
+
+Search Hotel (routes) [hardest] [even hardest -> filter] > Dylan/Pach
+
+Search Room (routes) [harder] > Dylan/Pach
+
+Booking/Payment (routes) [harder -> Stripe Server + our own db] > Mani
+
+Register Account (routes) [our own db] > Mikhail/Chaiteng
+
+Edit/Delete Account (routes) [our own db] > Mikhail/Chiateng
+
+Delete Booking (routes) [our own db] > Mani
+
+Components: // Whenever done with routes do this components
+Login (component) [our own db]
+Navbar 
+Hotel Display
+Room Display
+filter?
+google map api?
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
