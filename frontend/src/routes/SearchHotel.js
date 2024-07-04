@@ -93,8 +93,8 @@ const SearchHotel = () => {
         <div className="map-container">
           <MapContainer center={[1.290270, 103.851959]} zoom={12} style={{ height: '100%', width: '100%' }}>
             <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+              attribution='Map tiles by Stamen Design, CC BY 3.0 CC BY 3.0'
             />
             {hotels.map((hotel) => (
               <Marker key={hotel.id} position={hotel.position} icon={customIcon}>
