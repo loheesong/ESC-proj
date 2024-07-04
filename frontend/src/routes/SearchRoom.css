@@ -1,0 +1,101 @@
+.room-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+  
+  .room-info {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: antiquewhite;
+  }
+  
+  .room-image {
+    flex: 1;
+  }
+  
+  .room-image img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .room-description {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .room-amenities {
+    margin-bottom: 20px;
+  }
+  
+  .room-amenities ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: lightblue;
+  }
+  
+  .room-amenities ul li {
+    margin: 5px 0;
+  }
+  
+  .room-list {
+    display: flex;
+    flex-direction: column; /* Stack room cards vertically */
+  }
+  
+  .room-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 200px
+  }
+  
+  .room-card img {
+    display: relative;
+    width: auto;
+    height: 90%;
+    margin-right: 20px;
+  }
+  
+  .room-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .room-card h3 {
+    margin-top: 0;
+  }
+  
+  .room-card ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .room-card ul li {
+    margin: 5px 0;
+  }
+
+  .room-card button {
+    background-color: lightblue; /* Blue background */
+    color: white; /* White text */
+    padding: 10px 30px; /* Increase padding for a bigger button */
+    font-size: 25px; /* Larger font size */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    align-self: center; /* Center the button vertically */
+    margin-left: auto; /* Align the button to the right */
+    margin-right: 30px;
+  }
+  
+  .room-card button:hover {
+    background-color: blue; /* Darker blue on hover */
+  }
+  

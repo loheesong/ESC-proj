@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -60,6 +61,9 @@ const SearchHotel = () => {
               <h2>{hotel.name}</h2>
               <p>Location: {hotel.location}</p>
               <p>Rating: {hotel.rating}</p>
+              <Link to={`/searchroom/${hotel.id}`}>
+                <button>Select</button>
+              </Link>
             </div>
           ))}
         </div>

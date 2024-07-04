@@ -3,6 +3,8 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SearchHotel from './routes/SearchHotel';
+import SearchRoom from './routes/SearchRoom';
+
 
 function App() {
     const [info, setInfo] = useState([]);
@@ -27,6 +29,7 @@ function App() {
                     } 
                 />
                 <Route path="/search" element={<SearchHotel />} />
+                <Route path="/searchroom/:id" element={<SearchRoom />} />
             </Routes>
         </Router>
     );
