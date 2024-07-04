@@ -13,23 +13,37 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
+// Hardcoded data for initial rendering
+const initialHotels = [
+  { id: 1, name: 'Hotel Sunshine', location: 'Singapore', rating: 4.5, position: [1.290270, 103.851959] },
+  { id: 2, name: 'Mountain Retreat', location: 'Singapore', rating: 4.7, position: [1.352083, 103.819836] },
+  { id: 3, name: 'Beachside Resort', location: 'Singapore', rating: 4.8, position: [1.282302, 103.860275] },
+  { id: 4, name: 'City Hotel', location: 'Singapore', rating: 4.6, position: [1.283253, 103.848566] },
+  { id: 5, name: 'Forest Hotel', location: 'Singapore', rating: 4.3, position: [1.322990, 103.819490] },
+  { id: 6, name: 'Lakeview Hotel', location: 'Singapore', rating: 4.9, position: [1.342610, 103.681992] },
+  { id: 7, name: 'Riverside Hotel', location: 'Singapore', rating: 4.4, position: [1.292896, 103.846450] },
+  { id: 8, name: 'Downtown Hotel', location: 'Singapore', rating: 4.2, position: [1.296569, 103.848044] },
+  { id: 9, name: 'Uptown Hotel', location: 'Singapore', rating: 4.7, position: [1.313839, 103.846932] },
+  { id: 10, name: 'Suburban Hotel', location: 'Singapore', rating: 4.5, position: [1.378403, 103.892510] },
+  { id: 11, name: 'Luxury Hotel', location: 'Singapore', rating: 5.0, position: [1.288617, 103.851161] },
+  { id: 12, name: 'Economy Hotel', location: 'Singapore', rating: 3.9, position: [1.292400, 103.858400] },
+];
+
+// Custom marker icon
+const customIcon = new L.Icon({
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+  shadowSize: [41, 41]
+});
+
 const SearchHotel = () => {
   const [hotels, setHotels] = useState([]);
-
-  // Hardcoded data for initial rendering
-  const initialHotels = [
-    { id: 1, name: 'Hotel Marina Bay Sands', location: 'Singapore', rating: 4.9, lat: 1.2834, lng: 103.8607 },
-    { id: 2, name: 'Raffles Hotel', location: 'Singapore', rating: 4.8, lat: 1.2945, lng: 103.8536 },
-    { id: 3, name: 'Mandarin Oriental', location: 'Singapore', rating: 4.7, lat: 1.2903, lng: 103.8595 },
-    { id: 4, name: 'The Ritz-Carlton', location: 'Singapore', rating: 4.6, lat: 1.2914, lng: 103.8605 },
-    { id: 5, name: 'Shangri-La Hotel', location: 'Singapore', rating: 4.5, lat: 1.3075, lng: 103.8288 },
-    { id: 6, name: 'Fullerton Hotel', location: 'Singapore', rating: 4.5, lat: 1.2865, lng: 103.8520 },
-    { id: 7, name: 'Pan Pacific', location: 'Singapore', rating: 4.4, lat: 1.2926, lng: 103.8574 },
-    { id: 8, name: 'Marriott Tang Plaza Hotel', location: 'Singapore', rating: 4.3, lat: 1.3053, lng: 103.8322 },
-    { id: 9, name: 'Swissôtel The Stamford', location: 'Singapore', rating: 4.3, lat: 1.2931, lng: 103.8520 },
-    { id: 10, name: 'Four Seasons Hotel', location: 'Singapore', rating: 4.2, lat: 1.3052, lng: 103.8255 },
-  ];
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const hotelsPerPage = 10;
+  
   useEffect(() => {
     // Replace the below API call with your actual API endpoint
     const fetchHotels = async () => {
@@ -49,6 +63,15 @@ const SearchHotel = () => {
     fetchHotels();
   }, []);
 
+  const indexOfLastHotel = currentPage * hotelsPerPage;
+  const indexOfFirstHotel = indexOfLastHotel - hotelsPerPage;
+  const currentHotels = hotels.slice(indexOfFirstHotel, indexOfLastHotel);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(hotels.length / hotelsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div className="wrapper">
       <div className="Title">
@@ -56,7 +79,7 @@ const SearchHotel = () => {
       </div>
       <div className="content">
         <div className="hotel-grid">
-          {hotels.map((hotel) => (
+        {currentHotels.map((hotel) => (
             <div key={hotel.id} className="hotel-card">
               <h2>{hotel.name}</h2>
               <p>Location: {hotel.location}</p>
@@ -74,12 +97,21 @@ const SearchHotel = () => {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
             {hotels.map((hotel) => (
-              <Marker key={hotel.id} position={[hotel.lat, hotel.lng]}>
-                <Popup>{hotel.name}</Popup>
-              </Marker>
+              <Marker key={hotel.id} position={hotel.position} icon={customIcon}>
+              <Popup>
+                {hotel.name}
+              </Popup>
+            </Marker>
             ))}
           </MapContainer>
         </div>
+      </div>
+      <div className="pagination">
+        {pageNumbers.map(number => (
+          <button key={number} onClick={() => setCurrentPage(number)}>
+            {number}
+          </button>
+        ))}
       </div>
     </div>
   );

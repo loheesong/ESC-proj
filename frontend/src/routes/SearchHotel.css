@@ -1,46 +1,65 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  align-items: center;
+  padding: 20px;
 }
 
 .Title {
-  text-align: center;
   margin-bottom: 20px;
 }
 
 .content {
   display: flex;
-  flex-grow: 1;
-  overflow: hidden; /* Prevent content overflow */
+  justify-content: space-between;
+  width: 100%;
 }
 
 .hotel-grid {
-  flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  padding: 16px;
-  overflow-y: auto;
-  max-height: calc(100vh - 220px); /* Adjust height to be scrollable */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 50%;
+  height: 500px; 
+  overflow-y: auto; 
 }
 
 .hotel-card {
   border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
   border-radius: 8px;
-  padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 170px;
 }
 
-.hotel-card h2 {
-  margin-top: 0;
+.hotel-card button {
+  background-color: lightblue;
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer; 
+  align-self: center; 
 }
 
-.hotel-card p {
-  margin: 4px 0;
+.hotel-card button:hover {
+  background-color: blue;
 }
 
 .map-container {
-  flex: 1;
-  height: 500px; /* Fixed height for the map */
+  width: 45%;
+  height: 500px;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
 }
