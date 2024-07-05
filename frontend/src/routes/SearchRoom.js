@@ -4,9 +4,9 @@ import './SearchRoom.css';
 
 const SearchRoom = () => {
   const rooms = [
-    { id: 1, name: 'Deluxe Room', description: 'A luxurious room with a king-sized bed.', amenities: ['WiFi', 'TV', 'Minibar'], imgSrc: 'https://i.pinimg.com/564x/57/66/0b/57660b90fe1169a421dece985748f3c3.jpg' },
-    { id: 2, name: 'Suite', description: 'A spacious suite with a separate living area.', amenities: ['WiFi', 'TV', 'Minibar', 'Balcony'], imgSrc: 'https://via.placeholder.com/100' },
-    { id: 3, name: 'Standard Room', description: 'A comfortable room with all standard amenities.', amenities: ['WiFi', 'TV'], imgSrc: 'https://via.placeholder.com/100' },
+    { id: 1, name: 'Deluxe Room', description: 'A luxurious room with a king-sized bed.', amenities: ['WiFi', 'TV', 'Minibar'], imgSrc: 'https://i.pinimg.com/564x/57/66/0b/57660b90fe1169a421dece985748f3c3.jpg', price: '123.24' },
+    { id: 2, name: 'Suite', description: 'A spacious suite with a separate living area.', amenities: ['WiFi', 'TV', 'Minibar', 'Balcony'], imgSrc: 'https://via.placeholder.com/100', price: '231.78' },
+    { id: 3, name: 'Standard Room', description: 'A comfortable room with all standard amenities.', amenities: ['WiFi', 'TV'], imgSrc: 'https://via.placeholder.com/100', price: '353.04' },
   ];
 
   return (
@@ -42,9 +42,12 @@ const SearchRoom = () => {
                 ))}
               </ul>
             </div>
+            <div className='booking'>
+            <h2>$ {room.price}</h2>
             <Link to={``}>
                 <button>Book</button>
             </Link>
+            </div>
           </div>
         ))}
       </div>
