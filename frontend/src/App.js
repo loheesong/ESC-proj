@@ -22,13 +22,13 @@ function App() {
                     element={
                         <div className="App">
                             {info}
-                            <Link to="/search">
+                            <Link to="/searchhotel">
                                 <button>Search</button>
                             </Link>
                         </div>
                     } 
                 />
-                <Route path="/search" element={<SearchHotel />} />
+                <Route path="/searchhotel" element={<SearchHotel />} />
                 <Route path="/searchroom/:id" element={<SearchRoom />} />
             </Routes>
         </Router>
