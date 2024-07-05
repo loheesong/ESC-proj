@@ -1,2 +1,3 @@
-# backend node_modules 
+# backend stuff
 backend/node_modules
+backend/.env
