@@ -4,7 +4,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.json('Search get request');
+    const query = req.query.q;
+    console.log(query);
+    res.json(query);
 });
 
 module.exports = router;

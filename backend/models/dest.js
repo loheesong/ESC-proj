@@ -20,14 +20,17 @@ async function findOne() {
  * @returns Array of cities (string)
  */
 async function fuzzy_city(substring, num_res) {
-    // error check for input here 
+    // return nothing when there is no query 
+    if (substring === "") {
+        return []
+    }
 
     // restrict to only finding cities 
-    sql = `select * from ${table_name} where type='city' and term like '%${substring}%' limit ${num_res}`
+    sql = `select term, uid from ${table_name} where type='city' and term like '%${substring}%' limit ${num_res}`
 
     try {
         const [rows, fieldDefs] = await db.cnx.query(sql)
-        return rows.map((element) => element.term)
+        return rows
     } catch (error) {
         console.log("Failed to fuzzy find city");
     }
