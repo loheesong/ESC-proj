@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import Pagination from '../components/Pagination';
 import './SearchHotel.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -29,6 +30,8 @@ const initialHotels = [
   { id: 12, name: 'Economy Hotel', location: 'Singapore', rating: 3.9, position: [1.292400, 103.858400] },
 ];
 
+const dest_id = 'WD0M'
+
 // Custom marker icon
 const customIcon = new L.Icon({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
@@ -42,35 +45,31 @@ const customIcon = new L.Icon({
 const SearchHotel = () => {
   const [hotels, setHotels] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const hotelsPerPage = 10;
   
   useEffect(() => {
     // Replace the below API call with your actual API endpoint
     const fetchHotels = async () => {
       try {
-        // Uncomment the following lines and replace with your API call
-        // const response = await fetch('YOUR_API_ENDPOINT');
-        // const data = await response.json();
-        // setHotels(data);
+        const response = await fetch('http://localhost:3001/hotels?destination_id=' + dest_id);
+        const data = await response.json();
+        setHotels(data);
+        setLoading(false);
 
         // Using hardcoded data for demonstration
-        setHotels(initialHotels);
+        //setHotels(initialHotels);
       } catch (error) {
         console.error('Error fetching hotel data:', error);
+        setLoading(false);
       }
     };
 
     fetchHotels();
   }, []);
 
-  const indexOfLastHotel = currentPage * hotelsPerPage;
-  const indexOfFirstHotel = indexOfLastHotel - hotelsPerPage;
-  const currentHotels = hotels.slice(indexOfFirstHotel, indexOfLastHotel);
-
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(hotels.length / hotelsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const totalPages = Math.ceil(hotels.length / hotelsPerPage);
+  const currentHotels = hotels.slice((currentPage - 1) * hotelsPerPage, currentPage * hotelsPerPage);
 
   return (
     <div className="wrapper">
@@ -79,24 +78,32 @@ const SearchHotel = () => {
       </div>
       <div className="content">
         <div className="hotel-grid">
-        {currentHotels.map((hotel) => (
-            <div key={hotel.id} className="hotel-card">
-              <h2>{hotel.name}</h2>
-              <p>Location: {hotel.location}</p>
-              <p>Rating: {hotel.rating}</p>
-              <Link to={`/searchroom/${hotel.id}`}>
-                <button>Select</button>
-              </Link>
+        {loading ? (
+            <div className="loading-spinner">
+              <div className="spinner"></div>
+              <p>Loading...</p>
             </div>
-          ))}
-        </div>
+          ) : (<>{currentHotels.map((hotel) => (
+                <div key={hotel.id} className="hotel-card">
+                  <div className="hotel-card-content">
+                    <h2>{hotel.name}</h2>
+                    <p>Location: {hotel.location}</p>
+                    <p>Rating: {hotel.rating}</p>
+                  </div>
+                  <Link to={`/searchroom/${hotel.id}?name=${encodeURIComponent(hotel.name)}`}>
+                    <button>Select</button>
+                  </Link>
+                </div>
+              ))}
+            </>)}
+          </div>
         <div className="map-container">
           <MapContainer center={[1.290270, 103.851959]} zoom={12} style={{ height: '100%', width: '100%' }}>
             <TileLayer
               url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
               attribution='Map tiles by Stamen Design, CC BY 3.0 CC BY 3.0'
             />
-            {hotels.map((hotel) => (
+            {currentHotels.map((hotel) => (
               <Marker key={hotel.id} position={hotel.position} icon={customIcon}>
               <Popup>
                 {hotel.name}
@@ -106,13 +113,11 @@ const SearchHotel = () => {
           </MapContainer>
         </div>
       </div>
-      <div className="pagination">
-        {pageNumbers.map(number => (
-          <button key={number} onClick={() => setCurrentPage(number)}>
-            {number}
-          </button>
-        ))}
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setPage={setCurrentPage}
+      />
     </div>
   );
 };
