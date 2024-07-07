@@ -79,12 +79,15 @@ const SearchRoom = () => {
               <div key={room.id} className="room-card">
                 <img src={room.imgSrc} alt={room.name} />
                 <div className="room-card-content">
-                  <h3>{room.name}</h3>
-                  <ul>
-                    {room.amenities.map(amenity => (
-                      <li key={amenity}>{amenity}</li>
-                    ))}
-                  </ul>
+                  <div><h1>{room.name}</h1></div>
+                  <div class="amenities-content">
+                    <h3>Amenties</h3>
+                    <ul>
+                      {room.amenities.map(amenity => (
+                        <li key={amenity}>{amenity}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
                 <div className='booking'>
                   <h2>$ {room.price}</h2>

@@ -78,7 +78,6 @@
 
 .room-card {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
   padding: 20px;
@@ -102,11 +101,16 @@
 .room-card-content {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
 }
 
-.room-card h3 {
-  margin-top: 20px;
+.room-card h1 {
+  margin: 0;
+}
+
+.amenities-content h3 {
+  margin: 0;
 }
 
 .room-card ul {
@@ -115,10 +119,19 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)); /* Two columns layout */
   flex: 1;
+  margin: 0;
 }
 
 .room-card ul li {
   margin-bottom: 5px;
+}
+
+.booking {
+  align-self: center;
+}
+
+.booking h2 {
+  margin: 10px;
 }
 
 .room-card button {
