@@ -1,4 +1,6 @@
 const axios = require("axios");
+const html = require('html-escaper');
+const striptags = require('striptags');
 
 exports.getRoomPrices = async (req, res) => {
   const { id } = req.params;
@@ -8,32 +10,54 @@ exports.getRoomPrices = async (req, res) => {
     return res.status(400).json({ error: 'All parameters are required' });
   }
 
-  try {
-    const response = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${id}/price`, {
-      params: {
-        destination_id,
-        checkin,
-        checkout,
-        lang,
-        currency,
-        country_code,
-        guests,
-        partner_id
-      }
-    });
+  const fetchRoomPrices = async () => {
+    try {
+      const response = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${id}/price`, {
+        params: {
+          destination_id,
+          checkin,
+          checkout,
+          lang,
+          currency,
+          country_code,
+          guests,
+          partner_id
+        }
+      });
 
-    const roomPrices = response.data.rooms;
-    const formattedPrices = roomPrices.map((room, index) => ({
-      id: index + 1,  // Using index for a unique id
-      name: room.room_type,
-      description: room.long_description || room.description,
-      amenities: room.amenities,
-      imgSrc: room.images.length > 0 ? room.images[0] : 'https://via.placeholder.com/100'  // Default image if none available
-    }));
+      if (!response.data.completed) {
+        console.log("Search not completed. Retrying...");
+        await new Promise(resolve => setTimeout(resolve, 7000)); // Wait for 5 seconds before retrying
+        return fetchRoomPrices();
+      }
+
+      return response.data.rooms;
+    } catch (error) {
+      throw new Error('An error occurred while fetching room prices');
+    }
+  };
+
+  try {
+    const roomPrices = await fetchRoomPrices();
+
+    const formattedPrices = roomPrices.map((room, index) => {
+      const description = room.long_description || room.description;
+      const decodedDescription = html.unescape(description);
+      const plainTextDescription = striptags(decodedDescription);
+
+      return {
+        id: index + 1,  // Using index for a unique id
+        name: room.roomDescription,
+        price: room.price,
+        description: plainTextDescription,
+        amenities: room.amenities,
+        imgSrc: room.images.length > 0 ? room.images[0].url : 'https://via.placeholder.com/100'  // Default image if none available
+      };
+    });
 
     res.status(200).json(formattedPrices);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'An error occurred while fetching room prices' });
+    res.status(500).json({ error: error.message });
   }
 };
