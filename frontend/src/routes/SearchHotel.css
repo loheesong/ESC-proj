@@ -28,7 +28,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  width: 50%;
+  width: 30%;
+  max-width: 750px;
 }
 
 .hotel-card {
@@ -42,16 +43,27 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
   height: auto;
-  max-height: 200px; /* Adjust the height as needed */
+  max-height: 550px; /* Adjust the height as needed */
 }
 
 .hotel-card-content {
   flex-grow: 1;
 }
 
+.hotel-card img {
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+}
+
 .hotel-card h2,
 .hotel-card p {
   margin: 0 0 10px;
+}
+
+.hotel-card i.fa-star {
+  color: gold;
+  margin-left: 5px;
 }
 
 .hotel-card p {
@@ -61,12 +73,14 @@
 .hotel-card button {
   background-color: lightblue;
   color: white;
+  margin-top: 10px;
   padding: 10px 20px;
   font-size: 15px;
   border: none;
   border-radius: 5px; 
   cursor: pointer; 
   align-self: flex-end;
+  max-width: 500px;
 }
 
 .hotel-card button:hover {
@@ -74,8 +88,8 @@
 }
 
 .map-container {
-  width: 45%;
-  height: 500px;
+  width: calc(100vw - 850px);
+  height: 1000px;
   position: sticky;
   top: 0;
 }

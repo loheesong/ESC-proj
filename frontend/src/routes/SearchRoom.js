@@ -12,10 +12,14 @@ const SearchRoom = () => {
   const { id } = useParams()
   const [rooms, setRooms] = useState([])
   const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const hotelName = queryParams.get('name')
+  const hotelImagePrefix = queryParams.get('prefix')
+  const hotelImageSuffix = queryParams.get('suffix')
+  const hotelImageCount = parseInt(queryParams.get('imageCount'), 10) || 0;
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -33,11 +37,26 @@ const SearchRoom = () => {
      fetchRooms()
   }, [id]);
 
+  const handleThumbnailClick = (index) => {
+    setCurrentImageIndex(index);
+  };
+
   return (
     <div className="room-wrapper">
       <div className="room-info">
         <div className="room-image">
-          <img src="https://via.placeholder.com/600x300" alt="Room" />
+          <img src={`${hotelImagePrefix}${currentImageIndex}${hotelImageSuffix}`} alt="Hotel Pictures" />
+          <div className="room-thumbnails">
+              {Array.from({ length: hotelImageCount }, (_, i) => (
+                <img
+                  key={i}
+                  src={`${hotelImagePrefix}${i}${hotelImageSuffix}`}
+                  alt={`Thumbnail ${i + 1}`}
+                  className={`thumbnail ${currentImageIndex === i ? 'active' : ''}`}
+                  onClick={() => handleThumbnailClick(i)}
+                />
+              ))}
+          </div>
         </div>
         <div className="room-description">
           <h2>{hotelName}</h2>
@@ -58,9 +77,9 @@ const SearchRoom = () => {
           ) : (
             rooms.map(room => (
               <div key={room.id} className="room-card">
-                <img src={room.imgSrc.url} alt={room.name} />
+                <img src={room.imgSrc} alt={room.name} />
                 <div className="room-card-content">
-                  <h3>{room.description}</h3>
+                  <h3>{room.name}</h3>
                   <ul>
                     {room.amenities.map(amenity => (
                       <li key={amenity}>{amenity}</li>

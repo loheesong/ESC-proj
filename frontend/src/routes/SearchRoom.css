@@ -7,17 +7,44 @@
 .room-info {
   display: flex;
   margin-bottom: 20px;
+  height: 800px;
   background-color: antiquewhite;
 }
 
 .room-image {
+  width: 40%;
   flex: 1;
+  position: relative;
+  overflow: hidden;
 }
 
 .room-image img {
   width: 100%;
-  height: auto;
-  overflow: hidden;
+  height: 85%;
+  object-fit: cover;
+}
+
+.room-thumbnails {
+  position: absolute;
+  bottom: 10px;
+  margin-top: 100px;
+  left: 0;
+  width: 100%;
+  overflow-x: auto; 
+  white-space: nowrap;
+}
+
+.room-thumbnails img {
+  width: 100px; /* Adjust thumbnail size as needed */
+  height: 75px;
+  object-fit: cover;
+  margin-right: 5px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.room-thumbnails img.active {
+  border-color: blue; /* Highlight active thumbnail */
 }
 
 .no-rooms-found {
