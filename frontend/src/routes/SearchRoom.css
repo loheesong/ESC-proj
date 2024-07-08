@@ -7,17 +7,44 @@
 .room-info {
   display: flex;
   margin-bottom: 20px;
+  height: 800px;
   background-color: antiquewhite;
 }
 
 .room-image {
+  width: 40%;
   flex: 1;
+  position: relative;
+  overflow: hidden;
 }
 
 .room-image img {
   width: 100%;
-  height: auto;
-  overflow: hidden;
+  height: 85%;
+  object-fit: cover;
+}
+
+.room-thumbnails {
+  position: absolute;
+  bottom: 10px;
+  margin-top: 100px;
+  left: 0;
+  width: 100%;
+  overflow-x: auto; 
+  white-space: nowrap;
+}
+
+.room-thumbnails img {
+  width: 100px; /* Adjust thumbnail size as needed */
+  height: 75px;
+  object-fit: cover;
+  margin-right: 5px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.room-thumbnails img.active {
+  border-color: blue; /* Highlight active thumbnail */
 }
 
 .no-rooms-found {
@@ -51,7 +78,6 @@
 
 .room-card {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
   padding: 20px;
@@ -75,11 +101,16 @@
 .room-card-content {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
 }
 
-.room-card h3 {
-  margin-top: 20px;
+.room-card h1 {
+  margin: 0;
+}
+
+.amenities-content h3 {
+  margin: 0;
 }
 
 .room-card ul {
@@ -88,10 +119,19 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)); /* Two columns layout */
   flex: 1;
+  margin: 0;
 }
 
 .room-card ul li {
   margin-bottom: 5px;
+}
+
+.booking {
+  align-self: center;
+}
+
+.booking h2 {
+  margin: 10px;
 }
 
 .room-card button {

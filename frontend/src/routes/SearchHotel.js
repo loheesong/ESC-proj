@@ -86,11 +86,11 @@ const SearchHotel = () => {
           ) : (<>{currentHotels.map((hotel) => (
                 <div key={hotel.id} className="hotel-card">
                   <div className="hotel-card-content">
+                  <img src={hotel.prefix + '0' + hotel.suffix} alt={hotel.name} />
                     <h2>{hotel.name}</h2>
-                    <p>Location: {hotel.location}</p>
-                    <p>Rating: {hotel.rating}</p>
+                    <p>Location: {hotel.location}    <i className="fas fa-star"></i> {hotel.rating}</p>
                   </div>
-                  <Link to={`/searchroom/${hotel.id}?name=${encodeURIComponent(hotel.name)}`}>
+                  <Link to={`/searchroom/${hotel.id}?name=${encodeURIComponent(hotel.name)}&prefix=${encodeURIComponent(hotel.prefix)}&suffix=${encodeURIComponent(hotel.suffix)}&imageCount=${encodeURIComponent(hotel.imageCount)}`}>
                     <button>Select</button>
                   </Link>
                 </div>

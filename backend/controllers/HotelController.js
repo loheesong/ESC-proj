@@ -62,6 +62,9 @@ exports.getHotelsFromDestinationID = async (req, res) => {
       location: hotel.original_metadata?.city || "Unknown location",
       rating: hotel.trustyou?.score?.kaligo_overall || "No rating available",
       position: [hotel.latitude, hotel.longitude],
+      imageCount: hotel.image_details.count,
+      suffix: hotel.image_details.suffix,
+      prefix: hotel.image_details.prefix,
     }));
 
     cache.set(cacheKey, formattedHotels); // Cache the response
