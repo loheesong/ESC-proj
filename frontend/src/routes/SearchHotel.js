@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -30,8 +30,6 @@ const initialHotels = [
   { id: 12, name: 'Economy Hotel', location: 'Singapore', rating: 3.9, position: [1.292400, 103.858400] },
 ];
 
-const dest_id = 'WD0M'
-
 // Custom marker icon
 const customIcon = new L.Icon({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
@@ -43,6 +41,7 @@ const customIcon = new L.Icon({
 });
 
 const SearchHotel = () => {
+  const {uid} = useParams();
   const [hotels, setHotels] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -52,7 +51,7 @@ const SearchHotel = () => {
     // Replace the below API call with your actual API endpoint
     const fetchHotels = async () => {
       try {
-        const response = await fetch('http://localhost:3001/hotels?destination_id=' + dest_id);
+        const response = await fetch(`http://localhost:3001/hotels?destination_id=${uid}`);
         const data = await response.json();
         setHotels(data);
         setLoading(false);
@@ -90,7 +89,7 @@ const SearchHotel = () => {
                     <h2>{hotel.name}</h2>
                     <p>Location: {hotel.location}    <i className="fas fa-star"></i> {hotel.rating}</p>
                   </div>
-                  <Link to={`/searchroom/${hotel.id}?name=${encodeURIComponent(hotel.name)}&prefix=${encodeURIComponent(hotel.prefix)}&suffix=${encodeURIComponent(hotel.suffix)}&imageCount=${encodeURIComponent(hotel.imageCount)}`}>
+                  <Link to={`/searchroom/${hotel.id}?uid=${encodeURIComponent(uid)}&name=${encodeURIComponent(hotel.name)}&prefix=${encodeURIComponent(hotel.prefix)}&suffix=${encodeURIComponent(hotel.suffix)}&imageCount=${encodeURIComponent(hotel.imageCount)}`}>
                     <button>Select</button>
                   </Link>
                 </div>

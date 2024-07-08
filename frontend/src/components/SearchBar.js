@@ -3,6 +3,7 @@ import './SearchBar.css'
 import { FaSearch } from 'react-icons/fa'
 import SearchResults from './SearchResults';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const autocomplete_api = "http://localhost:3001/api/autocomplete?q="
 const search_endpoint = "http://localhost:3001/search?q="
@@ -12,6 +13,7 @@ const search_endpoint = "http://localhost:3001/search?q="
 function SearchBar() {
     const [results, setResults] = useState([]);
     const [searchIn, setSearchIn] = useState("");
+    const navigate = useNavigate();
 
     // call api and set returned values to display in search suggestions div 
     const fetchData = (value) => {
@@ -25,6 +27,7 @@ function SearchBar() {
     const searchGetRequest = (uid) => { 
         axios.get(search_endpoint + uid).then((res) => { 
             console.log("response from search get: "+res.data);
+            navigate(`/SearchHotel/${uid}`);
         })
     }
 

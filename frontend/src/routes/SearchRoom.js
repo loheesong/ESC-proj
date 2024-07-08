@@ -20,11 +20,13 @@ const SearchRoom = () => {
   const hotelImagePrefix = queryParams.get('prefix')
   const hotelImageSuffix = queryParams.get('suffix')
   const hotelImageCount = parseInt(queryParams.get('imageCount'), 10) || 0;
+  const uid = queryParams.get('uid')
 
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/rooms/${id}/prices?destination_id=WD0M&checkin=2024-10-01&checkout=2024-10-07&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`);
+        console.log(uid)
+        const response = await fetch(`http://localhost:3001/rooms/${id}/prices?destination_id=${uid}&checkin=2024-10-01&checkout=2024-10-07&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`);
         const data = await response.json();
         setRooms(data);
         setLoading(false);
