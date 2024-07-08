@@ -1,0 +1,129 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(100vh - 100px);
+}
+
+.Title {
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: lightcoral;
+}
+
+.Title h1 {
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hotel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 30%;
+  max-width: 750px;
+}
+
+.hotel-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  height: auto;
+  max-height: 550px; /* Adjust the height as needed */
+}
+
+.hotel-card-content {
+  flex-grow: 1;
+}
+
+.hotel-card img {
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.hotel-card h2,
+.hotel-card p {
+  margin: 0 0 10px;
+}
+
+.hotel-card i.fa-star {
+  color: gold;
+  margin-left: 5px;
+}
+
+.hotel-card p {
+  margin-bottom: auto;
+}
+
+.hotel-card button {
+  background-color: lightblue;
+  color: white;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer; 
+  align-self: flex-end;
+  max-width: 500px;
+}
+
+.hotel-card button:hover {
+  background-color: blue;
+}
+
+.map-container {
+  width: calc(100vw - 850px);
+  height: 1000px;
+  position: sticky;
+  top: 0;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%; 
+  flex-direction: column;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
