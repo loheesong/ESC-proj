@@ -9,7 +9,6 @@ const express = require('express')
 const app = express() 
 const cors = require('cors');
 const searchRouter = require('./routes/Search');
-const landingRouter = require('./routes/Landing');
 const apiRouter = require('./routes/Api');
 
 const landingRouter = require('./routes/Landing');
@@ -34,6 +33,7 @@ app.use("/destinations", searchDestinationsRouter);
 app.use("/hotels", hotelsRouter);
 app.use("/rooms", roomDisplayRouter);
 app.use("/book_hotel", bookHotelRouter);
+app.use("/search", searchRouter);
 
 // Utility endpoints here
 app.use("/api", apiRouter);

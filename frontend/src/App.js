@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SearchHotel from './routes/SearchHotel';
 import SearchRoom from './routes/SearchRoom';
-
+import SearchDest from './routes/SearchDest';
+import Home from "./routes/Home"
 
 function App() {
     const [info, setInfo] = useState([]);
@@ -25,6 +26,7 @@ function App() {
                             <Link to="/searchhotel">
                                 <button>Search</button>
                             </Link>
+                            <Home/>
                         </div>
                     } 
                 />
