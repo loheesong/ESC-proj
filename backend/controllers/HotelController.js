@@ -1,4 +1,8 @@
 const axios = require("axios");
+const NodeCache = require("node-cache");
+
+// Initialize cache (ttl is time-to-live in seconds)
+const cache = new NodeCache({ stdTTL: 600, checkperiod: 120 }); // Cache for 10 minutes, check every 2 minutes
 
 exports.getHotelDetailsFromHotelID = async (req, res) => {
   const { id } = req.params;
@@ -7,10 +11,18 @@ exports.getHotelDetailsFromHotelID = async (req, res) => {
     return res.status(400).json({ error: "Hotel ID is required" });
   }
 
+  const cacheKey = `hotelDetails_${id}`;
+  const cachedData = cache.get(cacheKey);
+
+  if (cachedData) {
+    return res.status(200).json(cachedData);
+  }
+
   try {
     const response = await axios.get(
       `https://hotelapi.loyalty.dev/api/hotels/${id}`
     );
+    cache.set(cacheKey, response.data); // Cache the response
     res.status(200).json(response.data);
   } catch (error) {
     console.error(error);
@@ -25,6 +37,13 @@ exports.getHotelsFromDestinationID = async (req, res) => {
 
   if (!destination_id) {
     return res.status(400).json({ error: "Destination ID is required" });
+  }
+
+  const cacheKey = `hotelsFromDestination_${destination_id}`;
+  const cachedData = cache.get(cacheKey);
+
+  if (cachedData) {
+    return res.status(200).json(cachedData);
   }
 
   try {
@@ -45,6 +64,7 @@ exports.getHotelsFromDestinationID = async (req, res) => {
       position: [hotel.latitude, hotel.longitude],
     }));
 
+    cache.set(cacheKey, formattedHotels); // Cache the response
     res.status(200).json(formattedHotels);
   } catch (error) {
     console.error(error);
@@ -75,6 +95,13 @@ exports.getHotelPricesByDestinationID = async (req, res) => {
     return res.status(400).json({ error: "All parameters are required" });
   }
 
+  const cacheKey = `hotelPrices_${destination_id}_${checkin}_${checkout}_${country_code}_${guests}_${partner_id}`;
+  const cachedData = cache.get(cacheKey);
+
+  if (cachedData) {
+    return res.status(200).json(cachedData);
+  }
+
   try {
     const params = {
       destination_id,
@@ -100,6 +127,7 @@ exports.getHotelPricesByDestinationID = async (req, res) => {
       market_rates: hotel.market_rates.rate,
     }));
 
+    cache.set(cacheKey, hotelsPrices); // Cache the response
     res.status(200).json(hotelsPrices);
   } catch (error) {
     console.error(error);
