@@ -4,6 +4,7 @@ const {
   getHotelDetailsFromHotelID,
   getHotelsFromDestinationID,
   getHotelPricesByDestinationID,
+  getHotelsWithDetailsAndPrices,
 } = require("../controllers/HotelController");
 
 // return hotels details based on hotelID
@@ -18,6 +19,7 @@ router.get("/hotel", getHotelsFromDestinationID);
 // localhost:3001/hotels/filter?destination_id=WD0M&checkin=2024-10-01&checkout=2024-10-08&country_code=SG&guests=2|2&partner_id=1
 router.get("/filter", getHotelPricesByDestinationID);
 
-// Returns list of
+// localhost:3001/hotels/details?destination_id=WD0M&checkin=2024-10-01&checkout=2024-10-08&country_code=SG&guests=2|2&partner_id=1
+router.get("/details", getHotelsWithDetailsAndPrices);
 
 module.exports = router;
