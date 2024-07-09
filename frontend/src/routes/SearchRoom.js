@@ -2,12 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import './SearchRoom.css';
 
-const rooms = [
-  { id: 1, name: 'Deluxe Room', description: 'A luxurious room with a king-sized bed.', amenities: ['WiFi', 'TV', 'Minibar'], imgSrc: 'https://i.pinimg.com/564x/57/66/0b/57660b90fe1169a421dece985748f3c3.jpg', price: '123.24' },
-  { id: 2, name: 'Suite', description: 'A spacious suite with a separate living area.', amenities: ['WiFi', 'TV', 'Minibar', 'Balcony'], imgSrc: 'https://via.placeholder.com/100', price: '231.78' },
-  { id: 3, name: 'Standard Room', description: 'A comfortable room with all standard amenities.', amenities: ['WiFi', 'TV'], imgSrc: 'https://via.placeholder.com/100', price: '353.04' },
-];
-
 const SearchRoom = () => {
   const { id } = useParams()
   const [rooms, setRooms] = useState([])

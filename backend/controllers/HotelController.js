@@ -232,7 +232,8 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
           market_rates: priceInfo?.market_rates || []
         }
       };
-    });
+    })
+    .filter(hotel => hotel.priceInfo.price > 0);
 
     cache.set(cacheKey, hotelsWithDetailsAndPrices); // Cache the combined response
     res.status(200).json(hotelsWithDetailsAndPrices);

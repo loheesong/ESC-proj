@@ -14,22 +14,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-// Hardcoded data for initial rendering
-const initialHotels = [
-  { id: 1, name: 'Hotel Sunshine', location: 'Singapore', rating: 4.5, position: [1.290270, 103.851959] },
-  { id: 2, name: 'Mountain Retreat', location: 'Singapore', rating: 4.7, position: [1.352083, 103.819836] },
-  { id: 3, name: 'Beachside Resort', location: 'Singapore', rating: 4.8, position: [1.282302, 103.860275] },
-  { id: 4, name: 'City Hotel', location: 'Singapore', rating: 4.6, position: [1.283253, 103.848566] },
-  { id: 5, name: 'Forest Hotel', location: 'Singapore', rating: 4.3, position: [1.322990, 103.819490] },
-  { id: 6, name: 'Lakeview Hotel', location: 'Singapore', rating: 4.9, position: [1.342610, 103.681992] },
-  { id: 7, name: 'Riverside Hotel', location: 'Singapore', rating: 4.4, position: [1.292896, 103.846450] },
-  { id: 8, name: 'Downtown Hotel', location: 'Singapore', rating: 4.2, position: [1.296569, 103.848044] },
-  { id: 9, name: 'Uptown Hotel', location: 'Singapore', rating: 4.7, position: [1.313839, 103.846932] },
-  { id: 10, name: 'Suburban Hotel', location: 'Singapore', rating: 4.5, position: [1.378403, 103.892510] },
-  { id: 11, name: 'Luxury Hotel', location: 'Singapore', rating: 5.0, position: [1.288617, 103.851161] },
-  { id: 12, name: 'Economy Hotel', location: 'Singapore', rating: 3.9, position: [1.292400, 103.858400] },
-];
-
 // Custom marker icon
 const customIcon = new L.Icon({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
@@ -51,8 +35,9 @@ const SearchHotel = () => {
     // Replace the below API call with your actual API endpoint
     const fetchHotels = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/hotels?destination_id=${uid}`);
+        const response = await fetch(`http://localhost:3001/hotels/details?destination_id=${uid}&checkin=2024-10-01&checkout=2024-10-08&country_code=SG&guests=2|2&partner_id=1`);
         const data = await response.json();
+        console.log(data)
         setHotels(data);
         setLoading(false);
 
