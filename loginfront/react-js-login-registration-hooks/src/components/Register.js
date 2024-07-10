@@ -1,10 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
 import AuthService from "../services/auth.service";
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 const required = (value) => {
   if (!value) {
@@ -46,6 +48,7 @@ const vpassword = (value) => {
   }
 };
 
+
 const Register = (props) => {
   const form = useRef();
   const checkBtn = useRef();
@@ -70,6 +73,57 @@ const Register = (props) => {
     const password = e.target.value;
     setPassword(password);
   };
+
+  //google-----------------------------------------------
+const [ user, setUser ] = useState([]);
+const [ profile, setProfile ] = useState([]);
+
+const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log('Login Failed:', error)
+});
+
+useEffect(
+    () => {
+        if (user) {
+            axios
+                .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                    headers: {
+                        Authorization: `Bearer ${user.access_token}`,
+                        Accept: 'application/json'
+                    }
+                })
+                .then((res) => {
+                  AuthService.register(res.data.name, res.data.email, res.data.id).then(
+                    (response) => {
+                      setMessage(response.data.message);
+                      setSuccessful(true);
+                    },
+                    (error) => {
+                      const resMessage =
+                        (error.response &&
+                          error.response.data &&
+                          error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+            
+                      setMessage(resMessage);
+                      setSuccessful(false);
+                    }
+                  );
+                })
+                .catch((err) => console.log(err));
+        }
+    },
+    [ user ]
+);
+
+// log out function to log the user out of google and set the profile array to null
+// const logOut = () => {
+//     googleLogout();
+//     setProfile(null);
+// };
+//------------------------------------------------------
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -119,6 +173,7 @@ const Register = (props) => {
                   className="form-control"
                   name="username"
                   value={username}
+                  //value={username}
                   onChange={onChangeUsername}
                   validations={[required, vusername]}
                 />
@@ -150,6 +205,7 @@ const Register = (props) => {
 
               <div className="form-group">
                 <button className="btn btn-primary btn-block">Sign Up</button>
+                <button onClick={login}>Sign up with Google 🚀 </button>
               </div>
             </div>
           )}

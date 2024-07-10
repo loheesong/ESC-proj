@@ -1,8 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 import AuthService from "../services/auth.service";
 
@@ -37,6 +39,56 @@ const Login = () => {
     setPassword(password);
   };
 
+  //google-----------------------------------------------
+  const [ user, setUser ] = useState([]);
+  const [ profile, setProfile ] = useState([]);
+
+  const login = useGoogleLogin({
+      onSuccess: (codeResponse) => setUser(codeResponse),
+      onError: (error) => console.log('Login Failed:', error)
+  });
+
+  useEffect(
+      () => {
+          if (user) {
+              axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                      headers: {
+                          Authorization: `Bearer ${user.access_token}`,
+                          Accept: 'application/json'
+                      }
+                  })
+                  .then((res) => {
+                    AuthService.login(res.data.name, res.data.id).then(
+                      () => {
+                        navigate("/profile");
+                        window.location.reload();
+                      },
+                      (error) => {
+                        const resMessage =
+                          (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                          error.message ||
+                          error.toString();
+              
+                        setLoading(false);
+                        setMessage(resMessage);
+                      }
+                    );
+                  })
+                  .catch((err) => console.log(err));
+          }
+      },
+      [ user ]
+      
+  );
+
+  // log out function to log the user out of google and set the profile array to null
+  const logOut = () => {
+      googleLogout();
+      setProfile(null);
+  };
+//------------------------------------------------------
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -109,6 +161,7 @@ const Login = () => {
               )}
               <span>Login</span>
             </button>
+            <button onClick={login}>Sign in with Google 🚀 </button>
           </div>
 
           {message && (
