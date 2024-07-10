@@ -37,7 +37,6 @@ const SearchHotel = () => {
       try {
         const response = await fetch(`http://localhost:3001/hotels/details?destination_id=${uid}&checkin=2024-10-01&checkout=2024-10-08&country_code=SG&guests=2|2&partner_id=1`);
         const data = await response.json();
-        console.log(data)
         setHotels(data);
         setLoading(false);
 
@@ -74,7 +73,7 @@ const SearchHotel = () => {
                     <h2>{hotel.name}</h2>
                     <p>Location: {hotel.location}    <i className="fas fa-star"></i> {hotel.rating}</p>
                   </div>
-                  <Link to={`/searchroom/${hotel.id}?uid=${encodeURIComponent(uid)}&name=${encodeURIComponent(hotel.name)}&prefix=${encodeURIComponent(hotel.prefix)}&suffix=${encodeURIComponent(hotel.suffix)}&imageCount=${encodeURIComponent(hotel.imageCount)}`}>
+                  <Link to={`/searchroom/${hotel.id}?uid=${encodeURIComponent(uid)}`}>
                     <button>Select</button>
                   </Link>
                 </div>
