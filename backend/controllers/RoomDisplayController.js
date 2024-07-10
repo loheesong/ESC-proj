@@ -62,15 +62,18 @@ exports.getRoomPrices = async (req, res) => {
   try {
     const roomPrices = await fetchRoomPrices();
 
-    const allAmenities = roomPrices.flatMap(room => room.amenities);
-    const commonAmenities = [...new Set(allAmenities)]
-      .filter(amenity => roomPrices.every(room => room.amenities.includes(amenity)));
-    
+    const allAmenities = roomPrices.flatMap((room) => room.amenities);
+    const commonAmenities = [...new Set(allAmenities)].filter((amenity) =>
+      roomPrices.every((room) => room.amenities.includes(amenity))
+    );
+
     const formattedPrices = roomPrices.map((room, index) => {
       const description = room.long_description || room.description;
       const decodedDescription = html.unescape(description);
       const plainTextDescription = striptags(decodedDescription);
-      const uniqueAmenities = room.amenities.filter(amenity => !commonAmenities.includes(amenity));
+      const uniqueAmenities = room.amenities.filter(
+        (amenity) => !commonAmenities.includes(amenity)
+      );
 
       return {
         id: index + 1, // Using index for a unique id
@@ -79,7 +82,10 @@ exports.getRoomPrices = async (req, res) => {
         description: plainTextDescription,
         commonAmenities: commonAmenities,
         uniqueAmenities: uniqueAmenities,
-        imgSrc: room.images.length > 0 ? room.images[0].url : "https://via.placeholder.com/100", // Default image if none available
+        imgSrc:
+          room.images.length > 0
+            ? room.images[0].url
+            : "https://via.placeholder.com/100", // Default image if none available
       };
     });
 
