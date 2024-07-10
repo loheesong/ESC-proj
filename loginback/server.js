@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cookieSession({
-    name: "bezkoder-session",
+    name: "ESC",
     keys: ["COOKIE_SECRET"], // should use as secret environment variable
     httpOnly: true,
   })
@@ -22,7 +22,7 @@ app.use(
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Hi bitch!" });
 });
 
 // set port, listen for requests
@@ -33,9 +33,33 @@ app.listen(PORT, () => {
 
 
 const db = require("./app/models");
+// const Role = db.role;
 
 db.sequelize.sync();
+// db.sequelize.sync({force: true}).then(() => {
+//   console.log('Drop and Resync Database with { force: true }');
+//   initial();
+// });
 
 
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+
+
+
+// function initial() {
+//   Role.create({
+//     id: 1,
+//     name: "user",
+//   });
+
+//   Role.create({
+//     id: 2,
+//     name: "moderator",
+//   });
+
+//   Role.create({
+//     id: 3,
+//     name: "admin",
+//   });
+// }
