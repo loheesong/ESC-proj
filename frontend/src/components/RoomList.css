@@ -1,6 +1,7 @@
 .room-amenities ul {
     list-style-type: none;
     padding: 0;
+    background-color: lightblue;
 }
   
 .room-amenities ul li {
