@@ -1,6 +1,12 @@
 const axios = require("axios");
 const NodeCache = require("node-cache");
 
+const {
+  getHotelDetailsAPI,
+  getHotelsDetailsAPI,
+  getHotelPricesAPI,
+} = require("../apicontrollers/hotelapi");
+
 // Initialize cache (ttl is time-to-live in seconds)
 const cache = new NodeCache({ stdTTL: 600, checkperiod: 120 }); // Cache for 10 minutes, check every 2 minutes
 
@@ -19,9 +25,7 @@ exports.getHotelDetailsFromHotelID = async (req, res) => {
   }
 
   try {
-    const response = await axios.get(
-      `https://hotelapi.loyalty.dev/api/hotels/${id}`
-    );
+    const response = await getHotelDetailsAPI(id);
     cache.set(cacheKey, response.data); // Cache the response
     res.status(200).json(response.data);
   } catch (error) {
@@ -47,12 +51,8 @@ exports.getHotelsFromDestinationID = async (req, res) => {
   }
 
   try {
-    const response = await axios.get(
-      `https://hotelapi.loyalty.dev/api/hotels`,
-      {
-        params: { destination_id },
-      }
-    );
+    const response = await getHotelsDetailsAPI(destination_id);
+
 
     const hotels = response.data;
 
@@ -119,10 +119,7 @@ try {
 
   const fetchHotelPrices = async () => {
     try {
-      const response = await axios.get(
-        "https://hotelapi.loyalty.dev/api/hotels/prices",
-        { params }
-      );
+      const response = await getHotelPricesAPI(params);
 
       if (!response.data.completed) {
         console.log("Search not completed. Retrying...");
@@ -175,10 +172,7 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
 
   try {
     // Fetch hotel details
-    const hotelsResponse = await axios.get(
-      `https://hotelapi.loyalty.dev/api/hotels`,
-      { params: { destination_id } }
-    );
+    const hotelsResponse = await getHotelsDetailsAPI(destination_id);
 
     // Fetch hotel prices
     const fetchHotelPrices = async () => {
@@ -194,10 +188,7 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
           partner_id,
         };
 
-        const response = await axios.get(
-          "https://hotelapi.loyalty.dev/api/hotels/prices",
-          { params }
-        );
+        const response = await getHotelPricesAPI(params);
 
         if (!response.data.completed) {
           console.log("Search not completed. Retrying...");
