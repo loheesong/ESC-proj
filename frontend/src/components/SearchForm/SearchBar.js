@@ -27,7 +27,8 @@ function SearchBar() {
     const searchGetRequest = (uid) => { 
         axios.get(search_endpoint + uid).then((res) => { 
             console.log("response from search get: "+res.data);
-            navigate(`/SearchHotel/${uid}`);
+            // URLs can have caps, it doesnt matter, nagivate to this url 
+            navigate(`/searchhotel/${uid}`);
         })
     }
 
