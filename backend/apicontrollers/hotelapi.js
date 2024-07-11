@@ -23,11 +23,19 @@ const getHotelPricesAPI =  async (params) =>{
   
 }
 
-
+const getRoomsAPI = async (id, p) =>{
+    return await axios.get(
+        `https://hotelapi.loyalty.dev/api/hotels/${id}/price`,
+        {
+          params: p,
+        }
+      );
+}
 
 
 module.exports = {
     getHotelDetailsAPI,
     getHotelsDetailsAPI,
     getHotelPricesAPI,
+    getRoomsAPI,
 };
