@@ -1,12 +1,13 @@
 import SearchBar from "./SearchBar"
 import SearchDatePicker from "./SearchDatePicker";
+import SearchNumberInput from "./SearchNumberInput";
 
 function SearchForm(params) {
     return (
         <div>
             <SearchBar></SearchBar>
-            <p>hello</p>
             <SearchDatePicker></SearchDatePicker>
+            <SearchNumberInput></SearchNumberInput>
         </div>
     ) 
 }
