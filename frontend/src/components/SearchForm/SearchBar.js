@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
-import './SearchBar.css'
 import { FaSearch } from 'react-icons/fa'
-import SearchResults from './SearchResults';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './SearchBar.css'
 
 const autocomplete_api = "http://localhost:3001/api/autocomplete?q="
-const search_endpoint = "http://localhost:3001/search?q="
 
 /** Component: Search bar
  */
@@ -25,11 +23,7 @@ function SearchBar() {
 
     // make get request for search destination 
     const searchGetRequest = (uid) => { 
-        axios.get(search_endpoint + uid).then((res) => { 
-            console.log("response from search get: "+res.data);
-            // URLs can have caps, it doesnt matter, nagivate to this url 
-            navigate(`/searchhotel/${uid}`);
-        })
+        navigate(`/searchhotel/${uid}`);
     }
 
     // get req for search suggestions  
@@ -59,6 +53,24 @@ function SearchBar() {
                     onKeyDown={handleKeyDown}/>
             </div>
             <SearchResults results={results} onResultClick={handleResultClick}></SearchResults>
+        </div>
+    )
+}
+
+function SearchResults({results, onResultClick}) {
+    return (
+        <div className="results-list">
+            {   // must have unique id, put destination uid in key 
+                results.map((result, id) => {
+                    return (
+                        <div key={result.uid} 
+                            className='search-result' 
+                            onClick={() => onResultClick(result.term, result.uid)}>
+                                {result.term}
+                        </div>
+                    );
+                })
+            }
         </div>
     )
 }
