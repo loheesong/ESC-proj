@@ -6,6 +6,8 @@ const app = express();
 
 app.use(cors());
 
+app.use(cors({ origin: 'http://localhost:3000' })); // Allow requests from frontend
+
 // parse requests of content-type - application/json
 app.use(express.json());
 

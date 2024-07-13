@@ -1,7 +1,7 @@
 module.exports = {
     HOST: "localhost",
     USER: "root",
-    PASSWORD: "ChiaTang880307",
+    PASSWORD: "samuraiOndo",
     DB: "googletest",
     dialect: "mysql",
     pool: {
@@ -11,3 +11,8 @@ module.exports = {
       idle: 10000
     }
   };
+
+
+//mysql> INSERT INTO roles VALUES (1, 'user', now(), now());
+// mysql> INSERT INTO roles VALUES (2, 'moderator', now(), now());
+// mysql> INSERT INTO roles VALUES (3, 'admin', now(), now());

@@ -36,11 +36,21 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
+const updateProfile = (user) => {
+  const token = JSON.parse(localStorage.getItem('user')).accessToken;
+  return axios.put(API_URL + "update-profile", user, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
 const AuthService = {
   register,
   login,
   logout,
   getCurrentUser,
+  updateProfile
 }
 
 export default AuthService;
