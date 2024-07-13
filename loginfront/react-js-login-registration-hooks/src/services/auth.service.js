@@ -45,12 +45,22 @@ const updateProfile = (user) => {
   });
 };
 
+const deleteaccount = (user) => {
+  const token = JSON.parse(localStorage.getItem('user')).accessToken;
+  return axios.put(API_URL + "deleteaccount", user, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
 const AuthService = {
   register,
   login,
   logout,
   getCurrentUser,
-  updateProfile
+  updateProfile,
+  deleteaccount
 }
 
 export default AuthService;

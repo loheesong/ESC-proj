@@ -37,3 +37,21 @@ exports.updateProfile = async (req, res) => {
     res.status(500).send({ message: "An error occurred while updating the profile." });
   }
 };
+
+exports.deleteaccount = async (req, res) => {
+  try {
+    const userId = req.userId; // Assuming userId is set in the auth middleware
+
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).send({ message: "User not found." });
+    }
+
+    await user.destroy();
+
+    res.status(200).send({ message: "Account deleted successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "An error occurred while deleting the account." });
+  }
+};

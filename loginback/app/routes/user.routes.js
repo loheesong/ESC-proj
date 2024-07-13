@@ -36,4 +36,10 @@ module.exports = function(app) {
     controller.updateProfile
   );
 
+  app.put(
+    "/api/auth/deleteaccount",
+    [authJwt.verifyToken],
+    controller.deleteaccount
+  );
+
 };

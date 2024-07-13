@@ -45,19 +45,21 @@ const Profile = () => {
   const form = useRef();
   const checkBtn = useRef();
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
+  const handleUpdate = async () => {
     setMessage("");
     setSuccessful(false);
 
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.updateProfile({username, email}).then(
+      AuthService.updateProfile({ username, email }).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
-          //setTimeout(() => {AuthService.logout()}, 2500)
+          setTimeout(() => {
+            AuthService.logout();
+            window.location.href = "/login"; // Redirect to login page
+          }, 2500);
         },
         (error) => {
           const resMessage =
@@ -74,6 +76,34 @@ const Profile = () => {
     }
   };
 
+  const handleDelete = async () => {
+    setMessage("");
+    setSuccessful(false);
+
+    AuthService.deleteaccount().then(
+      (response) => {
+        setMessage(response.data.message);
+        setSuccessful(true);
+        // Optionally log out the user after account deletion
+        setTimeout(() => {
+          AuthService.logout();
+          window.location.href = "/login"; // Redirect to login page
+        }, 2500);
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setMessage(resMessage);
+        setSuccessful(false);
+      }
+    );
+  };
+
   return (
     <div className="container">
       <header className="jumbotron">
@@ -81,49 +111,52 @@ const Profile = () => {
           <strong>{currentUser.username}</strong> Profile
         </h3>
       </header>
-      <Form onSubmit={handleUpdate} ref={form}>
+      <Form ref={form}>
         {!successful && (
           <div>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <Input
-            type="text"
-            className="form-control"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            validations={[required, vusername]}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <Input
-            type="email"
-            className="form-control"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            validations={[required, validEmail]}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Update
-        </button>
-        </div>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <Input
+                type="text"
+                className="form-control"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                validations={[required, vusername]}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <Input
+                type="email"
+                className="form-control"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                validations={[required, validEmail]}
+              />
+            </div>
+            <button type="button" className="btn btn-primary" onClick={handleUpdate}>
+              Update
+            </button>
+            <button type="button" className="btn btn-danger" onClick={handleDelete}>
+              Delete
+            </button>
+          </div>
         )}
         {message && (
-            <div className="form-group">
-              <div
-                className={
-                  successful ? "alert alert-success" : "alert alert-danger"
-                }
-                role="alert"
-              >
-                {message}
-              </div>
+          <div className="form-group">
+            <div
+              className={
+                successful ? "alert alert-success" : "alert alert-danger"
+              }
+              role="alert"
+            >
+              {message}
             </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          </div>
+        )}
+        <CheckButton style={{ display: "none" }} ref={checkBtn} />
       </Form>
     </div>
   );
