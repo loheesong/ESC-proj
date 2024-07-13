@@ -4,3 +4,5 @@ Things to fix:
 1. Make sure no duplicate usernames when editing
 2. Auto log-out the user after they finished editing their profile
 3. Add a "change password" option with more security and validation
+
+Also does not have a delete button rn but it can be done pretty fast
