@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import SearchHotel from './routes/SearchHotel';
 import SearchRoom from './routes/SearchRoom';
 import SearchDest from './routes/SearchDest';
-import Home from "./routes/Home"
+import Home from "./routes/Home";
+import DeleteBooking from './routes/DeleteBooking';
 
 function App() {
     const [info, setInfo] = useState([]);
@@ -13,7 +14,7 @@ function App() {
         axios.get("http://localhost:3001").then((response) => {
             console.log(response);
             setInfo(response.data);
-        })
+        });
     }, []);
 
     return (
@@ -30,8 +31,9 @@ function App() {
                 <Route path="/searchhotel/:uid" element={<SearchHotel />} />
                 <Route path="/searchroom/:id" element={<SearchRoom />} />   
                 <Route path='/search' element={<SearchDest/>}></Route>
+                <Route path="/booking" element={<DeleteBooking />} />
             </Routes>
-        </Router>
+        </Router> 
     );
 }
 
