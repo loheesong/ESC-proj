@@ -1,17 +1,16 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import { FaSearch } from 'react-icons/fa'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import './SearchBar.css'
 
 const autocomplete_api = "http://localhost:3001/api/autocomplete?q="
 
 /** Component: Search bar
  */
-function SearchBar() {
-    const [results, setResults] = useState([]);
-    const [searchIn, setSearchIn] = useState("");
-    const navigate = useNavigate();
+function SearchBar({onChange}) {
+    const [results, setResults] = useState([]) // 5 results suggestion 
+    const [searchIn, setSearchIn] = useState("") // whatever is typed in search bar 
+    const uid = useRef(null) // update uid immediate since this value is not used for rendering 
 
     // call api and set returned values to display in search suggestions div 
     const fetchData = (value) => {
@@ -21,36 +20,25 @@ function SearchBar() {
         })
     }
 
-    // make get request for search destination 
-    const searchGetRequest = (uid) => { 
-        navigate(`/searchhotel/${uid}`);
-    }
-
     // get req for search suggestions  
     const handleChange = (value) => {
         setSearchIn(value)
         fetchData(value)
     }
 
-    // support enter to search 
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') searchGetRequest(searchIn)
-    };
-    
-    // pass fn as prop to child component SearchResults, support click to search 
-    const handleResultClick = (term, uid) => {
-        setSearchIn(term);
-        searchGetRequest(uid);
+    // pass fn as prop to child component SearchResults
+    const handleResultClick = (term, id) => {
+        setSearchIn(term); // update value in input field 
+        uid.current = id // update associated uid 
+        onChange(uid.current) // update formData in parent component with uid for GET req 
     };
 
     return (
         <div className='search-bar-container'>
             <div className="input-wrapper">
                 <FaSearch></FaSearch>
-                <input placeholder="Type to search" 
-                    type="text" 
-                    onChange={(e) => handleChange(e.target.value)}
-                    onKeyDown={handleKeyDown}/>
+                <input placeholder="Where to" type="text"  value={searchIn}
+                    onChange={(e) => {handleChange(e.target.value)}}/>
             </div>
             <SearchResults results={results} onResultClick={handleResultClick}></SearchResults>
         </div>
