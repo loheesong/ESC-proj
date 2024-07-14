@@ -3,6 +3,12 @@ const NodeCache = require("node-cache");
 const html = require("html-escaper");
 const striptags = require("striptags");
 
+const {
+  getHotelDetailsAPI,
+  getHotelsDetailsAPI,
+  getHotelPricesAPI,
+} = require("../apicontrollers/hotelapi");
+
 // Initialize cache (ttl is time-to-live in seconds)
 const cache = new NodeCache({ stdTTL: 600, checkperiod: 120 }); // Cache for 10 minutes, check every 2 minutes
 
@@ -58,12 +64,8 @@ exports.getHotelsFromDestinationID = async (req, res) => {
   }
 
   try {
-    const response = await axios.get(
-      `https://hotelapi.loyalty.dev/api/hotels`,
-      {
-        params: { destination_id },
-      }
-    );
+    const response = await getHotelsDetailsAPI(destination_id);
+
 
     const hotels = response.data;
 
@@ -200,10 +202,7 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
 
   try {
     // Fetch hotel details
-    const hotelsResponse = await axios.get(
-      `https://hotelapi.loyalty.dev/api/hotels`,
-      { params: { destination_id } }
-    );
+    const hotelsResponse = await getHotelsDetailsAPI(destination_id);
 
     // Fetch hotel prices
     const fetchHotelPrices = async () => {
@@ -219,10 +218,7 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
           partner_id,
         };
 
-        const response = await axios.get(
-          "https://hotelapi.loyalty.dev/api/hotels/prices",
-          { params }
-        );
+        const response = await getHotelPricesAPI(params);
 
         if (!response.data.completed) {
           console.log("Search not completed. Retrying...");

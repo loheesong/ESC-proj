@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import SearchBar from '../components/SearchBar';
+import SearchDestForm from '../components/SearchForm/SearchDestForm';
 
 /** Page: Displays the home page of the app
  */
@@ -8,7 +6,7 @@ function Home() {
     return (
         <div className="App">
         <p>This is the home page</p>
-        <SearchBar></SearchBar>
+        <SearchDestForm></SearchDestForm>
         </div>
     );
 }

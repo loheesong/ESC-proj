@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SearchHotel from './routes/SearchHotel';
 import SearchRoom from './routes/SearchRoom';
-import SearchDest from './routes/SearchDest';
 import Home from "./routes/Home"
 
 function App() {
@@ -29,7 +28,6 @@ function App() {
                 />
                 <Route path="/searchhotel/:uid" element={<SearchHotel />} />
                 <Route path="/searchroom/:id" element={<SearchRoom />} />   
-                <Route path='/search' element={<SearchDest/>}></Route>
             </Routes>
         </Router>
     );

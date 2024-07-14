@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -30,12 +30,28 @@ const SearchHotel = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const hotelsPerPage = 10;
+
+  const location = useLocation()
+  const formData = location.state || {}
+  const checkin = formData.datePicker
+  const checkout = ""
+  const formatGuestsAndRooms = (guests, rooms) => {
+    let str = "";
+    for (let i = 0; i < rooms; i++) {
+        str += guests + "|";
+    }
+    // Remove the trailing " | "
+    str = str.slice(0, -1);
+    return str;
+  };
+  const guest = formatGuestsAndRooms(formData.numGuests, formData.numRooms)
   
   useEffect(() => {
     // Replace the below API call with your actual API endpoint
     const fetchHotels = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/hotels/details?destination_id=${uid}&checkin=2024-10-01&checkout=2024-10-08&country_code=SG&guests=2|2&partner_id=1`);
+        console.log(checkin, guest)
+        const response = await fetch(`http://localhost:3001/hotels/details?destination_id=${uid}&checkin=${checkin}&checkout=2024-07-20&country_code=SG&guests=${guest}&partner_id=1`);
         const data = await response.json();
         setHotels(data);
         setLoading(false);

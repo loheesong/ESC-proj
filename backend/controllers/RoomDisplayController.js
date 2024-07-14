@@ -2,6 +2,10 @@ const axios = require("axios");
 const html = require("html-escaper");
 const striptags = require("striptags");
 
+const {
+  getRoomsAPI,
+} = require("../apicontrollers/hotelapi");
+
 exports.getRoomPrices = async (req, res) => {
   const { id } = req.params;
   const {
@@ -28,24 +32,20 @@ exports.getRoomPrices = async (req, res) => {
   ) {
     return res.status(400).json({ error: "All parameters are required" });
   }
+  const p = {
+    destination_id,
+    checkin,
+    checkout,
+    lang,
+    currency,
+    country_code,
+    guests,
+    partner_id,
+  };
 
   const fetchRoomPrices = async () => {
     try {
-      const response = await axios.get(
-        `https://hotelapi.loyalty.dev/api/hotels/${id}/price`,
-        {
-          params: {
-            destination_id,
-            checkin,
-            checkout,
-            lang,
-            currency,
-            country_code,
-            guests,
-            partner_id,
-          },
-        }
-      );
+      const response = await getRoomsAPI(id, p);
 
       if (!response.data.completed) {
         console.log("Search not completed. Retrying...");
