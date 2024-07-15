@@ -16,6 +16,7 @@ const hotelsRouter = require('./routes/HotelsRoute');
 const roomDisplayRouter = require('./routes/RoomDisplayRoute');
 const bookHotelRouter = require('./routes/BookHotelRoute');
 
+const bookingsRouter = require('./routes/BookingRoute')
 const bookingModel = require('./models/booking');
 
 // constants here 
@@ -38,6 +39,7 @@ app.use("/destinations", searchDestinationsRouter);
 app.use("/hotels", hotelsRouter);
 app.use("/rooms", roomDisplayRouter);
 app.use("/book_hotel", bookHotelRouter);
+app.use("/bookings", bookingsRouter);
 
 // Utility endpoints here
 app.use("/api", apiRouter);

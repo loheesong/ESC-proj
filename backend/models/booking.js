@@ -3,11 +3,14 @@ const db = require('./db')
 const table_name = "bookings"
 // TODO: change this once integrate users 
 const json_type_format = {
-    hotel_id: "string",  
-    room_name: "string",  
-    price: "number",  
+    hotel_name: "string",  
+    room_name: "string",
+    location: "string",
+    price: "number",
     checkin_date: Date,  
-    checkout_date: Date,  
+    checkout_date: Date,
+    book_date: Date,
+    room_img_src: "string",
     message: "string",  
     user: "string"
 }
@@ -18,11 +21,14 @@ const json_type_format = {
 async function sync() {
     let sql = `create table if not exists ${table_name} (
         booking_id int not null AUTO_INCREMENT, 
-        hotel_id varchar(255) not null,  
-        room_name varchar(255) not null ,  
+        hotel_name varchar(255) not null,  
+        room_name varchar(255) not null,
+        location varchar(255) not null,  
         price float(20) not null,  
         checkin_date date not null,  
-        checkout_date date not null,  
+        checkout_date date not null,
+        book_date date not null,
+        room_img_src: varchar(255) not null,
         message varchar(255) not null,  
         user varchar(255) not null,
         primary key (booking_id)
@@ -43,7 +49,7 @@ async function sync() {
 async function create_booking(details_json) {
     if (!validate_input(details_json)) {return}
 
-    let sql = `insert into ${table_name} values (DEFAULT, ?, ?, ?, ?, ?, ?, ?)`
+    let sql = `insert into ${table_name} values (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
     try {
         const [rows, fieldDefs] = await db.cnx.query(sql,Object.values(details_json))
