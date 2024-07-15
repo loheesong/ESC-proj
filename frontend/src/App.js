@@ -6,7 +6,10 @@ import SearchHotel from './routes/SearchHotel';
 import SearchRoom from './routes/SearchRoom';
 import SearchDest from './routes/SearchDest';
 import Home from "./routes/Home";
-import DeleteBooking from './routes/DeleteBooking';
+import DeleteBooking from './components/DeleteBooking';
+import React from 'react';
+import CreateBookingForm from "./components/CreateBookingForm";
+import BookingConfirmed from './components/BookingConfirmed';
 
 function App() {
     const [info, setInfo] = useState([]);
@@ -32,6 +35,8 @@ function App() {
                 <Route path="/searchroom/:id" element={<SearchRoom />} />   
                 <Route path='/search' element={<SearchDest/>}></Route>
                 <Route path="/booking" element={<DeleteBooking />} />
+                <Route path="/createbooking" element={<CreateBookingForm />} />
+                <Route path="/booking-confirmed" element={<BookingConfirmed />} />
             </Routes>
         </Router> 
     );
