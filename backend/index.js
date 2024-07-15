@@ -15,6 +15,7 @@ const searchDestinationsRouter = require('./routes/SearchDestinationRoute');
 const hotelsRouter = require('./routes/HotelsRoute');
 const roomDisplayRouter = require('./routes/RoomDisplayRoute');
 const bookHotelRouter = require('./routes/BookHotelRoute');
+const bookRouter = require('./routes/Book');
 
 // constants here 
 const PORT = 3001
@@ -27,6 +28,7 @@ app.use(
     })
 );
 
+app.use(express.json());
 
 // define routes here 
 app.use("/", landingRouter);
@@ -34,6 +36,7 @@ app.use("/destinations", searchDestinationsRouter);
 app.use("/hotels", hotelsRouter);
 app.use("/rooms", roomDisplayRouter);
 app.use("/book_hotel", bookHotelRouter);
+app.use("/book", bookRouter)
 
 // Utility endpoints here
 app.use("/api", apiRouter);

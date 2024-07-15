@@ -89,7 +89,7 @@ const SearchHotel = () => {
                     <h2>{hotel.name}</h2>
                     <p>Location: {hotel.location}    <i className="fas fa-star"></i> {hotel.rating}</p>
                   </div>
-                  <Link to={`/searchroom/${hotel.id}?uid=${encodeURIComponent(uid)}`}>
+                  <Link to={`/searchroom/${hotel.id}?uid=${encodeURIComponent(uid)}&formDate=${encodeURIComponent(JSON.stringify(formData))}&hotel=${encodeURIComponent(JSON.stringify(hotel))}`}>
                     <button>Select</button>
                   </Link>
                 </div>

@@ -1,8 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './RoomList.css';
 
-const RoomList = ({ rooms }) => {
+const RoomList = ({ rooms, uid, formData, hotelData }) => {
+
+  const handleBooking = (room) => {
+    // Data to be sent to the backend
+    const bookingData = {
+      room,
+      uid,
+      formData,
+      hotelData
+    };
+
+    // POST request to the backend
+    axios.post("http://localhost:3001/book", bookingData)
+      .then((res) => {
+        console.log('Booking response:', res.data);
+      })
+      .catch((error) => {
+        console.error('Error during booking:', error);
+      });
+  };
+
   return (
     <div>
       <div class='room-amenities'>
@@ -35,7 +56,7 @@ const RoomList = ({ rooms }) => {
             <div className="booking">
               <h2>$ {room.price}</h2>
               <Link to={``}>
-                <button>Book</button>
+                <button onClick={() => handleBooking(room)}>Book</button>
               </Link>
             </div>
           </div>
