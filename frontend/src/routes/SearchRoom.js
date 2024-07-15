@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import './SearchRoom.css';
+import RoomList from '../components/RoomList';
 
 const SearchRoom = () => {
   const { id } = useParams()
   const [rooms, setRooms] = useState([])
+  const [hotelDetails, setHotelDetails] = useState()
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
-  const hotelName = queryParams.get('name')
-  const hotelImagePrefix = queryParams.get('prefix')
-  const hotelImageSuffix = queryParams.get('suffix')
-  const hotelImageCount = parseInt(queryParams.get('imageCount'), 10) || 0;
+  const hotelImagePrefix = hotelDetails?.image_details.prefix
+  const hotelImageSuffix = hotelDetails?.image_details.suffix
+  const hotelImageCount = hotelDetails?.image_details.count
   const uid = queryParams.get('uid')
 
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        console.log(uid)
         const response = await fetch(`http://localhost:3001/rooms/${id}/prices?destination_id=${uid}&checkin=2024-10-01&checkout=2024-10-07&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`);
         const data = await response.json();
         setRooms(data);
@@ -30,12 +30,29 @@ const SearchRoom = () => {
       }
      };
 
-     fetchRooms()
-  }, [id]);
+    fetchRooms()
+  }, []);
+
+  useEffect(() => {
+    const fetchHotelDetails = async () => {
+      try {
+        console.log("fetch")
+        const response = await fetch(`http://localhost:3001/hotels/hotel/${id}`)
+        const data = await response.json()
+        setHotelDetails(data)
+      } catch(error) {
+        console.error('Error fetching hotel details', error)
+      }
+    }
+
+    fetchHotelDetails()
+  }, [])
 
   const handleThumbnailClick = (index) => {
     setCurrentImageIndex(index);
   };
+
+  console.log(hotelDetails)
 
   return (
     <div className="room-wrapper">
@@ -55,8 +72,9 @@ const SearchRoom = () => {
           </div>
         </div>
         <div className="room-description">
-          <h2>{hotelName}</h2>
-          <p>Luxurious room with all the amenities you need for a comfortable stay.</p>
+          <h2>{hotelDetails?.name}</h2>
+          <h4>{hotelDetails?.address}</h4>
+          <p>{hotelDetails?.description}</p>
         </div>
       </div>
       {loading ? (
@@ -65,36 +83,7 @@ const SearchRoom = () => {
           <p>Loading...</p>
         </div>
       ) : (
-        <div className="room-list">
-          {rooms.length === 0 ? (
-            <div className="no-rooms-found">
-              <h1>No rooms found :c</h1>
-            </div>
-          ) : (
-            rooms.map(room => (
-              <div key={room.id} className="room-card">
-                <img src={room.imgSrc} alt={room.name} />
-                <div className="room-card-content">
-                  <div><h1>{room.name}</h1></div>
-                  <div class="amenities-content">
-                    <h3>Amenties</h3>
-                    <ul>
-                      {room.amenities.map(amenity => (
-                        <li key={amenity}>{amenity}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className='booking'>
-                  <h2>$ {room.price}</h2>
-                  <Link to={``}>
-                    <button>Book</button>
-                  </Link>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
+        <RoomList rooms={rooms} />
       )}
     </div>
   );

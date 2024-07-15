@@ -7,6 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 // TODO: remove console log from form child components after done  
 
+function formatDate(date) {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 export default function SearchForm(params) {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
@@ -19,6 +27,9 @@ export default function SearchForm(params) {
 
     // updates formData whenever any component in form changes value 
     const handleChange = (name, value) => {
+        if (name === 'startDatePicker' || name == 'endDatePicker') {
+            value = formatDate(value);
+        }
         setFormData(prevData => ({
             // ... spread operator creates a copy of prevData  
             ...prevData,
@@ -32,7 +43,7 @@ export default function SearchForm(params) {
         e.preventDefault();
         console.log("submit pressed, form data = " + Object.values(formData));
         // make get request here 
-        navigate(`/searchhotel/${formData.searchBar}`);
+        navigate(`/searchhotel/${formData.searchBar}`, { state: formData });
     };
 
     return (

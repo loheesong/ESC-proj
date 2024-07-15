@@ -49,7 +49,7 @@ exports.getRoomPrices = async (req, res) => {
 
       if (!response.data.completed) {
         console.log("Search not completed. Retrying...");
-        await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 5 seconds before retrying
+        await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 0.5 seconds before retrying
         return fetchRoomPrices();
       }
 
@@ -62,17 +62,26 @@ exports.getRoomPrices = async (req, res) => {
   try {
     const roomPrices = await fetchRoomPrices();
 
+    const allAmenities = roomPrices.flatMap((room) => room.amenities);
+    const commonAmenities = [...new Set(allAmenities)].filter((amenity) =>
+      roomPrices.every((room) => room.amenities.includes(amenity))
+    );
+
     const formattedPrices = roomPrices.map((room, index) => {
       const description = room.long_description || room.description;
       const decodedDescription = html.unescape(description);
       const plainTextDescription = striptags(decodedDescription);
+      const uniqueAmenities = room.amenities.filter(
+        (amenity) => !commonAmenities.includes(amenity)
+      );
 
       return {
         id: index + 1, // Using index for a unique id
         name: room.roomDescription,
         price: room.price,
         description: plainTextDescription,
-        amenities: room.amenities,
+        commonAmenities: commonAmenities,
+        uniqueAmenities: uniqueAmenities,
         imgSrc:
           room.images.length > 0
             ? room.images[0].url

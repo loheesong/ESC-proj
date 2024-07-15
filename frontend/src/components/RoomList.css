@@ -1,0 +1,89 @@
+.room-amenities ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: lightblue;
+}
+  
+.room-amenities ul li {
+    margin: 0 0 0 10px;
+}
+  
+.room-list {
+display: flex;
+flex-direction: column; /* Stack room cards vertically */
+}
+  
+  .room-card {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: auto;
+    max-height: 200px;
+  }
+  
+  .room-card img {
+    display: relative;
+    width: auto;
+    height: 90%;
+    margin-right: 20px;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .room-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+  }
+  
+  .room-card h1 {
+    margin: 0;
+  }
+  
+  .amenities-content h3 {
+    margin: 0;
+  }
+  
+  .room-card ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Two columns layout */
+    flex: 1;
+    margin: 0;
+  }
+  
+  .room-card ul li {
+    margin-bottom: 5px;
+  }
+  
+  .booking {
+    align-self: center;
+  }
+  
+  .booking h2 {
+    margin: 10px;
+  }
+  
+  .room-card button {
+    background-color: lightblue; /* Blue background */
+    color: white; /* White text */
+    padding: 10px 30px; /* Increase padding for a bigger button */
+    font-size: 25px; /* Larger font size */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    align-self: center; /* Center the button vertically */
+    margin-left: auto; /* Align the button to the right */
+    margin-right: 30px;
+  }
+  
+  .room-card button:hover {
+    background-color: blue; /* Darker blue on hover */
+  }

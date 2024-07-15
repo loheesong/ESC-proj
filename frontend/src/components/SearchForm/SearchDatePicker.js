@@ -12,8 +12,7 @@ export default function SearchDatePicker({onChange}) {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
-                <DatePicker value={value} minDate={today}
-                onChange={(newValue) => {
+                <DatePicker value={value} minDate={today} onChange={(newValue) => {
                     setValue(newValue)
                     console.log(newValue.$d)
                     onChange(newValue.$d)
