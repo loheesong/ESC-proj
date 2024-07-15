@@ -17,6 +17,7 @@ const roomDisplayRouter = require('./routes/RoomDisplayRoute');
 const bookHotelRouter = require('./routes/BookHotelRoute');
 
 const bookingModel = require('./models/booking');
+const db = require('./models/db');
 
 // constants here 
 const PORT = 3001
@@ -31,6 +32,7 @@ app.use(
 
 // sync DBs here 
 bookingModel.sync()
+db.sequelize.sync()
 
 // define routes here 
 app.use("/", landingRouter);
