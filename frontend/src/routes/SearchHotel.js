@@ -33,8 +33,8 @@ const SearchHotel = () => {
 
   const location = useLocation()
   const formData = location.state || {}
-  const checkin = formData.datePicker
-  const checkout = ""
+  const checkin = formData.startDatePicker
+  const checkout = formData.endDatePicker
   const formatGuestsAndRooms = (guests, rooms) => {
     let str = "";
     for (let i = 0; i < rooms; i++) {
@@ -51,7 +51,7 @@ const SearchHotel = () => {
     const fetchHotels = async () => {
       try {
         console.log(checkin, guest)
-        const response = await fetch(`http://localhost:3001/hotels/details?destination_id=${uid}&checkin=${checkin}&checkout=2024-07-20&country_code=SG&guests=${guest}&partner_id=1`);
+        const response = await fetch(`http://localhost:3001/hotels/details?destination_id=${uid}&checkin=${checkin}&checkout=${checkout}&country_code=SG&guests=${guest}&partner_id=1`);
         const data = await response.json();
         setHotels(data);
         setLoading(false);

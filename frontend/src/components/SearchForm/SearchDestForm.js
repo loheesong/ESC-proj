@@ -19,7 +19,8 @@ export default function SearchForm(params) {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         searchBar: "",
-        datePicker: "",
+        startDatePicker: "",
+        endDatePicker: "",
         numGuests: "",
         numRooms: "",
         testComp: ""
@@ -27,7 +28,7 @@ export default function SearchForm(params) {
 
     // updates formData whenever any component in form changes value 
     const handleChange = (name, value) => {
-        if (name === 'datePicker') {
+        if (name === 'startDatePicker' || name == 'endDatePicker') {
             value = formatDate(value);
         }
         setFormData(prevData => ({
@@ -54,8 +55,9 @@ export default function SearchForm(params) {
                 when click on submit button, will submit formData values  
                 */}
                 <SearchBar onChange={(value) => handleChange('searchBar', value)}></SearchBar>
-                <SearchDatePicker onChange={(value) => handleChange('datePicker', value)}></SearchDatePicker>
+                <SearchDatePicker onChange={(value) => handleChange('startDatePicker', value)}></SearchDatePicker>
                 <p>Number of guests</p>
+                <SearchDatePicker onChange={(value) => handleChange('endDatePicker', value)}></SearchDatePicker>
                 <SearchNumberInput onChange={(value) => handleChange('numGuests', value)}></SearchNumberInput>
                 <p>Number of rooms</p>
                 <SearchNumberInput onChange={(value) => handleChange('numRooms', value)}></SearchNumberInput>
