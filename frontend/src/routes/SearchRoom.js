@@ -16,7 +16,7 @@ const SearchRoom = () => {
   const hotelImageSuffix = hotelDetails?.image_details.suffix
   const hotelImageCount = hotelDetails?.image_details.count
   const uid = queryParams.get('uid')
-  const formData = JSON.parse(decodeURIComponent(queryParams.get('hotel')))
+  const formData = JSON.parse(decodeURIComponent(queryParams.get('formData')))
   const hotelData = JSON.parse(decodeURIComponent(queryParams.get('hotel')))
 
   useEffect(() => {
