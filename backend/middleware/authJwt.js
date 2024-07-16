@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const db = require('../models/db');
 const User = db.User
+const config = require('../config/auth.config');
 
 function verifyToken(req, res, next){
     let token = req.session.token;
@@ -12,7 +13,7 @@ function verifyToken(req, res, next){
     }
   
     jwt.verify(token,
-               process.env.AUTH_SECRET,
+               config.secret,
                (err, decoded) => {
                 if (err) {
                   return res.status(401).send({

@@ -6,7 +6,11 @@ const User = db.User;
 const Role = db.Role;
 const Op = db.Sequelize.Op
 
+// TODO: refactor this later 
+const config = require('../config/auth.config');
+
 async function signup(req, res) {
+    console.log("authcontroller signup ");
     // Save User to Database
     try {
     const user = await User.create({

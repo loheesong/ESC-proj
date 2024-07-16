@@ -15,6 +15,7 @@ const searchDestinationsRouter = require('./routes/SearchDestinationRoute');
 const hotelsRouter = require('./routes/HotelsRoute');
 const roomDisplayRouter = require('./routes/RoomDisplayRoute');
 const bookHotelRouter = require('./routes/BookHotelRoute');
+const userRouter = require('./routes/UserRoute');
 
 const bookingModel = require('./models/booking');
 const db = require('./models/db');
@@ -40,6 +41,10 @@ app.use("/destinations", searchDestinationsRouter);
 app.use("/hotels", hotelsRouter);
 app.use("/rooms", roomDisplayRouter);
 app.use("/book_hotel", bookHotelRouter);
+
+// DO FIRST !!!! the fked up user routes 
+require("./routes/AuthRoutes")(app);
+require("./routes/UserRoute")(app);
 
 // Utility endpoints here
 app.use("/api", apiRouter);

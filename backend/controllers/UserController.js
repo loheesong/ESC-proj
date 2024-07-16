@@ -9,8 +9,12 @@ function userBoard(req, res) {
     res.status(200).send("Bookings, etc.")
 }
 
-function moderatorBoard(req, res) {
+function adminBoard(req, res) {
     res.status(200).send("Admin Content.")
+}
+
+function moderatorBoard(req, res) {
+    res.status(200).send("Moderator Content.")
 }
 
 async function updateProfile(req, res) {
@@ -52,4 +56,4 @@ async function deleteaccount(req, res) {
     }
 };
 
-module.exports = {allAccess, userBoard, moderatorBoard, updateProfile, deleteaccount}
+module.exports = {allAccess, userBoard, moderatorBoard, updateProfile, deleteaccount, adminBoard}
