@@ -1,6 +1,7 @@
 // handles user login 
 const express = require('express');
 const router = express.Router();
+const controller = require('../controllers/UserController');
 
 router.use(function(req, res, next) {
     res.header(
