@@ -1,5 +1,5 @@
 // handles auth for login 
-const verifySignUp = require('../middleware/verifySignUp');
+const { verifySignUp } = require("../middleware");
 const AuthController = require('../controllers/AuthController');
 
 module.exports = function(app) {

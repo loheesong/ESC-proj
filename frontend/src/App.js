@@ -9,6 +9,8 @@ import SearchHotel from './routes/SearchHotel';
 import SearchRoom from './routes/SearchRoom';
 import Home from "./routes/Home"
 import Register from "./routes/Register";
+import EventBus from "./services/EventBus";
+import Login from "./routes/Login";
 
 import './App.css';
 
@@ -37,13 +39,13 @@ function App() {
           setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
     
-        // EventBus.on("logout", () => {
-        //   logOut();
-        // });
+        EventBus.on("logout", () => {
+          logOut();
+        });
     
-        // return () => {
-        //   EventBus.remove("logout");
-        // };
+        return () => {
+          EventBus.remove("logout");
+        };
       }, []);
     
       const logOut = () => {
@@ -133,6 +135,7 @@ function App() {
                 <Route path="/searchhotel/:uid" element={<SearchHotel />} />
                 <Route path="/searchroom/:id" element={<SearchRoom />} />   
                 <Route path="/register" element={<Register />} />   
+                <Route path="/login" element={<Login />} />
             </Routes>
 
         </div>

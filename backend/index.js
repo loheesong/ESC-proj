@@ -8,6 +8,7 @@
 const express = require('express')
 const app = express() 
 const cors = require('cors');
+const cookieSession = require("cookie-session");
 
 const apiRouter = require('./routes/Api');
 const landingRouter = require('./routes/Landing');
@@ -30,6 +31,20 @@ app.use(
         allowedHeaders: ['Content-Type'],
     })
 );
+
+app.use(
+    cookieSession({
+      name: "ESC",
+      keys: ["COOKIE_SECRET"], // should use as secret environment variable
+      httpOnly: true,
+    })
+  );
+
+// parse requests of content-type - application/json
+app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 // sync DBs here 
 bookingModel.sync()
