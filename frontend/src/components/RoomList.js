@@ -14,14 +14,9 @@ const RoomList = ({ rooms, uid, formData, hotelData }) => {
       hotelData
     };
 
-    // POST request to the backend
-    axios.post("http://localhost:3001/book", bookingData)
-      .then((res) => {
-        console.log('Booking response:', res.data);
-      })
-      .catch((error) => {
-        console.error('Error during booking:', error);
-      });
+    const params = new URLSearchParams();
+    const bookingDataString = encodeURIComponent(JSON.stringify(bookingData));
+    window.location.href = `/booking?bookingData=${bookingDataString}`;
   };
 
   return (
@@ -55,9 +50,7 @@ const RoomList = ({ rooms, uid, formData, hotelData }) => {
             </div>
             <div className="booking">
               <h2>$ {room.price}</h2>
-              <Link to={``}>
-                <button onClick={() => handleBooking(room)}>Book</button>
-              </Link>
+              <button onClick={() => handleBooking(room)}>Book</button>
             </div>
           </div>
         ))}
