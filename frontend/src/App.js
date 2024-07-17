@@ -16,6 +16,7 @@ import Profile from "./routes/Profile";
 import './App.css';
 
 import AuthService from "./services/AuthService";
+import BookingForm from "./routes/BookingForm";
 
 function App() {
     const [info, setInfo] = useState([]);
@@ -134,10 +135,11 @@ function App() {
                     } 
                 />
                 <Route path="/searchhotel/:uid" element={<SearchHotel />} />
-                <Route path="/searchroom/:id" element={<SearchRoom />} />   
+                <Route path="/searchroom/:id" element={<SearchRoom />} />
                 <Route path="/register" element={<Register />} />   
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/booking" element={<BookingForm />} />    
             </Routes>
 
         </div>
