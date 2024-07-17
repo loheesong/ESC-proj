@@ -6,7 +6,6 @@ import './CreateBooking.css';
 const CreateBookingForm = () => {
     const [form, setForm] = useState({
         name: '',
-        price: '',
         checkInDate: '',
         checkOutDate: '',
         messageToHotel: '',
@@ -20,14 +19,14 @@ const CreateBookingForm = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
+        setForm({ ...form, [name]: value});
     };
 
     const handleSubmit = async () => {
         try {
             const res = await axios.post("http://localhost:3001/booking", form);
             console.log(res.data);
-            navigate('/booking-confirmed'); // Redirect to confirmation page
+            navigate('/booking-confirmed');
         } catch (err) {
             console.log(err);
         }
@@ -42,10 +41,6 @@ const CreateBookingForm = () => {
                     <div className="form-group">
                         <label>Name:</label>
                         <input type="text" name="name" value={form.name} onChange={handleChange} />
-                    </div>
-                    <div className="form-group">
-                        <label>Price:</label>
-                        <input type="text" name="price" value={form.price} onChange={handleChange} />
                     </div>
                     <div className="form-group">
                         <label>Check-In Date:</label>
@@ -82,5 +77,5 @@ const CreateBookingForm = () => {
         </div>
     );
 };
+export default CreateBookingForm; 
 
-export default CreateBookingForm;
