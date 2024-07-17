@@ -34,11 +34,10 @@ const NumberInput = forwardRef(function CustomNumberInput(props, ref) {
 
 export default function SearchNumberInput({onChange}) { 
     return <NumberInput aria-label="Quantity Input" 
-                min={1} max={9} 
+                min={1} max={9} defaultValue={1} required={true}
                 onChange={(event, newValue) => {
-                    // setValue(newValue)
                     onChange(newValue)
-                    console.log(newValue);
+                    // console.log(newValue);
                 }}/>;
 }
 
