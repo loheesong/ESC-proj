@@ -30,16 +30,6 @@ module.exports = function(app) {
     controller.adminBoard
   );
 
-  app.put(
-    "/api/auth/update-profile",
-    [authJwt.verifyToken],
-    controller.updateProfile
-  );
 
-  app.put(
-    "/api/auth/deleteaccount",
-    [authJwt.verifyToken],
-    controller.deleteaccount
-  );
 
 };

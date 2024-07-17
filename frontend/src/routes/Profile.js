@@ -80,7 +80,7 @@ const Profile = () => {
     setMessage("");
     setSuccessful(false);
 
-    AuthService.deleteaccount().then(
+    AuthService.deleteaccount({ username, email }).then(
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);

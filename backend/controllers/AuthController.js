@@ -40,6 +40,7 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   try {
+    console.log("teststest"+req.body.username)
     const user = await User.findOne({
       where: {
         username: req.body.username,
@@ -96,5 +97,55 @@ exports.signout = async (req, res) => {
     });
   } catch (err) {
     this.next(err);
+  }
+};
+
+exports.updateProfile = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        username: req.body.username,
+      },
+    });
+    const { username, email } = req.body;
+
+    // const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).send({ message: "User not found." });
+    }
+
+    user.username = username || user.username;
+    user.email = email || user.email;
+    await user.save();
+
+    res.status(200).send({ message: "Profile updated successfully. Log Out to update changes" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "An error occurred while updating the profile." });
+  }
+};
+
+exports.deleteaccount = async (req, res) => {
+  try {
+    console.log("teststest"+req.body.username)
+    const user = await User.findOne({
+        where: {
+          username: req.body.username,
+        },
+      });
+    // const userId = req.userId; // Assuming userId is set in the auth middleware
+
+    // const user = await User.findByPk(userId);
+    console.log(user)
+    if (!user) {
+      return res.status(404).send({ message: "User not found." });
+    }
+
+    await user.destroy();
+
+    res.status(200).send({ message: "Account deleted successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "An error occurred while deleting the account." });
   }
 };

@@ -23,4 +23,16 @@ module.exports = function(app) {
     app.post("/api/auth/signin", AuthController.signin);
   
     app.post("/api/auth/signout", AuthController.signout);
+
+    app.put(
+      "/api/auth/update-profile",
+      // [authJwt.verifyToken],
+      AuthController.updateProfile
+    );
+  
+    app.put(
+      "/api/auth/deleteaccount",
+      // [authJwt.verifyToken],
+      AuthController.deleteaccount
+    );
   };
