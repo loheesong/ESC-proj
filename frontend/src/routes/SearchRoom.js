@@ -16,6 +16,8 @@ const SearchRoom = () => {
   const hotelImageSuffix = hotelDetails?.image_details.suffix
   const hotelImageCount = hotelDetails?.image_details.count
   const uid = queryParams.get('uid')
+  const formData = JSON.parse(decodeURIComponent(queryParams.get('formData')))
+  const hotelData = JSON.parse(decodeURIComponent(queryParams.get('hotel')))
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -52,8 +54,6 @@ const SearchRoom = () => {
     setCurrentImageIndex(index);
   };
 
-  console.log(hotelDetails)
-
   return (
     <div className="room-wrapper">
       <div className="room-info">
@@ -83,7 +83,7 @@ const SearchRoom = () => {
           <p>Loading...</p>
         </div>
       ) : (
-        <RoomList rooms={rooms} />
+        <RoomList rooms={rooms} uid={uid} formData={formData} hotelData={hotelData} />
       )}
     </div>
   );
