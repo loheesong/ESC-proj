@@ -8,41 +8,51 @@ const {
 const { create } = require("domain");
 
 exports.createBookingFromJSONlist = async (req, res) => {
-  const JSONlist  = req.body;
-  console.log(req.body)
+  const JSONlist = req.body;
+  console.log(req.body);
   if (!JSONlist) {
     return res.status(400).json({ error: "error with Json list." });
-  } 
-
+  }
 
   //filter bookingsJSON to just get selected feilds
-  const item = JSONlist[0];
+  const item = JSONlist;
+  console.log(item);
   const room = item.room;
   const formData = item.formData;
   const hotelData = item.hotelData;
+  const bookingInfo = item.bookingInfo;
   const currentDate = new Date();
- 
 
   const details_json = {
-      hotel_name: hotelData.name,
-      room_name: room.name,
-      location: hotelData.location,
-      price: room.price,
-      checkin_date: new Date(), //formData.startDatePicker,
-      checkout_date: new Date(), //formData.endDatePicker,
-      book_date: currentDate,
-      room_img_src: room.imgSrc,
-      message: "test1",
-      user: "Tom"
-  }
+    hotel_name: hotelData.name,
+    room_name: room.name,
+    location: hotelData.location,
+    price: room.price,
+    checkin_date: new Date(formData.startDatePicker + "T00:00:00"), //formData.startDatePicker,
+    checkout_date: new Date(formData.endDatePicker + "T00:00:00"), //formData.endDatePicker,
+    book_date: currentDate,
+    room_img_src: room.imgSrc,
+    message: bookingInfo.messageToHotel,
+    userID: 10,
+    name: bookingInfo.name,
+    cardNumber: bookingInfo.cardNumber,
+    expiryDate: bookingInfo.expiryDate,
+    cvv: bookingInfo.cvv,
+  };
 
-  console.log('Booking Details:', details_json);
-   if (await create_booking(details_json)) {
-      return res.status(200).json({message: "Succesfully added  booking."});
-   } else {
-      return res.status(500).json({error: "Failed to add booking."});
-   }
-};
+  console.log("Booking Details:", details_json);
+  try {
+    const bookingCreated = await create_booking(details_json);
+    if (bookingCreated) {
+      return res.status(200).json({ message: "Successfully added booking." });
+    } else {
+      return res.status(500).json({ error: "Failed to add booking." });
+    }
+  } catch (error) {
+    console.error("Error in createBookingFromJSONlist:", error);
+    return res.status(500).json({ error: "Failed to add booking due to server error." });
+  }
+};  
 
 exports.getBookingsDisplay = async (req, res) => {
   const { userId } = req.params;

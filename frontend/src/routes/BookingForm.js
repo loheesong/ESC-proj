@@ -36,7 +36,7 @@ function BookingForm() {
 
         bookingData.bookingInfo = form;
         
-        axios.post("http://localhost:3001/book", bookingData)
+        axios.post("http://localhost:3001/bookings/submitbooking", bookingData)
         .then((res) => {
             console.log('Booking response:', res.data);
         })
