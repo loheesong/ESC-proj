@@ -19,7 +19,8 @@
     "mysql2": "^3.10.1",
     "node-cache": "^5.1.2",
     "nodemon": "^3.1.4",
-    "striptags": "^3.2.0"
+    "striptags": "^3.2.0",
+    "supertest": "^7.0.0"
   },
   "devDependencies": {
     "jest": "^29.7.0"

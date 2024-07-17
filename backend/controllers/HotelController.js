@@ -13,7 +13,7 @@ const {
 const cache = new NodeCache({ stdTTL: 600, checkperiod: 120 }); // Cache for 10 minutes, check every 2 minutes
 
 exports.getHotelDetailsFromHotelID = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.query;
 
   if (!id) {
     return res.status(400).json({ error: "Hotel ID is required" });
@@ -37,7 +37,6 @@ exports.getHotelDetailsFromHotelID = async (req, res) => {
 
     res.status(200).json(data);
   } catch (error) {
-    console.error(error);
     res
       .status(500)
       .json({ error: "An error occurred while fetching hotel details" });
@@ -65,7 +64,6 @@ exports.getHotelsFromDestinationID = async (req, res) => {
 
   try {
     const response = await getHotelsDetailsAPI(destination_id);
-
 
     const hotels = response.data;
 
@@ -264,10 +262,8 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
     res.status(200).json(hotelsWithDetailsAndPrices);
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while fetching hotel details and prices",
-      });
+    res.status(500).json({
+      error: "An error occurred while fetching hotel details and prices",
+    });
   }
 };
