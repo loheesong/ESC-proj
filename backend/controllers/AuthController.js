@@ -109,7 +109,6 @@ exports.updateProfile = async (req, res) => {
     });
     const { username, email } = req.body;
 
-    // const user = await User.findByPk(userId);
     if (!user) {
       return res.status(404).send({ message: "User not found." });
     }
@@ -127,15 +126,12 @@ exports.updateProfile = async (req, res) => {
 
 exports.deleteaccount = async (req, res) => {
   try {
-    console.log("teststest"+req.body.username)
     const user = await User.findOne({
         where: {
           username: req.body.username,
         },
       });
-    // const userId = req.userId; // Assuming userId is set in the auth middleware
 
-    // const user = await User.findByPk(userId);
     console.log(user)
     if (!user) {
       return res.status(404).send({ message: "User not found." });
