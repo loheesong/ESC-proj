@@ -28,7 +28,7 @@ async function sync() {
         checkin_date date not null,  
         checkout_date date not null,
         book_date date not null,
-        room_img_src: varchar(255) not null,
+        room_img_src varchar(255) not null,
         message varchar(255) not null,  
         user varchar(255) not null,
         primary key (booking_id)

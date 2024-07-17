@@ -12,4 +12,6 @@ router.post('/deletebooking/:bookingid', deleteBooking);
 
 router.get('/getbookings/:user', getBookingsDisplay);
 
+router.post('/test', (req,res) => {res.send(200)})
+
 module.exports = router;

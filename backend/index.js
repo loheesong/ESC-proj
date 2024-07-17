@@ -1,39 +1,47 @@
 /**
- * This file acts as the controller in the backend 
+ * This file acts as the controller in the backend
  * It serves information as required by the frontend through
- * API get requests to the specified route 
+ * API get requests to the specified route
  */
 
-// import statements 
-const express = require('express')
-const app = express() 
-const cors = require('cors');
+// import statements
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
-const apiRouter = require('./routes/Api');
-const landingRouter = require('./routes/Landing');
-const searchDestinationsRouter = require('./routes/SearchDestinationRoute');
-const hotelsRouter = require('./routes/HotelsRoute');
-const roomDisplayRouter = require('./routes/RoomDisplayRoute');
-const bookHotelRouter = require('./routes/BookHotelRoute');
+const apiRouter = require("./routes/Api");
+const landingRouter = require("./routes/Landing");
+const searchDestinationsRouter = require("./routes/SearchDestinationRoute");
+const hotelsRouter = require("./routes/HotelsRoute");
+const roomDisplayRouter = require("./routes/RoomDisplayRoute");
+const bookHotelRouter = require("./routes/BookHotelRoute");
+const bookingsRouter = require("./routes/BookingRoute");
+const bookingModel = require("./models/booking");
 
-const bookingsRouter = require('./routes/BookingRoute')
-const bookingModel = require('./models/booking');
-
-// constants here 
-const PORT = 3001
+// constants here
+const PORT = 3001;
 
 app.use(
-    cors({
-        origin: "http://localhost:3000",
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type'],
-    })
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  })
 );
 
-// sync DBs here 
-bookingModel.sync()
+// To destructure json in req.body
+app.use(express.json());
 
-// define routes here 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+
+// sync DBs here
+bookingModel.sync();
+
+// define routes here
 app.use("/", landingRouter);
 app.use("/destinations", searchDestinationsRouter);
 app.use("/hotels", hotelsRouter);
@@ -45,5 +53,5 @@ app.use("/bookings", bookingsRouter);
 app.use("/api", apiRouter);
 
 app.listen(PORT, () => {
-    console.log("Server running on port 3001");
-})
+  console.log("Server running on port 3001");
+});
