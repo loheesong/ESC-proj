@@ -47,14 +47,16 @@ async function sync() {
  * @returns 
  */
 async function create_booking(details_json) {
-    if (!validate_input(details_json)) {return}
+    if (!validate_input(details_json)) {return false}
 
     let sql = `insert into ${table_name} values (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
     try {
         const [rows, fieldDefs] = await db.cnx.query(sql,Object.values(details_json))
+        return true;
     } catch (error) {
         console.log("Failed to create booking");
+        return false;
     }
 }
 

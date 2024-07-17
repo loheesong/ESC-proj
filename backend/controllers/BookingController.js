@@ -8,7 +8,10 @@ const {
 const { create } = require("domain");
 
 
-exports.createBookingFromJSONlist = async (JSONlist) => {
+exports.createBookingFromJSONlist = async (req, res) => {
+
+    const { JSONlist } = req.body;
+    if (!JSONlist) {return res.status(400).json({error: "error with Json list."});}
     // filter bookingsJSON to just get selected feilds
     const item = JSONlist[0];
     const room = item.room;
@@ -28,7 +31,11 @@ exports.createBookingFromJSONlist = async (JSONlist) => {
         message: "test1",
         user: "Tom"
     }
-    await create_booking(details_json)
+     if (await create_booking(details_json)) {
+        return res.status(200).json({message: "Succesfully added  booking."});
+     } else {
+        return res.status(500).json({error: "Failed to add booking."});
+     }
     
 }
 
