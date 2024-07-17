@@ -33,7 +33,7 @@ exports.createBookingFromJSONlist = async (req, res) => {
     book_date: currentDate,
     room_img_src: room.imgSrc,
     message: bookingInfo.messageToHotel,
-    userID: 10,
+    userID: item.userID,
     name: bookingInfo.name,
     cardNumber: bookingInfo.cardNumber,
     expiryDate: bookingInfo.expiryDate,
