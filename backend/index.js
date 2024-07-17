@@ -5,8 +5,8 @@
  */
 
 // import statements 
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express() 
 const cors = require('cors');
 const cookieSession = require("cookie-session");
 
@@ -16,7 +16,7 @@ const searchDestinationsRouter = require('./routes/SearchDestinationRoute');
 const hotelsRouter = require('./routes/HotelsRoute');
 const roomDisplayRouter = require('./routes/RoomDisplayRoute');
 const bookHotelRouter = require('./routes/BookHotelRoute');
-// const userRouter = require('./routes/UserRoute');
+const userRouter = require('./routes/UserRoute');
 
 const bookingModel = require('./models/booking');
 const db = require('./models/db');
@@ -24,13 +24,17 @@ const db = require('./models/db');
 // constants here 
 const PORT = 3001
 
-app.use(
-    cors({
-        origin: "http://localhost:3000",
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-    })
-);
+// app.use(
+//     cors({
+//         origin: "http://localhost:3000",
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//         allowedHeaders: ['Content-Type'],
+//     })
+// );
+
+app.use(cors());
+
+app.use(cors({ origin: 'http://localhost:3000' })); // Allow requests from frontend
 
 app.use(
     cookieSession({
@@ -48,6 +52,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // sync DBs here 
 bookingModel.sync()
+
+// const db = require("./models");
+
 db.sequelize.sync()
 
 // define routes here 
@@ -67,3 +74,5 @@ app.use("/api", apiRouter);
 app.listen(PORT, () => {
     console.log("Server running on port 3001");
 })
+
+

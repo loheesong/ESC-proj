@@ -1,6 +1,5 @@
-// handles user login 
-const controller = require('../controllers/UserController');
 const { authJwt } = require("../middleware");
+const controller = require("../controllers/UserController");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
