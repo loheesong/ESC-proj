@@ -11,6 +11,7 @@ import Home from "./routes/Home"
 import Register from "./routes/Register";
 import EventBus from "./services/EventBus";
 import Login from "./routes/Login";
+import Profile from "./routes/Profile";
 
 import './App.css';
 
@@ -136,6 +137,7 @@ function App() {
                 <Route path="/searchroom/:id" element={<SearchRoom />} />   
                 <Route path="/register" element={<Register />} />   
                 <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
 
         </div>
