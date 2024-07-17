@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import SearchHotel from './routes/SearchHotel';
 import SearchRoom from './routes/SearchRoom';
 import Home from "./routes/Home"
+import BookingForm from "./routes/BookingForm";
 
 function App() {
     const [info, setInfo] = useState([]);
@@ -27,7 +28,8 @@ function App() {
                     } 
                 />
                 <Route path="/searchhotel/:uid" element={<SearchHotel />} />
-                <Route path="/searchroom/:id" element={<SearchRoom />} />   
+                <Route path="/searchroom/:id" element={<SearchRoom />} />
+                <Route path="/booking" element={<BookingForm />} />    
             </Routes>
         </Router>
     );
