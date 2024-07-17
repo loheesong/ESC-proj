@@ -47,6 +47,7 @@ const updateProfile = (user) => {
 
 const deleteaccount = (user) => {
     const token = JSON.parse(localStorage.getItem('user')).accessToken;
+    console.log("Token:", token);
     return axios.put(API_URL + "deleteaccount", user, {
         headers: {
         Authorization: `Bearer ${token}`

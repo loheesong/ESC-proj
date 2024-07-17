@@ -5,8 +5,8 @@
  */
 
 // import statements 
-const express = require('express')
-const app = express() 
+const express = require('express');
+const app = express();
 const cors = require('cors');
 const cookieSession = require("cookie-session");
 
@@ -16,7 +16,7 @@ const searchDestinationsRouter = require('./routes/SearchDestinationRoute');
 const hotelsRouter = require('./routes/HotelsRoute');
 const roomDisplayRouter = require('./routes/RoomDisplayRoute');
 const bookHotelRouter = require('./routes/BookHotelRoute');
-const userRouter = require('./routes/UserRoute');
+// const userRouter = require('./routes/UserRoute');
 
 const bookingModel = require('./models/booking');
 const db = require('./models/db');
@@ -27,8 +27,8 @@ const PORT = 3001
 app.use(
     cors({
         origin: "http://localhost:3000",
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
     })
 );
 
