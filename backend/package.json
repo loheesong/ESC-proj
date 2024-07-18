@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "start": "nodemon -r dotenv/config index.js"
+  },
+  "jest": {
+    "setupFiles": ["dotenv/config"]
   },
   "author": "",
   "license": "ISC",
