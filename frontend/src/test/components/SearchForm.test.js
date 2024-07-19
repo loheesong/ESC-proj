@@ -1,4 +1,4 @@
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import SearchDestForm from '../../components/SearchForm/SearchDestForm';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -21,6 +21,47 @@ const END_DATE_ID = "endDatePicker"
 const DATE_ERROR_ID = "dateError"
 const NUM_GUESTS_ID = "numGuests"
 const NUM_ROOMS_ID = "numRooms"
+
+describe('tests for searchbar', () => { 
+    test('should first', () => { 
+        render(<SearchDestForm/>)
+
+        // find all components 
+        const searchbar = screen.getByTestId(SEARCH_BAR_ID)
+        
+        // error elements 
+        // const locationError = screen.getByTestId('locationError')
+        // const dateError = screen.getByTestId('dateError')
+
+        // fireEvent.change(searchbar, { target: { value: 'New York' } });
+    })
+})
+
+// describe('tests for startDate endDate pickers', () => { 
+//     beforeEach(() => {
+        
+//     });
+
+//     test('should first', async () => { 
+//         render(<SearchDestForm/>)
+
+//         const startDatePicker = screen.getByTestId(START_DATE_ID).querySelector('input')
+//         const endDatePicker = screen.getByTestId(END_DATE_ID).querySelector('input')
+        
+//         // this shit dont work 
+//         fireEvent.mouseDown(startDatePicker);
+
+//         await waitFor(() => screen.getByRole('dialog'));
+
+//         const dateToSelect = screen.getByRole('option', { name: '25' });
+//         fireEvent.click(dateToSelect);
+
+//         // fireEvent.change(startDatePicker, { target: { value: '2024-07-20' } });
+//         // expect(startDatePicker.value).toBe('2024-07-20');
+//         // const a = startDatePicker.value
+//         // console.log("aaaa"+a);
+//     })  
+// })
 
 describe('tests for numGuests and numRooms number input', () => { 
     let numGuests
