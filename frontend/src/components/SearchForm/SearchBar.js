@@ -23,6 +23,11 @@ function SearchBar({onChange, 'data-testid': testID}) {
     // get req for search suggestions  
     const handleChange = (value) => {
         setSearchIn(value)
+        if (value === "") {
+            uid.current = null 
+            onChange(uid.current) // update formData in parent component with uid for GET req 
+        }
+        console.log(uid.current);
         fetchData(value)
     }
 
