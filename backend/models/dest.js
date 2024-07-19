@@ -25,11 +25,9 @@ load_fuzzy(fuzzy)
  * @param {number} num_res defaults to 5 if left empty 
  * @returns Array of cities (string)
  */
-async function partial_city(substring, num_res) {
+async function partial_city(substring, num_res = 5) {
     // return nothing when there is no query 
     if (substring === "") return []
-
-    if (num_res === undefined) num_res = 5
 
     // restrict to only finding cities 
     let sql = `select term, uid from ${table_name} where type='city' and term like '%${substring}%' limit ${num_res}`

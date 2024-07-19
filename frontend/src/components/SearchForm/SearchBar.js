@@ -7,7 +7,7 @@ const autocomplete_api = "http://localhost:3001/api/autocomplete?q="
 
 /** Component: Search bar
  */
-function SearchBar({onChange}) {
+function SearchBar({onChange, 'data-testid': testID}) {
     const [results, setResults] = useState([]) // 5 results suggestion 
     const [searchIn, setSearchIn] = useState("") // whatever is typed in search bar 
     const uid = useRef(null) // update uid immediate since this value is not used for rendering 
@@ -38,7 +38,7 @@ function SearchBar({onChange}) {
             <div className="input-wrapper">
                 <FaSearch></FaSearch>
                 <input placeholder="Where to" type="text"  value={searchIn}
-                    onChange={(e) => {handleChange(e.target.value)}}/>
+                    onChange={(e) => {handleChange(e.target.value)}} data-testid={testID}/>
             </div>
             <SearchResults results={results} onResultClick={handleResultClick}></SearchResults>
         </div>

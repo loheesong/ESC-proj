@@ -10,6 +10,15 @@ dayjs.extend(isSameOrBefore)
 
 // TODO: remove console log from form child components after done  
 
+// define test id for testing 
+const SEARCH_BAR_ID = "searchbar"
+const LOCATION_ERROR_ID = "locationError"
+const START_DATE_ID = "startDatePicker"
+const END_DATE_ID = "endDatePicker"
+const DATE_ERROR_ID = "dateError"
+const NUM_GUESTS_ID = "numGuests"
+const NUM_ROOMS_ID = "numRooms"
+
 function formatDate(date) {
     const d = new Date(date);
     const year = d.getFullYear();
@@ -18,7 +27,7 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
 }
 
-export default function SearchForm(params) {
+export default function SearchForm() {
     const navigate = useNavigate()
 
     // bind to submit butoon 
@@ -83,22 +92,22 @@ export default function SearchForm(params) {
                 {/* onChange prop for all components inside the form sets the formData state everytime value is changed 
                 when click on submit button, will submit formData values  
                 */}
-                <SearchBar onChange={(val) => {setsearchBar(val); updateLocationError(val)}}/>
+                <SearchBar onChange={(val) => {setsearchBar(val); updateLocationError(val)}} data-testid={SEARCH_BAR_ID}/>
 
-                {locationError && <p style={{ color: 'red' }}>{locationError}</p>}
+                {locationError && <p style={{ color: 'red' }} data-testid="locationError">{locationError}</p>}
 
                 <SearchDatePicker value={startDate} minDate={today} maxDate={endDate}
-                    onChange={(val) => { setstartDate(val); bothDateFilled(val,endDate) }}/>
+                    onChange={(val) => { setstartDate(val); bothDateFilled(val,endDate) }} data-testid={START_DATE_ID}/>
                 <SearchDatePicker value={endDate} minDate={startDate || today}
-                    onChange={(val) => { setendDate(val); bothDateFilled(startDate,val) }}/>
+                    onChange={(val) => { setendDate(val); bothDateFilled(startDate,val) }} data-testid={END_DATE_ID}/>
 
-                {dateError && <p style={{ color: 'red' }}>{dateError}</p>}
+                {dateError && <p style={{ color: 'red' }} data-testid={DATE_ERROR_ID}>{dateError}</p>}
 
                 <p>Number of guests</p>
-                <SearchNumberInput onChange={(val) => setnumGuest(val)}/>
+                <SearchNumberInput onChange={(val) => setnumGuest(val)} data-testid={NUM_GUESTS_ID}/>
 
                 <p>Number of rooms</p>
-                <SearchNumberInput onChange={(val) => setnumRoom(val)}/>
+                <SearchNumberInput onChange={(val) => setnumRoom(val)} data-testid={NUM_ROOMS_ID}/>
 
                 <button className="search-button" type="submit">
                     Submit
