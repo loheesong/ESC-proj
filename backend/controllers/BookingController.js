@@ -55,7 +55,7 @@ exports.createBookingFromJSONlist = async (req, res) => {
 };  
 
 exports.getBookingsDisplay = async (req, res) => {
-  const { userId } = req.params;
+  const  userId  = req.params;
   if (!userId) {
     return res
       .status(400)
@@ -63,10 +63,10 @@ exports.getBookingsDisplay = async (req, res) => {
   }
 
   try {
-    const bookingDetails = await get_bookings_by_userid(userId);
+    const bookingDetails = await get_bookings_by_userid(userId.user);
 
     if (!bookingDetails || bookingDetails.length === 0) {
-      return res.status(404).json({ error: "No bookings found!" });
+      return res.status(404).json({ empty: "No bookings found!" });
     } else {
       return res.status(200).json(bookingDetails);
     }
@@ -77,14 +77,14 @@ exports.getBookingsDisplay = async (req, res) => {
 };
 
 exports.deleteBooking = async (req, res) => {
-  const { bookingId } = req.params;
+  const bookingId  = req.params;
   if (!bookingId) {
     return res
       .status(400)
       .json({ error: "Booking ID not found. (required param)" });
   }
   try {
-    await delete_by_bookingid(bookingId);
+    await delete_by_bookingid(bookingId.bookingid);
     return res
       .status(200)
       .json({ sucess_message: "Booking deleted sucessfully." });

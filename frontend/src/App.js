@@ -12,7 +12,7 @@ import Register from "./routes/Register";
 import EventBus from "./services/EventBus";
 import Login from "./routes/Login";
 import Profile from "./routes/Profile";
-
+import DisplayBooking from "./routes/DisplayBooking";
 import './App.css';
 
 import AuthService from "./services/AuthService";
@@ -141,7 +141,9 @@ function App() {
                 <Route path="/register" element={<Register />} />   
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/displaybooking" element={<BookingForm />} />    
+                <Route path="/displaybooking" element={<DisplayBooking />} />    
+                <Route path="/booking" element={<BookingForm />} />    
+            
             </Routes>
 
         </div>

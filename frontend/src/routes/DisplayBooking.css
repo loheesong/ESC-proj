@@ -1,0 +1,47 @@
+.booking-list {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping */
+    gap: 20px; /* Space between cards */
+    justify-content: center;
+    padding: 20px;
+}
+
+.booking-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px; /* Adjust as needed for responsiveness */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.booking-card-content {
+    padding: 16px;
+}
+
+.booking-card-content h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.booking-card-content p {
+    margin: 0.5em 0;
+}
+
+.booking-card-content p strong {
+    font-weight: bold;
+}
+
+.booking-hotel-name{
+    font-weight: 200;
+}
