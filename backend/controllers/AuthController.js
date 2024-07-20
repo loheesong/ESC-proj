@@ -100,7 +100,30 @@ exports.signout = async (req, res) => {
   }
 };
 
-exports.updateProfile = async (req, res) => {
+exports.update = async (req, res) => {
+  try{
+    const updatedAccount = await User.update(
+      {username: req.body.username, email: req.body.email},
+      {
+      where: {username: req.body.oldname},
+      returning: true
+      }
+    );
+
+    if (!updatedAccount) {
+      console.log('Account not found');
+      return null;
+    }
+
+    console.log('Updated account:', updatedAccount);
+    res.send({message: "Account Updated. Logging Out"})
+  }
+  catch(err){
+    return res.status(500).send({ message: err.message });
+  }
+};
+
+/*exports.updateProfile = async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
@@ -122,7 +145,7 @@ exports.updateProfile = async (req, res) => {
     console.error(error);
     res.status(500).send({ message: "An error occurred while updating the profile." });
   }
-};
+};*/
 
 exports.deleteaccount = async (req, res) => {
   try {
