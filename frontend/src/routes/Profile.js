@@ -37,6 +37,9 @@ const validEmail = (value) => {
 
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
+  if (currentUser === null){setTimeout(() => {
+    window.location.href = "/login"; // Redirect to login page
+  });}
   const [username, setUsername] = useState(currentUser.username);
   const [email, setEmail] = useState(currentUser.email);
   const [message, setMessage] = useState("");

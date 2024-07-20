@@ -50,13 +50,15 @@ function App() {
         };
       }, []);
     
-      const logOut = () => {
+    const logOut = () => {
+      setTimeout(() => {
         AuthService.logout();
+      });
         setShowModeratorBoard(false);
         setShowAdminBoard(false);
         setCurrentUser(undefined);
     };
-    
+
     return (
         <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -88,7 +90,7 @@ function App() {
 
           {currentUser && (
             <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
+              <Link to={"/displaybooking"} className="nav-link">
                 Bookings
               </Link>
             </li>
@@ -139,7 +141,7 @@ function App() {
                 <Route path="/register" element={<Register />} />   
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/booking" element={<BookingForm />} />    
+                <Route path="/displaybooking" element={<BookingForm />} />    
             </Routes>
 
         </div>
