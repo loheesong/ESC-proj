@@ -39,6 +39,7 @@ function BookingForm() {
         bookingData.bookingInfo = form;
         try{
             bookingData.userID = AuthService.getCurrentUser().id;
+            
         }catch(e){
             console.log("User not logged in " + e);
             return;

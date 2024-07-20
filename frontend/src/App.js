@@ -50,8 +50,10 @@ function App() {
         };
       }, []);
     
-      const logOut = () => {
+    const logOut = () => {
+      setTimeout(() => {
         AuthService.logout();
+      });
         setShowModeratorBoard(false);
         setShowAdminBoard(false);
         setCurrentUser(undefined);

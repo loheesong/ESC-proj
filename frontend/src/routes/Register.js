@@ -172,10 +172,10 @@ const required = (value) => {
                     type="text"
                     className="form-control"
                     name="username"
+                    id="username"
                     value={username}
-                    //value={username}
                     onChange={onChangeUsername}
-                    validations={[required, vusername]}
+                    validations={[vusername]}
                   />
                 </div>
   
@@ -185,9 +185,10 @@ const required = (value) => {
                     type="text"
                     className="form-control"
                     name="email"
+                    id="email"
                     value={email}
                     onChange={onChangeEmail}
-                    validations={[required, validEmail]}
+                    validations={[validEmail]}
                   />
                 </div>
   
@@ -197,15 +198,16 @@ const required = (value) => {
                     type="password"
                     className="form-control"
                     name="password"
+                    id="password"
                     value={password}
                     onChange={onChangePassword}
-                    validations={[required, vpassword]}
+                    validations={[vpassword]}
                   />
                 </div>
   
                 <div className="form-group">
                   <button className="btn btn-primary btn-block">Sign Up</button>
-                  <button onClick={login}>Sign up with Google 🚀 </button>
+                  <button onClick={login} className="btn btn-primary btn-block">Google 🚀</button>
                 </div>
               </div>
             )}
@@ -230,4 +232,5 @@ const required = (value) => {
   };
   
   export default Register;
+
   
