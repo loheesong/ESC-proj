@@ -8,15 +8,15 @@ import AuthService from "../services/AuthService";
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
-const required = (value) => {
-    if (!value) {
-      return (
-        <div className="invalid-feedback d-block">
-          This field is required!
-        </div>
-      );
-    }
-  };
+// const required = (value) => {
+//     if (!value) {
+//       return (
+//         <div className="invalid-feedback d-block">
+//           This field is required!
+//         </div>
+//       );
+//     }
+//   };
   
   const validEmail = (value) => {
     if (!isEmail(value)) {
@@ -175,7 +175,7 @@ const required = (value) => {
                     value={username}
                     //value={username}
                     onChange={onChangeUsername}
-                    validations={[required, vusername]}
+                    validations={[vusername]}
                   />
                 </div>
   
@@ -187,7 +187,7 @@ const required = (value) => {
                     name="email"
                     value={email}
                     onChange={onChangeEmail}
-                    validations={[required, validEmail]}
+                    validations={[validEmail]}
                   />
                 </div>
   
@@ -199,7 +199,7 @@ const required = (value) => {
                     name="password"
                     value={password}
                     onChange={onChangePassword}
-                    validations={[required, vpassword]}
+                    validations={[vpassword]}
                   />
                 </div>
   
