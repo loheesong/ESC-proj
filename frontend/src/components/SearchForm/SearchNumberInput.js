@@ -5,7 +5,6 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { forwardRef } from 'react'
 
-// 
 const NumberInput = forwardRef(function CustomNumberInput(props, ref) {
     return (
         <BaseNumberInput
@@ -23,6 +22,7 @@ const NumberInput = forwardRef(function CustomNumberInput(props, ref) {
                 },
                 decrementButton: {
                     children: <RemoveIcon fontSize="small" />,
+                    className: 'decrement',
                     type: 'button'
                 },
             }}
@@ -32,13 +32,12 @@ const NumberInput = forwardRef(function CustomNumberInput(props, ref) {
     )
 })
 
-export default function SearchNumberInput({onChange}) { 
+export default function SearchNumberInput({onChange, 'data-testid': testID}) { 
     return <NumberInput aria-label="Quantity Input" 
-                min={1} max={9} 
+                min={1} max={9} defaultValue={1} required={true} data-testid={testID}
                 onChange={(event, newValue) => {
-                    // setValue(newValue)
                     onChange(newValue)
-                    console.log(newValue);
+                    // console.log(newValue);
                 }}/>;
 }
 

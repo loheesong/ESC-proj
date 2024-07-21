@@ -5,19 +5,18 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useState } from "react";
 import dayjs from 'dayjs';
 
-export default function SearchDatePicker({onChange}) {
-    const today = dayjs();
-    const [value, setValue] = useState(null);
-
+export default function SearchDatePicker({onChange, value, minDate, maxDate, 'data-testid': testID}) {
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DatePicker']}>
-                <DatePicker value={value} minDate={today} onChange={(newValue) => {
-                    setValue(newValue)
-                    console.log(newValue.$d)
-                    onChange(newValue.$d)
-                    }} />
-            </DemoContainer>
-        </LocalizationProvider>
+        <div data-testid={testID}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={['DatePicker']}>
+                    <DatePicker 
+                        value={value} 
+                        minDate={minDate} 
+                        maxDate={maxDate} 
+                        onChange={(newValue) => onChange(newValue)} />
+                </DemoContainer>
+            </LocalizationProvider>
+        </div>
     )
 }

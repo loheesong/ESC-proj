@@ -19,26 +19,15 @@ async function load_fuzzy(fuzzy) {
 }
 load_fuzzy(fuzzy)
 
-async function findOne() { 
-    let sql = `select * from ${table_name} limit 1`
-
-    try {
-        const [rows, fieldDefs] = await db.cnx.query(sql)
-        return rows 
-    } catch (error) {
-        console.log("Failed to findOne");
-    }
-}
-
 /**
  * Partial string match for given substring, return num_res number of results 
  * @param {string} substring 
- * @param {number} num_res 
+ * @param {number} num_res defaults to 5 if left empty 
  * @returns Array of cities (string)
  */
-async function partial_city(substring, num_res) {
+async function partial_city(substring, num_res = 5) {
     // return nothing when there is no query 
-    if (substring === "") { return [] }
+    if (substring === "") return []
 
     // restrict to only finding cities 
     let sql = `select term, uid from ${table_name} where type='city' and term like '%${substring}%' limit ${num_res}`
@@ -79,4 +68,4 @@ async function fuzzy_city(substring, num_res) {
     }
 }
 
-module.exports = {findOne, fuzzy_city, partial_city}
+module.exports = {fuzzy_city, partial_city}

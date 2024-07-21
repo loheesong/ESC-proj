@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './BookingForm.css';
+import AuthService from "../services/AuthService";
+
 
 function BookingForm() {
     const location = useLocation();
@@ -96,13 +98,19 @@ function BookingForm() {
         }
 
         bookingData.bookingInfo = form;
-
         try{
-            const res = await axios.post("http://localhost:3001/book", bookingData);
-            console.log('Booking response:', res.data);
-        } catch (error) {
-            console.error('Error during booking:', error);
+            bookingData.userID = AuthService.getCurrentUser().id;
+        }catch(e){
+            console.log("User not logged in " + e);
+            return;
         }
+
+        axios.post("http://localhost:3001/bookings/submitbooking", bookingData)
+        .then((res) => {
+            console.log('Booking response:', res.data);
+        }).catch((error) => {
+            console.error('Error during booking:', error);
+        })
     };
 
     return (
