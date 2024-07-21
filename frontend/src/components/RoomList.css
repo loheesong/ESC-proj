@@ -11,7 +11,7 @@
 .room-list {
 display: flex;
 flex-direction: column; /* Stack room cards vertically */
-}
+} 
   
   .room-card {
     display: flex;

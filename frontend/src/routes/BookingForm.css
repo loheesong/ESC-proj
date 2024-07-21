@@ -25,6 +25,10 @@ form {
     flex-direction: column;
 }
 
+.error {
+    color: red;
+}
+
 .form-group {
     margin-bottom: 15px;
 }
