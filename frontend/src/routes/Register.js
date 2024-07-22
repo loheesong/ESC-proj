@@ -8,15 +8,15 @@ import AuthService from "../services/AuthService";
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
-const required = (value) => {
-    if (!value) {
-      return (
-        <div className="invalid-feedback d-block">
-          This field is required!
-        </div>
-      );
-    }
-  };
+// const required = (value) => {
+//     if (!value) {
+//       return (
+//         <div className="invalid-feedback d-block">
+//           This field is required!
+//         </div>
+//       );
+//     }
+//   };
   
   const validEmail = (value) => {
     if (!isEmail(value)) {

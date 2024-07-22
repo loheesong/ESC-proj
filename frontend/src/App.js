@@ -12,7 +12,7 @@ import Register from "./routes/Register";
 import EventBus from "./services/EventBus";
 import Login from "./routes/Login";
 import Profile from "./routes/Profile";
-
+import DisplayBooking from "./routes/DisplayBooking";
 import './App.css';
 
 import AuthService from "./services/AuthService";
@@ -58,7 +58,7 @@ function App() {
         setShowAdminBoard(false);
         setCurrentUser(undefined);
     };
-    
+
     return (
         <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -90,7 +90,7 @@ function App() {
 
           {currentUser && (
             <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
+              <Link to={"/displaybooking"} className="nav-link">
                 Bookings
               </Link>
             </li>
@@ -141,7 +141,9 @@ function App() {
                 <Route path="/register" element={<Register />} />   
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/displaybooking" element={<DisplayBooking />} />    
                 <Route path="/booking" element={<BookingForm />} />    
+            
             </Routes>
 
         </div>

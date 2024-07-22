@@ -54,6 +54,8 @@ function BookingForm() {
         });
     };
 
+  
+
     return (
         <div className="form-page">
             <div className="form-container">
