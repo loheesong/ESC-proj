@@ -51,8 +51,12 @@ export default function SearchForm() {
             setDateError("")
         }
 
-        if (startDate < today) {
+        if (startDate.isBefore(today, 'day')) {
             setDateError("Start date cannot be before today.")
+            return 
+        }
+        if (startDate.isAfter(endDate, 'day')) {
+            setDateError("Start date cannot be after today.")
             return 
         }
 

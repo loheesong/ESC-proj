@@ -2,7 +2,6 @@ import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/re
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom'
 import SearchDestForm from '../../components/SearchForm/SearchDestForm';
-import { BrowserRouter as Router } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { act } from 'react';
 import axios from 'axios';
@@ -80,6 +79,64 @@ describe('tests for searchbar', () => {
             expect(resultsList).toBeInTheDocument();
             expect(resultsList.children.length).toBe(0); // Check that it has no children
         });
+    })
+})
+
+describe('tests for startDate endDate pickers', () => { 
+    let startDatePicker
+    let endDatePicker
+    let submitButton
+    let today
+
+    beforeEach(() => {
+        render(<SearchDestForm/>)
+
+        // must input first to prevent validation error 
+        fireEvent.change(screen.getByTestId(SEARCH_BAR_ID), { target: { value: 'singapore' }})
+
+        startDatePicker = screen.getByTestId(START_DATE_ID).querySelector('input')
+        endDatePicker = screen.getByTestId(END_DATE_ID).querySelector('input')
+        submitButton = screen.getByTestId(SUBMIT_BTN_ID)
+        today = dayjs();
+    });
+
+    test('exists in the form', () => { 
+        expect(startDatePicker).toBeInTheDocument();
+        expect(endDatePicker).toBeInTheDocument();
+    })
+
+    test('start date cannot be before today', () => { 
+        act(() => { 
+            // Simulate user picking a start date
+            userEvent.click(startDatePicker);
+            userEvent.type(startDatePicker, today.subtract(3, 'day').format('MM/DD/YYYY'));
+            fireEvent.blur(startDatePicker);
+            userEvent.click(submitButton)
+        })
+        screen.debug()
+        expect(screen.queryByTestId(LOCATION_ERROR_ID)).toBeInTheDocument()
+    })
+
+    test('end date cannot be before today', () => { 
+        act(() => { 
+            // Simulate user picking a start date
+            userEvent.click(endDatePicker);
+            userEvent.type(endDatePicker, today.subtract(3, 'day').format('MM/DD/YYYY'));
+            fireEvent.blur(endDatePicker);
+            userEvent.click(submitButton)
+        })
+
+        expect(screen.queryByTestId(LOCATION_ERROR_ID)).toBeInTheDocument()
+    })
+
+    test('start date cannot be after end date', () => { 
+        act(() => { 
+            // Simulate user picking a start date
+            userEvent.click(endDatePicker);
+            userEvent.type(endDatePicker, today.subtract(3, 'day').format('MM/DD/YYYY'));
+            fireEvent.blur(endDatePicker);
+            userEvent.click(submitButton)
+        })
     })
 })
 
