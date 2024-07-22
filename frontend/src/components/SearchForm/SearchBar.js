@@ -52,7 +52,7 @@ function SearchBar({onChange, 'data-testid': testID}) {
 
 function SearchResults({results, onResultClick}) {
     return (
-        <div className="results-list">
+        <div className="results-list" data-testid="results-list">
             {   // must have unique id, put destination uid in key 
                 results.map((result, id) => {
                     return (
