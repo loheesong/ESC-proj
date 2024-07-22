@@ -40,13 +40,16 @@ function BookingForm() {
         try{
             bookingData.userID = AuthService.getCurrentUser().id;
         }catch(e){
+            alert("You must be logged in to book.");
             console.log("User not logged in " + e);
             return;
         }
 
         axios.post("http://localhost:3001/bookings/submitbooking", bookingData)
         .then((res) => {
+            alert("Booking Successful!");
             console.log('Booking response:', res.data);
+            window.location.href = "/displaybooking";
         })
         .catch((error) => {
             console.error('Error during booking:', error);
