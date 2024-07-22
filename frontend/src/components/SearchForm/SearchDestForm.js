@@ -18,6 +18,7 @@ const END_DATE_ID = "endDatePicker"
 const DATE_ERROR_ID = "dateError"
 const NUM_GUESTS_ID = "numGuests"
 const NUM_ROOMS_ID = "numRooms"
+const SUBMIT_BTN_ID = "submitButtonID"
 
 function formatDate(date) {
     const d = new Date(date);
@@ -48,6 +49,11 @@ export default function SearchForm() {
             return;
         } else if (startDate && endDate) { 
             setDateError("")
+        }
+
+        if (startDate < today) {
+            setDateError("Start date cannot be before today.")
+            return 
         }
 
         // prepare formData 
@@ -109,7 +115,7 @@ export default function SearchForm() {
                 <p>Number of rooms</p>
                 <SearchNumberInput onChange={(val) => setnumRoom(val)} data-testid={NUM_ROOMS_ID}/>
 
-                <button className="search-button" type="submit">
+                <button className="search-button" type="submit" data-testid={SUBMIT_BTN_ID}>
                     Submit
                 </button>
             </form>
