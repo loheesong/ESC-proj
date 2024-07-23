@@ -18,11 +18,12 @@ const SearchRoom = () => {
   const uid = queryParams.get('uid')
   const formData = JSON.parse(decodeURIComponent(queryParams.get('formData')))
   const hotelData = JSON.parse(decodeURIComponent(queryParams.get('hotel')))
+  const guest = decodeURIComponent(queryParams.get('guest'))
 
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/rooms/${id}/prices?destination_id=${uid}&checkin=2024-10-01&checkout=2024-10-07&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`);
+        const response = await fetch(`http://localhost:3001/rooms/${id}/prices?destination_id=${uid}&checkin=${formData.startDatePicker}&checkout=${formData.endDatePicker}&lang=en_US&currency=SGD&country_code=SG&guests=${guest}&partner_id=1`);
         const data = await response.json();
         setRooms(data);
         setLoading(false);
