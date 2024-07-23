@@ -119,7 +119,7 @@ export default function SearchForm() {
                 <p>Number of rooms</p>
                 <SearchNumberInput onChange={(val) => setnumRoom(val)} data-testid={NUM_ROOMS_ID}/>
 
-                <button className="search-button" type="submit" data-testid={SUBMIT_BTN_ID}>
+                <button className="search-button m-3" type="submit" data-testid={SUBMIT_BTN_ID}>
                     Submit
                 </button>
             </form>
