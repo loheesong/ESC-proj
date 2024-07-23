@@ -1,3 +1,4 @@
+// src/components/Login.js
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
@@ -39,7 +40,7 @@ const Login = () => {
     setPassword(password);
   };
 
-  //google-----------------------------------------------
+  // Google login related code
   const [ user, setUser ] = useState([]);
   const [ profile, setProfile ] = useState([]);
 
@@ -88,7 +89,7 @@ const Login = () => {
       googleLogout();
       setProfile(null);
   };
-//------------------------------------------------------
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -135,6 +136,7 @@ const Login = () => {
             <Input
               type="text"
               className="form-control"
+              id="username"
               name="username"
               value={username}
               onChange={onChangeUsername}
@@ -147,6 +149,7 @@ const Login = () => {
             <Input
               type="password"
               className="form-control"
+              id="password"
               name="password"
               value={password}
               onChange={onChangePassword}
