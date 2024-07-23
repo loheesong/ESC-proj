@@ -9,8 +9,9 @@ const DisplayBooking = () => {
     const [error, setError] = useState('');
 
     const fetchBookings = () => {
-        const uid = AuthService.getCurrentUser().id;
-        axios.get(`http://localhost:3001/bookings/getbookings/${uid}`)
+        try {
+            const uid = AuthService.getCurrentUser().id;
+            axios.get(`http://localhost:3001/bookings/getbookings/${uid}`)
             .then((res) => {
                 setBookings(res.data);
                 setLoading(false);
@@ -19,6 +20,11 @@ const DisplayBooking = () => {
                 setError('Failed to fetch bookings.' + err);
                 setLoading(false);
             });
+        } catch(e) {
+            alert("You must be logged in to view bookings.");
+            console.log("User not logged in " + e);
+            window.location.href = "/login";
+        }
     };
 
     useEffect(() => {
