@@ -3,7 +3,19 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './RoomList.css';
 
-const RoomList = ({ rooms, uid, formData, hotelData }) => {
+const RoomList = ({ rooms, uid, formData, hotelData, currency, currencyLoad }) => {
+  const currencySymbols = {
+    SGD: 'SG$',
+    USD: 'US$',
+    JPY: '¥',
+    EUR: '€',
+    GBP: '£',
+    // Add more currency codes and symbols as needed
+  };
+
+  const getCurrencySymbol = (currency) => {
+    return currencySymbols[currency] || currency;
+  };
 
   const handleBooking = (room) => {
     // Data to be sent to the backend
@@ -13,7 +25,8 @@ const RoomList = ({ rooms, uid, formData, hotelData }) => {
       formData,
       hotelData
     };
-
+    room.price = getCurrencySymbol(currency) + room.price
+    console.log(bookingData)
     const params = new URLSearchParams();
     const bookingDataString = encodeURIComponent(JSON.stringify(bookingData));
     window.location.href = `/booking?bookingData=${bookingDataString}`;
@@ -49,7 +62,15 @@ const RoomList = ({ rooms, uid, formData, hotelData }) => {
               )}
             </div>
             <div className="booking">
-              <h2>$ {room.price}</h2>
+              {currencyLoad ? (
+                <div>
+                  <h4>Loading...</h4>
+                </div>
+              ) : (
+                <div>
+                <h2>{getCurrencySymbol(currency)} {room.price}</h2>
+                </div>
+              )}
               <button onClick={() => handleBooking(room)}>Book</button>
             </div>
           </div>
