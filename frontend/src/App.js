@@ -61,13 +61,13 @@ function App() {
 
     return (
         <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-dark bg-dark p-3">
         <Link to={"/"} className="navbar-brand">
-          Demo Site
+            Destination EZ 
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
+            <Link to={"/"} className="nav-link">
               Home
             </Link>
           </li>
