@@ -1,7 +1,6 @@
 const axios = require("axios");
-const html = require("html-escaper");
 const striptags = require("striptags");
-
+const html = require('html-entities'); // Make sure to require the necessary libraries
 const {
   getRoomsAPI,
 } = require("../apicontrollers/hotelapi");
@@ -19,6 +18,7 @@ exports.getRoomPrices = async (req, res) => {
     partner_id,
   } = req.query;
 
+  // Validate required parameters
   if (
     !id ||
     !destination_id ||
@@ -32,7 +32,8 @@ exports.getRoomPrices = async (req, res) => {
   ) {
     return res.status(400).json({ error: "All parameters are required" });
   }
-  const p = {
+
+  const params = {
     destination_id,
     checkin,
     checkout,
@@ -44,19 +45,27 @@ exports.getRoomPrices = async (req, res) => {
   };
 
   const fetchRoomPrices = async () => {
-    try {
-      const response = await getRoomsAPI(id, p);
+    let response;
+    let retryCount = 0;
+    const maxRetries = 5; // Limit the number of retries
 
-      if (!response.data.completed) {
-        console.log("Search not completed. Retrying...");
-        await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 0.5 seconds before retrying
-        return fetchRoomPrices();
+    while (retryCount < maxRetries) {
+      try {
+        response = await getRoomsAPI(id, params);
+
+        if (response.data.completed) {
+          return response.data.rooms;
+        } else {
+          console.log("Search not completed. Retrying...");
+          retryCount++;
+          await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 0.5 seconds before retrying
+        }
+      } catch (error) {
+        throw new Error(`An error occurred while fetching room prices: ${error.message}`);
       }
-
-      return response.data.rooms;
-    } catch (error) {
-      throw new Error("An error occurred while fetching room prices");
     }
+
+    throw new Error("Search not completed after multiple retries.");
   };
 
   try {
@@ -69,7 +78,7 @@ exports.getRoomPrices = async (req, res) => {
 
     const formattedPrices = roomPrices.map((room, index) => {
       const description = room.long_description || room.description;
-      const decodedDescription = html.unescape(description);
+      const decodedDescription = html.decode(description);
       const plainTextDescription = striptags(decodedDescription);
       const uniqueAmenities = room.amenities.filter(
         (amenity) => !commonAmenities.includes(amenity)
