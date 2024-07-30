@@ -1,15 +1,19 @@
 import SearchDestForm from '../components/SearchForm/SearchDestForm';
 import Deco from "../components/Deco";
+import ImageGrid from '../components/ImageGrid/ImageGrid';
+import Footer from '../components/Footer/Footer';
+
 /** Page: Displays the home page of the app
  */
 function Home() {
     return (
         <div className="App">
-        <p>This is the home page</p>
-        <SearchDestForm></SearchDestForm>
-        <div className='p-5'>
-            <Deco />
-        </div>
+            <SearchDestForm></SearchDestForm>
+            <div className='p-5'>
+                <Deco />
+            </div>
+            <ImageGrid/>
+            <Footer/>
         </div>
     );
 }

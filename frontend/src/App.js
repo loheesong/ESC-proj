@@ -19,14 +19,6 @@ import AuthService from "./services/AuthService";
 import BookingForm from "./routes/BookingForm";
 
 function App() {
-    const [info, setInfo] = useState([]);
-    useEffect(() => {
-        axios.get("http://localhost:3001").then((response) => {
-            console.log(response);
-            setInfo(response.data);
-        })
-    }, []);
-
     // user stuff
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -131,7 +123,6 @@ function App() {
                 <Route path="/" 
                     element={
                         <div className="App">
-                            {info}
                             <Home/>
                         </div>
                     } 
@@ -143,9 +134,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/displaybooking" element={<DisplayBooking />} />    
                 <Route path="/booking" element={<BookingForm />} />    
-            
             </Routes>
-
         </div>
     );
 }
