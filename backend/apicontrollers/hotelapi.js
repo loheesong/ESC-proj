@@ -50,7 +50,7 @@ const getHotelPricesAPI = async (params) => {
   try {
     const response = await axios.get("https://hotelapi.loyalty.dev/api/hotels/prices", { params });
     if (!response.data || !response.data.hotels || !response.data.completed) {
-      return Error("Invalid parameters or no data available");
+      console.log("Invalid parameters or no data available")
     }
     return response;
   } catch (error) {

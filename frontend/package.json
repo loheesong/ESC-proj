@@ -58,5 +58,11 @@
     "axios-mock-adapter": "^1.22.0",
     "babel-jest": "^29.7.0",
     "react-test-renderer": "^18.3.1"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+    "node_modules/(?!axios)"
+  ]
   }
+
 }

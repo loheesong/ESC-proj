@@ -4,16 +4,14 @@ import { useLocation } from 'react-router-dom';
 import './BookingForm.css';
 import AuthService from "../services/AuthService";
 
-
 function BookingForm() {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const bookingDataParam = params.get('bookingData');
     let bookingData = {};
 
-    try{
+    try {
         bookingData = bookingDataParam ? JSON.parse(decodeURIComponent(bookingDataParam)) : {};
-        console.log('Booking Data:', bookingData);
     } catch (error) {
         console.error('Error parsing bookingData:', error);
     }
@@ -27,11 +25,10 @@ function BookingForm() {
     });
 
     const [errors, setErrors] = useState({});
-    const [errorMsgs, setErrorMsgs] = useState({});
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setForm({ ...form, [name]: value});
+        setForm({ ...form, [name]: value });
     };
 
     const validateExpiryDate = (expiryDate) => {
@@ -42,116 +39,125 @@ function BookingForm() {
         const monthNumber = parseInt(month, 10);
         const yearNumber = parseInt(year, 10);
         return monthNumber >= 1 && monthNumber <= 12 && yearNumber >= 24 && yearNumber <= 99;
-        
     };
 
     const validate = () => {
         const validationErrors = {};
-        const validationErrorMsgs = {};
 
         if (!form.name) {
-            validationErrors.name = true;
-            validationErrorMsgs.errorMsgName = 'Name is required';
+            validationErrors.name = 'Name is required';
         }
         if (!form.cardNumber) {
-            validationErrors.cardNumber = true;
-            validationErrorMsgs.errorMsgCardNumber = 'Card number is required';
-        } else if (!/^\d+$/.test(form.cardNumber)){
-            validationErrors.cardNumber = true;
-            validationErrorMsgs.errorMsgCardNumber = 'Card number must be numeric';
-        }  else if (form.cardNumber.length !== 16) {
-            validationErrors.cardNumber = true; 
-            validationErrorMsgs.errorMsgCardNumber = 'Card number must be 16 digits';
+            validationErrors.cardNumber = 'Card number is required';
+        } else if (!/^\d+$/.test(form.cardNumber)) {
+            validationErrors.cardNumber = 'Card number must be numeric';
+        } else if (form.cardNumber.length !== 16) {
+            validationErrors.cardNumber = 'Card number must be 16 digits';
         }
-        if (!form.expiryDate){
-            validationErrors.expiryDate = true;
-            validationErrorMsgs.errorMsgExpiryDate = 'Expiry date is required';
+        if (!form.expiryDate) {
+            validationErrors.expiryDate = 'Expiry date is required';
         } else if (!/^\d{2}\/\d{2}$/.test(form.expiryDate)) {
-            validationErrors.expiryDate = true;
-            validationErrorMsgs.errorMsgExpiryDate = 'Expiry date must be in MM/YY format';
-        } else if (!validateExpiryDate(form.expiryDate)){
-            validationErrors.expiryDate = true;
-            validationErrorMsgs.errorMsgExpiryDate = 'Expiry date must be valid numbers in MM/YY format'
+            validationErrors.expiryDate = 'Expiry date must be in MM/YY format';
+        } else if (!validateExpiryDate(form.expiryDate)) {
+            validationErrors.expiryDate = 'Expiry date must be valid numbers in MM/YY format';
         }
-        if (!form.cvv){
-            validationErrors.cvv = true;
-            validationErrorMsgs.errorMsgCVV = 'CVV is required';
+        if (!form.cvv) {
+            validationErrors.cvv = 'CVV is required';
         } else if (!/^\d+$/.test(form.cvv)) {
-            validationErrors.cvv = true;
-            validationErrorMsgs.errorMsgCVV = 'CVV must be numeric';
-        }   else if (form.cvv.length !== 3) {
-            validationErrors.cvv = true;
-            validationErrorMsgs.errorMsgCVV = 'CVV number must be 3 digits';
+            validationErrors.cvv = 'CVV must be numeric';
+        } else if (form.cvv.length !== 3) {
+            validationErrors.cvv = 'CVV number must be 3 digits';
         }
 
         setErrors(validationErrors);
-        setErrorMsgs(validationErrorMsgs);
-        console.log(validationErrors);
-        console.log(validationErrorMsgs);
-        console.log(errorMsgs);
         return Object.keys(validationErrors).length === 0;
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         if (!validate()) {
             return; 
         }
 
         bookingData.bookingInfo = form;
-        try{
+        try {
             bookingData.userID = AuthService.getCurrentUser().id;
-            
-        }catch(e){
+        } catch (e) {
             alert("You must be logged in to book.");
-            console.log("User not logged in " + e);
             return;
         }
 
         axios.post("http://localhost:3001/bookings/submitbooking", bookingData)
-        .then((res) => {
-            alert("Booking Successful!");
-            console.log('Booking response:', res.data);
-            window.location.href = "/displaybooking";
-        })
-        .catch((error) => {
-            console.error('Error during booking:', error);
-        })
+            .then((res) => {
+                alert("Booking Successful!");
+                window.location.href = "/displaybooking";
+            })
+            .catch((error) => {
+                console.error('Error during booking:', error);
+            });
     };
-
-  
 
     return (
         <div className="form-page">
             <div className="form-container">
                 <h1>Create Booking</h1>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h2>Booking Information</h2>
                     <div className="form-group">
-                        <label>Name:</label>
-                        <input type="text" name="name" value={form.name} onChange={handleChange} />
-                        {errors.name && <div className="error">{errorMsgs.errorMsgName}</div>}
+                        <label htmlFor="name">Name:</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={form.name}
+                            onChange={handleChange}
+                        />
+                        {errors.name && <p>{errors.name}</p>}
                     </div>
                     <div className="form-group">
-                        <label>Message to Hotel:</label>
-                        <textarea name="messageToHotel" value={form.messageToHotel} onChange={handleChange}></textarea>
+                        <label htmlFor="messageToHotel">Message to Hotel:</label>
+                        <textarea
+                            id="messageToHotel"
+                            name="messageToHotel"
+                            value={form.messageToHotel}
+                            onChange={handleChange}
+                        />
                     </div>
                     <h2>Payee Information</h2>
                     <div className="form-group">
-                        <label>Card Number:</label>
-                        <input type="text" name="cardNumber" value={form.cardNumber} onChange={handleChange} />
-                        {errors.cardNumber && <div className="error">{errorMsgs.errorMsgCardNumber}</div>}
+                        <label htmlFor="cardNumber">Card Number:</label>
+                        <input
+                            id="cardNumber"
+                            name="cardNumber"
+                            type="text"
+                            value={form.cardNumber}
+                            onChange={handleChange}
+                        />
+                        {errors.cardNumber && <p>{errors.cardNumber}</p>}
                     </div>
                     <div className="form-group">
-                        <label>Expiry Date:</label>
-                        <input type="text" name="expiryDate" value={form.expiryDate} onChange={handleChange} />
-                        {errors.expiryDate && <div className="error">{errorMsgs.errorMsgExpiryDate}</div>}
+                        <label htmlFor="expiryDate">Expiry Date:</label>
+                        <input
+                            id="expiryDate"
+                            name="expiryDate"
+                            type="text"
+                            value={form.expiryDate}
+                            onChange={handleChange}
+                        />
+                        {errors.expiryDate && <p>{errors.expiryDate}</p>}
                     </div>
                     <div className="form-group">
-                        <label>CVV:</label>
-                        <input type="text" name="cvv" value={form.cvv} onChange={handleChange} />
-                        {errors.cvv && <div className="error">{errorMsgs.errorMsgCVV}</div>}
+                        <label htmlFor="cvv">CVV:</label>
+                        <input
+                            id="cvv"
+                            name="cvv"
+                            type="text"
+                            value={form.cvv}
+                            onChange={handleChange}
+                        />
+                        {errors.cvv && <p>{errors.cvv}</p>}
                     </div>
-                    <button className="submit" type="button" onClick={handleSubmit}>Create Booking</button>
+                    <button className="submit" type="submit">Create Booking</button>
                 </form>
             </div>
         </div>
