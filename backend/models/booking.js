@@ -10,7 +10,7 @@ const json_type_format = {
   checkin_date: Date,
   checkout_date: Date,
   book_date: Date,
-  room_img_src: "string",
+  room_img_src: "string", 
   message: "string",
   userID: "number",
   name: "string",
