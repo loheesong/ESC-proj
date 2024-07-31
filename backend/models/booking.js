@@ -82,8 +82,8 @@ async function create_booking(details_json) {
  * @returns
  */
 async function get_bookings_by_userid(user_id) {
-  let sql = `select * from ${table_name} where user='${user_id}'`;
-
+  let sql = `select * from ${table_name} where userid=${user_id}`;
+  console.log(sql);
   try {
     const [rows, fieldDefs] = await db.cnx.query(sql);
     return rows;

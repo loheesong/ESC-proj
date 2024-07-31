@@ -1,5 +1,6 @@
 // handles auth for login 
 const { verifySignUp } = require("../middleware");
+const { verifyEdit } = require("../middleware");
 const AuthController = require('../controllers/AuthController');
 
 module.exports = function(app) {
@@ -27,7 +28,10 @@ module.exports = function(app) {
     app.put(
       "/api/auth/update-profile",
       // [authJwt.verifyToken],
-      AuthController.updateProfile
+      [
+        verifyEdit.checkDuplicateUsername
+      ],
+      AuthController.update
     );
   
     app.put(

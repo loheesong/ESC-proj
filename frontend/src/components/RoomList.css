@@ -11,7 +11,7 @@
 .room-list {
 display: flex;
 flex-direction: column; /* Stack room cards vertically */
-}
+} 
   
   .room-card {
     display: flex;
@@ -22,7 +22,7 @@ flex-direction: column; /* Stack room cards vertically */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: auto;
-    max-height: 200px;
+    max-height: 250px;
   }
   
   .room-card img {

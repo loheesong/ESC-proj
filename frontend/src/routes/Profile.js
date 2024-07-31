@@ -37,13 +37,14 @@ const validEmail = (value) => {
 
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
-  if (AuthService.getCurrentUser() === null){setTimeout(() => {
+  if (currentUser === null){setTimeout(() => {
     window.location.href = "/login"; // Redirect to login page
   });}
   const [username, setUsername] = useState(currentUser.username);
   const [email, setEmail] = useState(currentUser.email);
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
+  const oldname = currentUser.username;
 
   const form = useRef();
   const checkBtn = useRef();
@@ -55,7 +56,7 @@ const Profile = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.updateProfile({ username, email }).then(
+      AuthService.updateProfile({ username, email, oldname }).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);

@@ -263,11 +263,10 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
     cache.set(cacheKey, hotelsWithDetailsAndPrices); // Cache the combined response
     res.status(200).json(hotelsWithDetailsAndPrices);
   } catch (error) {
-    console.error(error);
     res
       .status(500)
       .json({
-        error: "An error occurred while fetching hotel details and prices",
+        error: "An error occurred while fetching hotel details and prices" + error,
       });
   }
 };
