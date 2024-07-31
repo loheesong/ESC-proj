@@ -1,50 +1,126 @@
-// describe('Basic test: can load the page', () => { 
-//     beforeEach(() => {
-//         cy.visit("http://localhost:3000")
-//     });
+describe('Basic test: can load the page', () => { 
+    beforeEach(() => {
+        cy.visit("http://localhost:3000")
+    });
 
-//     it('should load the homepage', () => {
-//         cy.get('.navbar-brand').should('have.text', 'Destination EZ')
-//     });
+    it('should load the homepage', () => {
+        cy.get('.navbar-brand').should('have.text', 'Destination EZ')
+    });
 
-//     it('should have the correct url', () => {
-//         cy.url().should('include', '/')
-//     });
-// })
+    it('should have the correct url', () => {
+        cy.url().should('include', '/')
+    });
+})
 
-// describe('USE CASE: register', () => { 
-//     beforeEach(() => {
-//         cy.visit("http://localhost:3000")
-//         cy.get('a.nav-link[href="/register"]').click();
-//         cy.url().should('include', '/register')
-//     });
+describe('USE CASE: register', () => { 
+    beforeEach(() => {
+        cy.visit("http://localhost:3000")
+        cy.get('a.nav-link[href="/register"]').click();
+        cy.url().should('include', '/register')
+    });
 
-//     it('HAPPY PATH: visitor enters username, email details, password', () => {
-//         // fill form 
-//         const username = `u_123`
-//         cy.get('input[name="username"]').type(username);
-//         cy.get('input[name="email"]').type(`${username}@example.com`);
-//         cy.get('input[name="password"]').type('TestPassword123');
+    it('HAPPY PATH: visitor enters username, email details, password', () => {
+        // fill form 
+        const username = `u_123`
+        cy.get('input[name="username"]').type(username);
+        cy.get('input[name="email"]').type(`${username}@example.com`);
+        cy.get('input[name="password"]').type('TestPassword123');
 
-//         // submit form
-//         cy.get('form').submit();
+        // submit form
+        cy.get('form').submit();
 
-//         // check alert div 
-//         cy.get('.alert').should('be.visible').and('contain', 'User registered successfully!')
-//     });
+        // check alert div 
+        cy.get('.alert').should('be.visible').and('contain', 'User registered successfully!')
+    });
 
-//     it('SAD PATH: username, email, password not valid', () => {
-//         const username = `a`
-//         cy.get('input[name="username"]').type(username);
-//         cy.get('input[name="email"]').type(`${username}gmail`);
-//         cy.get('input[name="password"]').type(`${username}`);
-//         cy.get('form').submit();
+    it('SAD PATH: username, email, password not valid', () => {
+        const username = `a`
+        cy.get('input[name="username"]').type(username);
+        cy.get('input[name="email"]').type(`${username}gmail`);
+        cy.get('input[name="password"]').type(`${username}`);
+        cy.get('form').submit();
 
-//         cy.contains('The username must be between 3 and 20 characters.')
-//         cy.contains('This is not a valid email.')
-//         cy.contains('The password must be between 6 and 40 characters.')
-//     });
-// })
+        cy.contains('The username must be between 3 and 20 characters.')
+        cy.contains('This is not a valid email.')
+        cy.contains('The password must be between 6 and 40 characters.')
+    });
+})
+
+describe('USE CASE: Login', () => { 
+    beforeEach(() => {
+        cy.visit("http://localhost:3000/login")
+    });
+    
+    it('SAD PATH: cannot login', () => {
+        cy.contains('button', 'Login').should('be.visible').click()
+        cy.get('div.invalid-feedback.d-block')
+            .should('have.length', 2)
+            .each(($e) => {
+                cy.wrap($e).should('have.text','This field is required!')
+            })
+    });
+
+    it('HAPPY PATH: login with username and password', () => {
+        const username = `u_123`
+        cy.get('#username').type(username)
+        cy.get('#password').type('TestPassword123')
+        cy.contains('button', 'Login').should('be.visible').click()
+
+        cy.url().should('include', '/profile')
+        cy.contains(username)
+    });
+})
+
+describe('USE CASE: Update account', () => { 
+    beforeEach(() => {
+        cy.visit("http://localhost:3000/login")
+        const username = `u_123`
+        cy.get('#username').type(username)
+        cy.get('#password').type('TestPassword123')
+        cy.contains('button', 'Login').should('be.visible').click()
+        cy.url().should('include', '/profile')
+        cy.contains(username)
+    });
+
+    it('SAD PATH: cannot update account', () => {
+        cy.get('#username').clear()
+        cy.contains('button', 'Update').should('be.visible').click()
+        cy.contains('This field is required!')
+    });
+
+    it('HAPPY PATH: update username and email', () => {
+        const username = `u_1234`
+        cy.get('#username').clear().type(username)
+        cy.contains('button', 'Update').should('be.visible').click()
+        
+        // wait for page to change
+        cy.wait(2000) 
+
+        cy.url().should('include', '/login')
+
+        cy.get('#username').type(username)
+        cy.get('#password').type('TestPassword123')
+        cy.contains('button', 'Login').should('be.visible').click()
+        cy.url().should('include', '/profile')
+        cy.contains(username)
+    });
+})
+
+describe('USE CASE: Delete account', () => { 
+    beforeEach(() => {
+        cy.visit("http://localhost:3000/login")
+        const username = `u_1234`
+        cy.get('#username').type(username)
+        cy.get('#password').type('TestPassword123')
+        cy.contains('button', 'Login').should('be.visible').click()
+        cy.url().should('include', '/profile')
+        cy.contains(username)
+    });
+
+    it('HAPPY PATH: able to delete account', () => {
+        cy.contains('button', 'Delete').should('be.visible').click()
+    });
+})
 
 describe('USE CASE: Search hotel', () =>  {
     beforeEach(() => {
@@ -163,21 +239,28 @@ describe('USE CASE: Search hotel', () =>  {
 })
 
 describe('USE CASE: View hotel room detail', () => { 
-    
+    it('HAPPY PATH: able to view hotel room', () => {
+        
+    });
+    it('SAD PATH: hotel room dont exist', () => {
+        
+    });
 })
 
 describe('USE CASE: Book hotel room', () => { 
-    
+    it('HAPPY PATH: able to view hotel room', () => {
+        
+    });
+    it('SAD PATH: hotel room dont exist', () => {
+        
+    });
 })
 
 describe('USE CASE: Delete booking', () => { 
-    
-})
-
-describe('USE CASE: Update account', () => { 
-    
-})
-
-describe('USE CASE: Delete account', () => { 
-    
+    it('HAPPY PATH: able to delete booking', () => {
+        
+    });
+    it('SAD PATH: cannot delete booking', () => {
+        
+    });
 })
