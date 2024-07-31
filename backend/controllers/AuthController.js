@@ -102,7 +102,7 @@ exports.signout = async (req, res) => {
   }
 };
 
-exports.update = async (req, res) => {
+exports.updateProfile = async (req, res) => {
   try{
     const updatedAccount = await User.update(
       {username: req.body.username, email: req.body.email},
@@ -118,7 +118,7 @@ exports.update = async (req, res) => {
     }
 
     console.log('Updated account:', updatedAccount);
-    res.send({message: "Account Updated. Logging Out"})
+    res.status(200).send({message: "Profile updated successfully. Log Out to update changes"})
   }
   catch(err){
     return res.status(500).send({ message: err.message });

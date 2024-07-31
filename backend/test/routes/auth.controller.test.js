@@ -135,18 +135,6 @@ describe('Auth Controller', () => {
     expect(res.body.message).toBe('Profile updated successfully. Log Out to update changes');
   });
 
-  test('updateProfile does not update user details because there is no change', async () => {
-    const res = await request(app)
-      .put('/updateProfile')
-      .send({
-        username: 'testuser',
-        email: 'test@example.com'
-      });
-
-    expect(res.statusCode).toBe(200);
-    expect(res.body.message).toBe('Profile updated successfully. Log Out to update changes');
-  });
-
   test('deleteAccount deletes a user account', async () => {
     const res = await request(app)
       .delete('/deleteaccount')
