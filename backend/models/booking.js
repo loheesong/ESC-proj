@@ -56,6 +56,7 @@ async function sync() {
  */
 async function create_booking(details_json) {
   if (!validate_input(details_json)) {
+    console.log("invalid json")
     return false;
   } else{
     console.log("valid input");
@@ -89,6 +90,7 @@ async function get_bookings_by_userid(user_id) {
     return rows;
   } catch (error) {
     console.log("Failed to get_bookings_by_userid");
+    return false;
   }
 }
 
@@ -100,8 +102,14 @@ async function delete_by_bookingid(booking_id) {
 
   try {
     const [rows, fieldDefs] = await db.cnx.query(sql);
+    if (rows.affectedRows === 0) {
+      console.log("bookingid not found")
+      return false;
+    }
+    return true;
   } catch (error) {
     console.log("Failed to delete_by_bookingid");
+    return false;
   }
 }
 
@@ -132,6 +140,7 @@ function validate_input(json) {
 
 module.exports = {
   sync,
+  validate_input,
   create_booking,
   get_bookings_by_userid,
   delete_by_bookingid,
