@@ -1,0 +1,755 @@
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"2875633804\",\"room_name\":\"d58234cc3c\",\"location\":\"4bc3ae7880\",\"price\":\"SGD 3541\",\"checkin_date\":\"2024-08-14\",\"checkout_date\":\"2024-11-29\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"0f37b5e4e463e49b8b67776f3d84e1e4a652320aea1a397b90\",\"user_id\":2360,\"guest_name\":\"79b62d1b55\",\"card_number\":3496502660290222,\"card_expiry_date\":\"07/31\",\"card_cvv\":273}",
+  "data": {
+    "hotel_name": "2875633804",
+    "room_name": "d58234cc3c",
+    "location": "4bc3ae7880",
+    "price": "SGD 3541",
+    "checkin_date": "2024-08-14",
+    "checkout_date": "2024-11-29",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "0f37b5e4e463e49b8b67776f3d84e1e4a652320aea1a397b90",
+    "user_id": 2360,
+    "guest_name": "79b62d1b55",
+    "card_number": 3496502660290222,
+    "card_expiry_date": "07/31",
+    "card_cvv": 273
+  },
+  "timestamp": "2024-07-31T09:40:45.732Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"d5dd0646cc\",\"room_name\":\"bc537b94d5\",\"location\":\"c1438f4189\",\"price\":\"SGD 1649\",\"checkin_date\":\"2024-10-29\",\"checkout_date\":\"2024-11-23\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"6684a60217f44179fc33ee1012a478889f7c8ca4be67319bae\",\"user_id\":7732,\"guest_name\":\"0a6136653d\",\"card_number\":9927766041945608,\"card_expiry_date\":\"06/26\",\"card_cvv\":295}",
+  "data": {
+    "hotel_name": "d5dd0646cc",
+    "room_name": "bc537b94d5",
+    "location": "c1438f4189",
+    "price": "SGD 1649",
+    "checkin_date": "2024-10-29",
+    "checkout_date": "2024-11-23",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "6684a60217f44179fc33ee1012a478889f7c8ca4be67319bae",
+    "user_id": 7732,
+    "guest_name": "0a6136653d",
+    "card_number": 9927766041945608,
+    "card_expiry_date": "06/26",
+    "card_cvv": 295
+  },
+  "timestamp": "2024-07-31T09:53:52.479Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T09:53:52.481Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"579f42bfde\",\"room_name\":\"96f148d117\",\"location\":\"107ab6320f\",\"price\":\"SGD 2998\",\"checkin_date\":\"2024-08-06\",\"checkout_date\":\"2024-09-13\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"18ddb54a7584ab7a4a97fc421afb6164e1450f9d21dedcdb30\",\"user_id\":579,\"guest_name\":\"50bbf40da0\",\"card_number\":8377538823612346,\"card_expiry_date\":\"09/30\",\"card_cvv\":580}",
+  "data": {
+    "hotel_name": "579f42bfde",
+    "room_name": "96f148d117",
+    "location": "107ab6320f",
+    "price": "SGD 2998",
+    "checkin_date": "2024-08-06",
+    "checkout_date": "2024-09-13",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "18ddb54a7584ab7a4a97fc421afb6164e1450f9d21dedcdb30",
+    "user_id": 579,
+    "guest_name": "50bbf40da0",
+    "card_number": 8377538823612346,
+    "card_expiry_date": "09/30",
+    "card_cvv": 580
+  },
+  "timestamp": "2024-07-31T09:55:35.479Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T09:55:35.481Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"e8bc4df7b4\",\"room_name\":\"0a3f7e1ba2\",\"location\":\"c69fe8a8b0\",\"price\":\"SGD 5600\",\"checkin_date\":\"2024-11-04\",\"checkout_date\":\"2024-12-02\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"6f30965091fe3229315c402ce042c69abf4343d3bfd50820ae\",\"user_id\":20,\"guest_name\":\"45ac4d8f71\",\"card_number\":8150242735954272,\"card_expiry_date\":\"04/26\",\"card_cvv\":835}",
+  "data": {
+    "hotel_name": "e8bc4df7b4",
+    "room_name": "0a3f7e1ba2",
+    "location": "c69fe8a8b0",
+    "price": "SGD 5600",
+    "checkin_date": "2024-11-04",
+    "checkout_date": "2024-12-02",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "6f30965091fe3229315c402ce042c69abf4343d3bfd50820ae",
+    "user_id": 20,
+    "guest_name": "45ac4d8f71",
+    "card_number": 8150242735954272,
+    "card_expiry_date": "04/26",
+    "card_cvv": 835
+  },
+  "timestamp": "2024-07-31T09:56:45.166Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T09:56:45.168Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"17d177d10f\",\"room_name\":\"d5bbd7d7e9\",\"location\":\"182127daea\",\"price\":\"SGD 3462\",\"checkin_date\":\"2024-08-03\",\"checkout_date\":\"2024-10-12\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"a635a9b86362820d8ce51933456efd24867882353cbce692c2\",\"user_id\":3016,\"guest_name\":\"4d8503a812\",\"card_number\":3216086327624028,\"card_expiry_date\":\"01/23\",\"card_cvv\":900}",
+  "data": {
+    "hotel_name": "17d177d10f",
+    "room_name": "d5bbd7d7e9",
+    "location": "182127daea",
+    "price": "SGD 3462",
+    "checkin_date": "2024-08-03",
+    "checkout_date": "2024-10-12",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "a635a9b86362820d8ce51933456efd24867882353cbce692c2",
+    "user_id": 3016,
+    "guest_name": "4d8503a812",
+    "card_number": 3216086327624028,
+    "card_expiry_date": "01/23",
+    "card_cvv": 900
+  },
+  "timestamp": "2024-07-31T09:58:02.338Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T09:58:02.340Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"bb2380b60e\",\"room_name\":\"eddbb03b7a\",\"location\":\"3f445d961d\",\"price\":\"SGD 6920\",\"checkin_date\":\"2024-09-23\",\"checkout_date\":\"2025-01-10\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"a9cf79912f5cb4601e039ced581ae9d73479e76fa782046987\",\"user_id\":6484,\"guest_name\":\"ce7390af0c\",\"card_number\":2693393504650133,\"card_expiry_date\":\"03/24\",\"card_cvv\":149}",
+  "data": {
+    "hotel_name": "bb2380b60e",
+    "room_name": "eddbb03b7a",
+    "location": "3f445d961d",
+    "price": "SGD 6920",
+    "checkin_date": "2024-09-23",
+    "checkout_date": "2025-01-10",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "a9cf79912f5cb4601e039ced581ae9d73479e76fa782046987",
+    "user_id": 6484,
+    "guest_name": "ce7390af0c",
+    "card_number": 2693393504650133,
+    "card_expiry_date": "03/24",
+    "card_cvv": 149
+  },
+  "timestamp": "2024-07-31T09:58:10.733Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T09:58:10.735Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"7884a28413\",\"room_name\":\"4c1869af3f\",\"location\":\"21a9dc7d42\",\"price\":\"SGD 9583\",\"checkin_date\":\"2024-08-06\",\"checkout_date\":\"2024-09-29\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"1256a2e5fc23e3bc6a93614f00cd3b6de5f8007cf4cdbea477\",\"user_id\":4682,\"guest_name\":\"8421e3d503\",\"card_number\":5325785132831032,\"card_expiry_date\":\"12/32\",\"card_cvv\":981}",
+  "data": {
+    "hotel_name": "7884a28413",
+    "room_name": "4c1869af3f",
+    "location": "21a9dc7d42",
+    "price": "SGD 9583",
+    "checkin_date": "2024-08-06",
+    "checkout_date": "2024-09-29",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "1256a2e5fc23e3bc6a93614f00cd3b6de5f8007cf4cdbea477",
+    "user_id": 4682,
+    "guest_name": "8421e3d503",
+    "card_number": 5325785132831032,
+    "card_expiry_date": "12/32",
+    "card_cvv": 981
+  },
+  "timestamp": "2024-07-31T09:58:56.839Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T09:58:56.841Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"e855e138e8\",\"room_name\":\"fcdfdec0db\",\"location\":\"9047368b99\",\"price\":\"SGD 7000\",\"checkin_date\":\"2024-09-05\",\"checkout_date\":\"2024-09-17\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"6ce0c1ef0f9074b7b8373c426fdc6848a08b97123e53bca316\",\"user_id\":1506,\"guest_name\":\"05837cce25\",\"card_number\":9913712699980958,\"card_expiry_date\":\"07/31\",\"card_cvv\":741}",
+  "data": {
+    "hotel_name": "e855e138e8",
+    "room_name": "fcdfdec0db",
+    "location": "9047368b99",
+    "price": "SGD 7000",
+    "checkin_date": "2024-09-05",
+    "checkout_date": "2024-09-17",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "6ce0c1ef0f9074b7b8373c426fdc6848a08b97123e53bca316",
+    "user_id": 1506,
+    "guest_name": "05837cce25",
+    "card_number": 9913712699980958,
+    "card_expiry_date": "07/31",
+    "card_cvv": 741
+  },
+  "timestamp": "2024-07-31T09:59:06.163Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T09:59:06.165Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"27e2186024\",\"room_name\":\"d4304a886e\",\"location\":\"ae1640cb6c\",\"price\":\"SGD 4789\",\"checkin_date\":\"2024-11-11\",\"checkout_date\":\"2024-11-30\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"bc5f09a867cc37f06d654644f09f025b41ac67accadf64353f\",\"user_id\":3518,\"guest_name\":\"70f5092c7b\",\"card_number\":5230534925974162,\"card_expiry_date\":\"09/31\",\"card_cvv\":361}",
+  "data": {
+    "hotel_name": "27e2186024",
+    "room_name": "d4304a886e",
+    "location": "ae1640cb6c",
+    "price": "SGD 4789",
+    "checkin_date": "2024-11-11",
+    "checkout_date": "2024-11-30",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "bc5f09a867cc37f06d654644f09f025b41ac67accadf64353f",
+    "user_id": 3518,
+    "guest_name": "70f5092c7b",
+    "card_number": 5230534925974162,
+    "card_expiry_date": "09/31",
+    "card_cvv": 361
+  },
+  "timestamp": "2024-07-31T10:02:40.365Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T10:02:40.367Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"01d57af894\",\"room_name\":\"bc92039249\",\"location\":\"0ca2acaf6d\",\"price\":\"SGD 4891\",\"checkin_date\":\"2024-08-30\",\"checkout_date\":\"2024-11-03\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"58fec0db91cf2f9592f281c9c39a161ed8416915e2b3a38fc8\",\"user_id\":2025,\"guest_name\":\"ecf6132f13\",\"card_number\":8769609117370648,\"card_expiry_date\":\"12/24\",\"card_cvv\":597}",
+  "data": {
+    "hotel_name": "01d57af894",
+    "room_name": "bc92039249",
+    "location": "0ca2acaf6d",
+    "price": "SGD 4891",
+    "checkin_date": "2024-08-30",
+    "checkout_date": "2024-11-03",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "58fec0db91cf2f9592f281c9c39a161ed8416915e2b3a38fc8",
+    "user_id": 2025,
+    "guest_name": "ecf6132f13",
+    "card_number": 8769609117370648,
+    "card_expiry_date": "12/24",
+    "card_cvv": 597
+  },
+  "timestamp": "2024-07-31T10:03:07.089Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "table_name is not defined"
+  },
+  "timestamp": "2024-07-31T10:03:07.092Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"bc5c732067\",\"room_name\":\"993930fa50\",\"location\":\"5f46c5e66c\",\"price\":\"SGD 434\",\"checkin_date\":\"2024-08-25\",\"checkout_date\":\"2024-12-07\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"f191c1523479324813102c41fed27e7442ba732956b3df755d\",\"user_id\":5152,\"guest_name\":\"6f0bb27ba7\",\"card_number\":1028774236055714,\"card_expiry_date\":\"12/25\",\"card_cvv\":118}",
+  "data": {
+    "hotel_name": "bc5c732067",
+    "room_name": "993930fa50",
+    "location": "5f46c5e66c",
+    "price": "SGD 434",
+    "checkin_date": "2024-08-25",
+    "checkout_date": "2024-12-07",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "f191c1523479324813102c41fed27e7442ba732956b3df755d",
+    "user_id": 5152,
+    "guest_name": "6f0bb27ba7",
+    "card_number": 1028774236055714,
+    "card_expiry_date": "12/25",
+    "card_cvv": 118
+  },
+  "timestamp": "2024-07-31T10:03:21.753Z"
+},
+{
+  "message": "Failed to clean up test database",
+  "data": {
+    "error": "db is not defined"
+  },
+  "timestamp": "2024-07-31T10:03:21.755Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"c5cc67a978\",\"room_name\":\"a96356b058\",\"location\":\"1037b99756\",\"price\":\"SGD 4556\",\"checkin_date\":\"2024-11-21\",\"checkout_date\":\"2025-02-21\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"2d97219116c063e07be672d30a1b67065b3dda17b3510e2990\",\"user_id\":8778,\"guest_name\":\"7d8d34c942\",\"card_number\":2392878331217444,\"card_expiry_date\":\"08/24\",\"card_cvv\":662}",
+  "data": {
+    "hotel_name": "c5cc67a978",
+    "room_name": "a96356b058",
+    "location": "1037b99756",
+    "price": "SGD 4556",
+    "checkin_date": "2024-11-21",
+    "checkout_date": "2025-02-21",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "2d97219116c063e07be672d30a1b67065b3dda17b3510e2990",
+    "user_id": 8778,
+    "guest_name": "7d8d34c942",
+    "card_number": 2392878331217444,
+    "card_expiry_date": "08/24",
+    "card_cvv": 662
+  },
+  "timestamp": "2024-07-31T10:04:04.289Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"5f7d4c98fa\",\"room_name\":\"d0ec8a34b4\",\"location\":\"977bea7d7a\",\"price\":\"SGD 8920\",\"checkin_date\":\"2024-08-19\",\"checkout_date\":\"2024-11-12\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"c9f2220ef316f03d1fa998edf2d1a56341d843c492fa9f9654\",\"user_id\":6158,\"guest_name\":\"261bf81eea\",\"card_number\":6830340115880386,\"card_expiry_date\":\"12/26\",\"card_cvv\":110}",
+  "data": {
+    "hotel_name": "5f7d4c98fa",
+    "room_name": "d0ec8a34b4",
+    "location": "977bea7d7a",
+    "price": "SGD 8920",
+    "checkin_date": "2024-08-19",
+    "checkout_date": "2024-11-12",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "c9f2220ef316f03d1fa998edf2d1a56341d843c492fa9f9654",
+    "user_id": 6158,
+    "guest_name": "261bf81eea",
+    "card_number": 6830340115880386,
+    "card_expiry_date": "12/26",
+    "card_cvv": 110
+  },
+  "timestamp": "2024-07-31T10:05:40.807Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"efd8fb24cb\",\"room_name\":\"da8c466172\",\"location\":\"f1fd7d4a02\",\"price\":\"SGD 4260\",\"checkin_date\":\"2024-09-08\",\"checkout_date\":\"2024-10-12\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"098e1edbfc7f27fd3225626e0217d0adfa0b63517abce17e79\",\"user_id\":3408,\"guest_name\":\"0108dd3181\",\"card_number\":5549497197024148,\"card_expiry_date\":\"12/23\",\"card_cvv\":363}",
+  "data": {
+    "hotel_name": "efd8fb24cb",
+    "room_name": "da8c466172",
+    "location": "f1fd7d4a02",
+    "price": "SGD 4260",
+    "checkin_date": "2024-09-08",
+    "checkout_date": "2024-10-12",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "098e1edbfc7f27fd3225626e0217d0adfa0b63517abce17e79",
+    "user_id": 3408,
+    "guest_name": "0108dd3181",
+    "card_number": 5549497197024148,
+    "card_expiry_date": "12/23",
+    "card_cvv": 363
+  },
+  "timestamp": "2024-07-31T10:08:43.786Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"45ef1c57cc\",\"room_name\":\"03f6f97908\",\"location\":\"75ea534a26\",\"price\":\"SGD 8658\",\"checkin_date\":\"2024-08-09\",\"checkout_date\":\"2024-08-11\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"ebc324e70a3123d08ba3886a141dce6c57113ea04498466d36\",\"user_id\":7551,\"guest_name\":\"de02b91008\",\"card_number\":1551716527648305,\"card_expiry_date\":\"09/31\",\"card_cvv\":654}",
+  "data": {
+    "hotel_name": "45ef1c57cc",
+    "room_name": "03f6f97908",
+    "location": "75ea534a26",
+    "price": "SGD 8658",
+    "checkin_date": "2024-08-09",
+    "checkout_date": "2024-08-11",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "ebc324e70a3123d08ba3886a141dce6c57113ea04498466d36",
+    "user_id": 7551,
+    "guest_name": "de02b91008",
+    "card_number": 1551716527648305,
+    "card_expiry_date": "09/31",
+    "card_cvv": 654
+  },
+  "timestamp": "2024-07-31T10:10:54.053Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"c3fe159668\",\"room_name\":\"444485ed55\",\"location\":\"79787cb871\",\"price\":\"SGD 8658\",\"checkin_date\":\"2024-10-19\",\"checkout_date\":\"2024-12-06\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"1254fd64b2f7b9e02f8f9b74cbeb1e30cce4c602a1cf056388\",\"user_id\":9440,\"guest_name\":\"8e872f683d\",\"card_number\":9287675860130616,\"card_expiry_date\":\"04/26\",\"card_cvv\":330}",
+  "data": {
+    "hotel_name": "c3fe159668",
+    "room_name": "444485ed55",
+    "location": "79787cb871",
+    "price": "SGD 8658",
+    "checkin_date": "2024-10-19",
+    "checkout_date": "2024-12-06",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "1254fd64b2f7b9e02f8f9b74cbeb1e30cce4c602a1cf056388",
+    "user_id": 9440,
+    "guest_name": "8e872f683d",
+    "card_number": 9287675860130616,
+    "card_expiry_date": "04/26",
+    "card_cvv": 330
+  },
+  "timestamp": "2024-07-31T10:12:12.110Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"893e3178dc\",\"room_name\":\"7413a14058\",\"location\":\"4346b863e4\",\"price\":\"SGD 8530\",\"checkin_date\":\"2024-08-13\",\"checkout_date\":\"2024-10-27\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"f987f525fcaffa9942822947ad3afa3cbc20e25de805f70cf6\",\"user_id\":102,\"guest_name\":\"d50842854b\",\"card_number\":5643104823021869,\"card_expiry_date\":\"08/30\",\"card_cvv\":495}",
+  "data": {
+    "hotel_name": "893e3178dc",
+    "room_name": "7413a14058",
+    "location": "4346b863e4",
+    "price": "SGD 8530",
+    "checkin_date": "2024-08-13",
+    "checkout_date": "2024-10-27",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "f987f525fcaffa9942822947ad3afa3cbc20e25de805f70cf6",
+    "user_id": 102,
+    "guest_name": "d50842854b",
+    "card_number": 5643104823021869,
+    "card_expiry_date": "08/30",
+    "card_cvv": 495
+  },
+  "timestamp": "2024-07-31T10:14:56.724Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"146542b380\",\"room_name\":\"19a5870c80\",\"location\":\"79ea28dae4\",\"price\":\"SGD 552\",\"checkin_date\":\"2024-10-20\",\"checkout_date\":\"2025-01-04\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"9c90abf0c8e9320192b903eba36b3d7d5f51d57e0cbc6554cc\",\"user_id\":6832,\"guest_name\":\"570de1d17d\",\"card_number\":6710537802341129,\"card_expiry_date\":\"07/26\",\"card_cvv\":395}",
+  "data": {
+    "hotel_name": "146542b380",
+    "room_name": "19a5870c80",
+    "location": "79ea28dae4",
+    "price": "SGD 552",
+    "checkin_date": "2024-10-20",
+    "checkout_date": "2025-01-04",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "9c90abf0c8e9320192b903eba36b3d7d5f51d57e0cbc6554cc",
+    "user_id": 6832,
+    "guest_name": "570de1d17d",
+    "card_number": 6710537802341129,
+    "card_expiry_date": "07/26",
+    "card_cvv": 395
+  },
+  "timestamp": "2024-07-31T10:15:19.840Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"c76bbbb6af\",\"room_name\":\"fd302ed1dd\",\"location\":\"e03f0423dc\",\"price\":\"SGD 8308\",\"checkin_date\":\"2024-09-30\",\"checkout_date\":\"2025-01-10\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"d02d16a4e8ce25469795a749a6ac184625072bed6564aba8f1\",\"userID\":2579,\"guest_name\":\"579253c4b2\",\"card_number\":1912586812752375,\"card_expiry_date\":\"02/23\",\"card_cvv\":308}",
+  "data": {
+    "hotel_name": "c76bbbb6af",
+    "room_name": "fd302ed1dd",
+    "location": "e03f0423dc",
+    "price": "SGD 8308",
+    "checkin_date": "2024-09-30",
+    "checkout_date": "2025-01-10",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "d02d16a4e8ce25469795a749a6ac184625072bed6564aba8f1",
+    "userID": 2579,
+    "guest_name": "579253c4b2",
+    "card_number": 1912586812752375,
+    "card_expiry_date": "02/23",
+    "card_cvv": 308
+  },
+  "timestamp": "2024-07-31T10:15:53.751Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"dcedc0ba3b\",\"room_name\":\"56b018eb37\",\"location\":\"2f53df7a42\",\"price\":\"SGD 1227\",\"checkin_date\":\"2024-10-09\",\"checkout_date\":\"2025-01-09\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"3c1734047a433d8c6ae0e0fc1a17c43b83d9de68dea5792eea\",\"userID\":2048,\"name\":\"db763279d9\",\"card_number\":7930653140033365,\"card_expiry_date\":\"07/30\",\"card_cvv\":138}",
+  "data": {
+    "hotel_name": "dcedc0ba3b",
+    "room_name": "56b018eb37",
+    "location": "2f53df7a42",
+    "price": "SGD 1227",
+    "checkin_date": "2024-10-09",
+    "checkout_date": "2025-01-09",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "3c1734047a433d8c6ae0e0fc1a17c43b83d9de68dea5792eea",
+    "userID": 2048,
+    "name": "db763279d9",
+    "card_number": 7930653140033365,
+    "card_expiry_date": "07/30",
+    "card_cvv": 138
+  },
+  "timestamp": "2024-07-31T10:16:31.864Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"0a6bc50b99\",\"room_name\":\"4e2b38fc97\",\"location\":\"c4df32dd91\",\"price\":\"SGD 7468\",\"checkin_date\":\"2024-08-27\",\"checkout_date\":\"2024-09-16\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"42edd42b997b72320671ef6b85be2b955608bb179c7d619e9d\",\"userID\":9607,\"name\":\"d589eb4ffd\",\"cardNumber\":3300064016609863,\"card_expiry_date\":\"12/23\",\"card_cvv\":278}",
+  "data": {
+    "hotel_name": "0a6bc50b99",
+    "room_name": "4e2b38fc97",
+    "location": "c4df32dd91",
+    "price": "SGD 7468",
+    "checkin_date": "2024-08-27",
+    "checkout_date": "2024-09-16",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "42edd42b997b72320671ef6b85be2b955608bb179c7d619e9d",
+    "userID": 9607,
+    "name": "d589eb4ffd",
+    "cardNumber": 3300064016609863,
+    "card_expiry_date": "12/23",
+    "card_cvv": 278
+  },
+  "timestamp": "2024-07-31T10:16:41.347Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"7edfdae08b\",\"room_name\":\"58aa4ef145\",\"location\":\"081a47be1b\",\"price\":\"SGD 5521\",\"checkin_date\":\"2024-08-17\",\"checkout_date\":\"2024-11-17\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"0ee1bc9dabd9cadc59ef0800bbc2dc4da5d801898e0ebb1139\",\"userID\":5980,\"name\":\"37b6737b70\",\"cardNumber\":\"1304867507923515\",\"card_expiry_date\":\"09/23\",\"card_cvv\":837}",
+  "data": {
+    "hotel_name": "7edfdae08b",
+    "room_name": "58aa4ef145",
+    "location": "081a47be1b",
+    "price": "SGD 5521",
+    "checkin_date": "2024-08-17",
+    "checkout_date": "2024-11-17",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "0ee1bc9dabd9cadc59ef0800bbc2dc4da5d801898e0ebb1139",
+    "userID": 5980,
+    "name": "37b6737b70",
+    "cardNumber": "1304867507923515",
+    "card_expiry_date": "09/23",
+    "card_cvv": 837
+  },
+  "timestamp": "2024-07-31T10:16:56.514Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"5ed798bc54\",\"room_name\":\"6e1316b695\",\"location\":\"6082f157fd\",\"price\":\"SGD 2762\",\"checkin_date\":\"2024-08-21\",\"checkout_date\":\"2024-12-02\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"4273c297611c337b631770b010da932bfbb98fe8ff0dc989e9\",\"userID\":6047,\"name\":\"a07ac6d90a\",\"cardNumber\":\"7993141285889522\",\"expiryDate\":\"09/32\",\"card_cvv\":771}",
+  "data": {
+    "hotel_name": "5ed798bc54",
+    "room_name": "6e1316b695",
+    "location": "6082f157fd",
+    "price": "SGD 2762",
+    "checkin_date": "2024-08-21",
+    "checkout_date": "2024-12-02",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "4273c297611c337b631770b010da932bfbb98fe8ff0dc989e9",
+    "userID": 6047,
+    "name": "a07ac6d90a",
+    "cardNumber": "7993141285889522",
+    "expiryDate": "09/32",
+    "card_cvv": 771
+  },
+  "timestamp": "2024-07-31T10:17:10.893Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"54c433aa83\",\"room_name\":\"83b3c48be1\",\"location\":\"6e3d696594\",\"price\":\"SGD 2967\",\"checkin_date\":\"2024-11-12\",\"checkout_date\":\"2025-02-19\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"206087d4c7ebbedf0edab5711fee0e736eeaa799d5e4c1c34e\",\"userID\":8878,\"name\":\"facb31b17f\",\"cardNumber\":\"4848093146504407\",\"expiryDate\":\"12/30\",\"cvv\":119}",
+  "data": {
+    "hotel_name": "54c433aa83",
+    "room_name": "83b3c48be1",
+    "location": "6e3d696594",
+    "price": "SGD 2967",
+    "checkin_date": "2024-11-12",
+    "checkout_date": "2025-02-19",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "206087d4c7ebbedf0edab5711fee0e736eeaa799d5e4c1c34e",
+    "userID": 8878,
+    "name": "facb31b17f",
+    "cardNumber": "4848093146504407",
+    "expiryDate": "12/30",
+    "cvv": 119
+  },
+  "timestamp": "2024-07-31T10:17:19.805Z"
+},
+{
+  "message": "Test failed for getAllBookings",
+  "data": {
+    "user_id": 8140
+  },
+  "timestamp": "2024-07-31T10:17:35.893Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"ef213ce486\",\"room_name\":\"a879c1c289\",\"location\":\"3388c0cb40\",\"price\":\"SGD 4496\",\"checkin_date\":\"2024-09-15\",\"checkout_date\":\"2024-10-03\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"bdf5bb71b41c08246b6fac05e79a632caa1ed9bd3066abbf96\",\"userID\":3585,\"name\":\"7151120410\",\"cardNumber\":\"7967932629396848\",\"expiryDate\":\"10/32\",\"cvv\":\"164\"}",
+  "data": {
+    "hotel_name": "ef213ce486",
+    "room_name": "a879c1c289",
+    "location": "3388c0cb40",
+    "price": "SGD 4496",
+    "checkin_date": "2024-09-15",
+    "checkout_date": "2024-10-03",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "bdf5bb71b41c08246b6fac05e79a632caa1ed9bd3066abbf96",
+    "userID": 3585,
+    "name": "7151120410",
+    "cardNumber": "7967932629396848",
+    "expiryDate": "10/32",
+    "cvv": "164"
+  },
+  "timestamp": "2024-07-31T10:19:11.490Z"
+},
+{
+  "message": "Test failed for getAllBookings",
+  "data": {
+    "user_id": 7658
+  },
+  "timestamp": "2024-07-31T10:21:46.566Z"
+},
+{
+  "message": "Test failed for getAllBookings",
+  "data": {
+    "user_id": 4413
+  },
+  "timestamp": "2024-07-31T10:22:40.057Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"e6e817d4a0\",\"room_name\":\"9c13e48faf\",\"location\":\"fe44c2791f\",\"price\":\"SGD 6451\",\"checkin_date\":\"2024-10-07\",\"checkout_date\":\"2024-11-29\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"7aeccf51f02a53176969d3823478773612473a1d931c944934\",\"userID\":6408,\"name\":\"9afd074d6a\",\"cardNumber\":\"1120605001795734\",\"expiryDate\":\"02/31\",\"cvv\":\"585\"}",
+  "data": {
+    "hotel_name": "e6e817d4a0",
+    "room_name": "9c13e48faf",
+    "location": "fe44c2791f",
+    "price": "SGD 6451",
+    "checkin_date": "2024-10-07",
+    "checkout_date": "2024-11-29",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "7aeccf51f02a53176969d3823478773612473a1d931c944934",
+    "userID": 6408,
+    "name": "9afd074d6a",
+    "cardNumber": "1120605001795734",
+    "expiryDate": "02/31",
+    "cvv": "585"
+  },
+  "timestamp": "2024-07-31T10:24:43.565Z"
+},
+{
+  "message": "An error occurred during fuzz testing",
+  "data": {
+    "error": "user_id is not defined"
+  },
+  "timestamp": "2024-07-31T10:24:58.263Z"
+},
+{
+  "message": "An error occurred during fuzz testing",
+  "data": {
+    "error": "user_id is not defined"
+  },
+  "timestamp": "2024-07-31T10:25:27.218Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"51a9bc1265\",\"room_name\":\"e02236d3cf\",\"location\":\"442e8461b0\",\"price\":\"SGD 9481\",\"checkin_date\":\"2024-10-16\",\"checkout_date\":\"2025-01-31\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"29a46f9928ca55286534cce6a370efde597ec5173f09f8f900\",\"userID\":4812,\"name\":\"ee49f357ba\",\"cardNumber\":\"4730005264330555\",\"expiryDate\":\"08/32\",\"cvv\":\"254\"}",
+  "data": {
+    "hotel_name": "51a9bc1265",
+    "room_name": "e02236d3cf",
+    "location": "442e8461b0",
+    "price": "SGD 9481",
+    "checkin_date": "2024-10-16",
+    "checkout_date": "2025-01-31",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "29a46f9928ca55286534cce6a370efde597ec5173f09f8f900",
+    "userID": 4812,
+    "name": "ee49f357ba",
+    "cardNumber": "4730005264330555",
+    "expiryDate": "08/32",
+    "cvv": "254"
+  },
+  "timestamp": "2024-07-31T10:25:55.257Z"
+},
+{
+  "message": "An error occurred during fuzz testing",
+  "data": {
+    "error": "user_id is not defined"
+  },
+  "timestamp": "2024-07-31T10:26:00.314Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"456a24d3fe\",\"room_name\":\"21acca7d70\",\"location\":\"833c2896dd\",\"price\":\"SGD 526\",\"checkin_date\":\"2024-09-14\",\"checkout_date\":\"2025-01-08\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"e64bd017913a044e6d3f136b3cacff9c01140f7e9fe608ff73\",\"userID\":5652,\"name\":\"4edeb8f75e\",\"cardNumber\":\"5030953456834717\",\"expiryDate\":\"11/30\",\"cvv\":\"354\"}",
+  "data": {
+    "hotel_name": "456a24d3fe",
+    "room_name": "21acca7d70",
+    "location": "833c2896dd",
+    "price": "SGD 526",
+    "checkin_date": "2024-09-14",
+    "checkout_date": "2025-01-08",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "e64bd017913a044e6d3f136b3cacff9c01140f7e9fe608ff73",
+    "userID": 5652,
+    "name": "4edeb8f75e",
+    "cardNumber": "5030953456834717",
+    "expiryDate": "11/30",
+    "cvv": "354"
+  },
+  "timestamp": "2024-07-31T10:27:22.256Z"
+},
+{
+  "message": "An error occurred during fuzz testing",
+  "data": {
+    "error": "user_id is not defined"
+  },
+  "timestamp": "2024-07-31T10:27:26.989Z"
+},
+{
+  "message": "An error occurred during fuzz testing",
+  "data": {
+    "error": "user_id is not defined"
+  },
+  "timestamp": "2024-07-31T10:27:44.593Z"
+},
+{
+  "message": "Test failed for deleteBooking: 1",
+  "data": {
+    "bookingId": 1
+  },
+  "timestamp": "2024-07-31T10:28:29.714Z"
+},
+{
+  "message": "Test failed for deleteBooking: 1",
+  "data": {
+    "bookingId": 1
+  },
+  "timestamp": "2024-07-31T10:29:35.861Z"
+},
+{
+  "message": "Test failed for deleteBooking: 1",
+  "data": {
+    "bookingId": 1
+  },
+  "timestamp": "2024-07-31T10:30:13.404Z"
+},
+{
+  "message": "An error occurred during fuzz testing",
+  "data": {
+    "error": "print is not defined"
+  },
+  "timestamp": "2024-07-31T10:30:34.608Z"
+},
+{
+  "message": "Test failed for deleteBooking: 1",
+  "data": {
+    "bookingId": 1
+  },
+  "timestamp": "2024-07-31T10:30:53.539Z"
+},
+{
+  "message": "Test failed for deleteBooking: 1",
+  "data": {
+    "bookingId": 1
+  },
+  "timestamp": "2024-07-31T10:31:50.351Z"
+},
+{
+  "message": "Test failed for deleteBooking: 1",
+  "data": {
+    "bookingId": 1
+  },
+  "timestamp": "2024-07-31T10:32:08.806Z"
+},
+{
+  "message": "Test failed for createBooking: {\"hotel_name\":\"d394a29a9f\",\"room_name\":\"18ad78cd39\",\"location\":\"a16f435cb1\",\"price\":\"SGD 4264\",\"checkin_date\":\"2024-08-12\",\"checkout_date\":\"2024-09-25\",\"book_date\":\"2024-07-31\",\"room_img_src\":\"dog.jpg\",\"message\":\"15208705e19dae3876dbd31bc05fac5c3eaaa970ffeef8db9d\",\"userID\":845,\"name\":\"6bd44bb1df\",\"cardNumber\":\"6004961213735290\",\"expiryDate\":\"11/29\",\"cvv\":\"629\"}",
+  "data": {
+    "hotel_name": "d394a29a9f",
+    "room_name": "18ad78cd39",
+    "location": "a16f435cb1",
+    "price": "SGD 4264",
+    "checkin_date": "2024-08-12",
+    "checkout_date": "2024-09-25",
+    "book_date": "2024-07-31",
+    "room_img_src": "dog.jpg",
+    "message": "15208705e19dae3876dbd31bc05fac5c3eaaa970ffeef8db9d",
+    "userID": 845,
+    "name": "6bd44bb1df",
+    "cardNumber": "6004961213735290",
+    "expiryDate": "11/29",
+    "cvv": "629"
+  },
+  "timestamp": "2024-07-31T10:34:17.450Z"
+},
