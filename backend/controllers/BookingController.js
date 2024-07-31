@@ -32,7 +32,7 @@ exports.createBookingFromJSONlist = async (req, res) => {
       expiryDate: bookingInfo.expiryDate,
       cvv: bookingInfo.cvv,
     };
-
+    console.log(details_json);
     const result = await create_booking(details_json);
 
     if (!result) {
