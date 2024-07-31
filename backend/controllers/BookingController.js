@@ -6,6 +6,7 @@ const {
   delete_by_bookingid,
 } = require("../models/booking");
 const { create } = require("domain");
+const user = require("../models/user");
 
 exports.createBookingFromJSONlist = async (req, res) => {
   try {
@@ -47,8 +48,8 @@ exports.createBookingFromJSONlist = async (req, res) => {
 
 
 exports.getBookingsDisplay = async (req, res) => {
-  const { userId } = req.params; // Ensure correct extraction from req.params
-
+  const  userId  = req.params; // Ensure correct extraction from req.params
+  console.log(userId.user);
   if (!userId) {
     return res
       .status(400)

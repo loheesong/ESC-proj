@@ -6,10 +6,10 @@ const json_type_format = {
   hotel_name: "string",
   room_name: "string",
   location: "string",
-  price: "number",
-  checkin_date: Date,
-  checkout_date: Date,
-  book_date: Date,
+  price: "string",
+  checkin_date: "string",
+  checkout_date: "string",
+  book_date: "string",
   room_img_src: "string", 
   message: "string",
   userID: "number",
@@ -28,10 +28,10 @@ async function sync() {
         hotel_name varchar(255) not null,  
         room_name varchar(255) not null,
         location varchar(255) not null,  
-        price float(20) not null,  
-        checkin_date date not null,  
-        checkout_date date not null,
-        book_date date not null,
+        price varchar(255) not null,  
+        checkin_date varchar(255) not null,  
+        checkout_date varchar(255) not null,
+        book_date varchar(255) not null,
         room_img_src varchar(255) not null,
         message varchar(255) not null,  
         userID int not null,
@@ -60,7 +60,7 @@ async function create_booking(details_json) {
   } else{
     console.log("valid input");
   }
-
+  console.log("Validated :D")
   let sql = `insert into ${table_name} values (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   try {
@@ -82,7 +82,7 @@ async function create_booking(details_json) {
  * @returns
  */
 async function get_bookings_by_userid(user_id) {
-  let sql = `select * from ${table_name} where userid=${user_id}`;
+  let sql = `select * from ${table_name} where userid=${user_id.user}`;
   console.log(sql);
   try {
     const [rows, fieldDefs] = await db.cnx.query(sql);
@@ -107,12 +107,12 @@ async function delete_by_bookingid(booking_id) {
 
 // helper method for inserting rows
 function validate_input(json) {
+  console.log("Validating...")
   for (const key in json_type_format) {
     // check valid keys
     if (!json.hasOwnProperty(key)) {
       return false;
     }
-
     // check valid values
     try {
       // check value using typeof, then if false, try again using instanceof. If error, go catch

@@ -68,12 +68,12 @@ const DisplayBooking = () => {
                                 <p><strong>Name:</strong> {booking.name}</p>
                                 <p><strong>Room:</strong> {booking.room_name}</p>
                                 <p><strong>Location:</strong> {booking.location}</p>
-                                <p><strong>Price:</strong> ${booking.price.toFixed(2)}</p>
+                                <p><strong>Price:</strong> ${booking.price}</p>
                                 <p><strong>Check-in Date:</strong> {booking.checkin_date}</p>
                                 <p><strong>Check-out Date:</strong> {booking.checkout_date}</p>
                                 <p><strong>Booking Date:</strong> {booking.book_date}</p>
                                 <p><strong>Message:</strong> {booking.message}</p>
-                                <button className="delete-button" onClick={() => handleDelete(booking.booking_id)}>Delete</button>
+                                <button className="delete-button" onClick={() =>    (booking.booking_id)}>Delete</button>
                             </div>
                         </div>
                     ))}
