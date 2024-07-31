@@ -34,6 +34,7 @@ exports.signup = async (req, res) => {
       if (result) res.send({ message: "User registered successfully!" });
     }
   } catch (error) {
+    console.error('Signup error:', error); // Add this line
     res.status(500).send({ message: error.message });
   }
 };
@@ -85,6 +86,7 @@ exports.signin = async (req, res) => {
       roles: authorities,
     });
   } catch (error) {
+    console.error('Signin error:', error);
     return res.status(500).send({ message: error.message });
   }
 };
