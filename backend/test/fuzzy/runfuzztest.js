@@ -43,7 +43,7 @@ const runFuzzTests = async () => {
 
     let cycleCount = 0;
     let userID;
-    while (cycleCount < 200) {
+    while (cycleCount < 1000) {
  
         try {
           console.log(`Cycle ${cycleCount} started.`);
@@ -94,7 +94,7 @@ const runFuzzTests = async () => {
           }
   
           cycleCount++;
-          console.log(`Cycle ${cycleCount} completed.`);
+
         } catch (error) {
           const errorMessage = 'An error occurred during fuzz testing';
           console.error(errorMessage, error);

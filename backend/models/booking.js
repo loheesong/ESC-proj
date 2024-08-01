@@ -10,7 +10,7 @@ const json_type_format = {
   checkin_date: "string",
   checkout_date: "string",
   book_date: "string",
-  room_img_src: "string", 
+  room_img_src: "string",
   message: "string",
   userID: "number",
   name: "string",
@@ -23,7 +23,7 @@ const json_type_format = {
  * TODO: will need to change once integrate users
  */
 async function sync() {
-  let sql = `create table if not exists ${table_name} (
+  let sql = `create table if not exists bookings (
         booking_id int not null AUTO_INCREMENT, 
         hotel_name varchar(255) not null,  
         room_name varchar(255) not null,
@@ -74,7 +74,6 @@ async function create_booking(details_json) {
   }
 }
 
-
 /**
  * TODO will need to change this once integrate user
  * @param {*} user_id
@@ -99,19 +98,18 @@ async function delete_by_bookingid(booking_id) {
   let sql = `DELETE FROM ${table_name} WHERE booking_id = ?`;
 
   try {
-      const [rows, fieldDefs] = await db.cnx.query(sql, [booking_id]);
-      if (rows.affectedRows === 0) {
-        console.log("bookingid not found");
-        return false;
-      }
-      console.log("Successfully deleted booking");
-      return true;
-    } catch (error) {
-      console.log("Failed to delete booking:", error);
-      return false; // Adding this line to handle the catch case as well.
+    const [rows, fieldDefs] = await db.cnx.query(sql, [booking_id]);
+    if (rows.affectedRows === 0) {
+      console.log("bookingid not found");
+      return false;
+    }
+    console.log("Successfully deleted booking");
+    return true;
+  } catch (error) {
+    console.log("Failed to delete booking:", error);
+    return false; // Adding this line to handle the catch case as well.
   }
 }
-
 
 // helper method for inserting rows
 function validate_input(json) {
@@ -121,12 +119,14 @@ function validate_input(json) {
       console.error(`Missing key: ${key}`);
       return false;
     }
-    
+
     const expectedType = json_type_format[key];
     const actualType = typeof json[key];
-    
+
     if (expectedType !== actualType) {
-      console.error(`Type mismatch for key: ${key}. Expected ${expectedType}, got ${actualType}`);
+      console.error(
+        `Type mismatch for key: ${key}. Expected ${expectedType}, got ${actualType}`
+      );
       return false;
     }
   }
