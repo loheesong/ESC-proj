@@ -206,8 +206,8 @@ import axios from 'axios';
                 </div>
   
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
-                  <button onClick={login} className="btn btn-primary btn-block">Google 🚀</button>
+                  <button className="btn btn-primary btn-block mx-1">Sign Up</button>
+                  <button onClick={login} className="btn btn-primary btn-block mx-1">Google 🚀</button>
                 </div>
               </div>
             )}

@@ -158,13 +158,13 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button className="btn btn-primary btn-block mx-1" disabled={loading}>
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
               <span>Login</span>
             </button>
-            <button onClick={login}>Sign in with Google 🚀 </button>
+            <button className="btn btn-primary btn-block mx-1" onClick={login}>Sign in with Google 🚀 </button>
           </div>
 
           {message && (
