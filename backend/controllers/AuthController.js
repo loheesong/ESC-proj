@@ -41,7 +41,7 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   try {
-    console.log("teststest"+req.body.username)
+    console.log("teststest" + req.body.username)
     const user = await User.findOne({
       where: {
         username: req.body.username,
@@ -64,12 +64,12 @@ exports.signin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user.id },
-                           config.secret,
-                           {
-                            algorithm: 'HS256',
-                            allowInsecureKeySizes: true,
-                            expiresIn: 86400, // 24 hours
-                           });
+      config.secret,
+      {
+        algorithm: 'HS256',
+        allowInsecureKeySizes: true,
+        expiresIn: 86400, // 24 hours
+      });
 
     let authorities = [];
     const roles = await user.getRoles();
@@ -103,12 +103,12 @@ exports.signout = async (req, res) => {
 };
 
 exports.updateProfile = async (req, res) => {
-  try{
+  try {
     const updatedAccount = await User.update(
-      {username: req.body.username, email: req.body.email},
+      { username: req.body.username, email: req.body.email },
       {
-      where: {username: req.body.oldname},
-      returning: true
+        where: { username: req.body.oldname },
+        returning: true
       }
     );
 
@@ -118,9 +118,9 @@ exports.updateProfile = async (req, res) => {
     }
 
     console.log('Updated account:', updatedAccount);
-    res.status(200).send({message: "Profile updated successfully. Log Out to update changes"})
+    res.status(200).send({ message: "Profile updated successfully. Log Out to update changes" })
   }
-  catch(err){
+  catch (err) {
     return res.status(500).send({ message: err.message });
   }
 };
@@ -152,10 +152,10 @@ exports.updateProfile = async (req, res) => {
 exports.deleteaccount = async (req, res) => {
   try {
     const user = await User.findOne({
-        where: {
-          username: req.body.username,
-        },
-      });
+      where: {
+        username: req.body.username,
+      },
+    });
 
     console.log(user)
     if (!user) {
