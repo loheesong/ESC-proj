@@ -34,13 +34,14 @@ exports.signup = async (req, res) => {
       if (result) res.send({ message: "User registered successfully!" });
     }
   } catch (error) {
+    console.error('Signup error:', error); // Add this line
     res.status(500).send({ message: error.message });
   }
 };
 
 exports.signin = async (req, res) => {
   try {
-    console.log("teststest"+req.body.username)
+    console.log("teststest" + req.body.username)
     const user = await User.findOne({
       where: {
         username: req.body.username,
@@ -63,12 +64,12 @@ exports.signin = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user.id },
-                           config.secret,
-                           {
-                            algorithm: 'HS256',
-                            allowInsecureKeySizes: true,
-                            expiresIn: 86400, // 24 hours
-                           });
+      config.secret,
+      {
+        algorithm: 'HS256',
+        allowInsecureKeySizes: true,
+        expiresIn: 86400, // 24 hours
+      });
 
     let authorities = [];
     const roles = await user.getRoles();
@@ -85,6 +86,7 @@ exports.signin = async (req, res) => {
       roles: authorities,
     });
   } catch (error) {
+    console.error('Signin error:', error);
     return res.status(500).send({ message: error.message });
   }
 };
@@ -101,12 +103,12 @@ exports.signout = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  try{
+  try {
     const updatedAccount = await User.update(
-      {username: req.body.username, email: req.body.email},
+      { username: req.body.username, email: req.body.email },
       {
-      where: {username: req.body.oldname},
-      returning: true
+        where: { username: req.body.oldname },
+        returning: true
       }
     );
 
@@ -116,9 +118,9 @@ exports.update = async (req, res) => {
     }
 
     console.log('Updated account:', updatedAccount);
-    res.send({message: "Account Updated. Logging Out"})
+    res.status(200).send({ message: "Profile updated successfully. Log Out to update changes" })
   }
-  catch(err){
+  catch (err) {
     return res.status(500).send({ message: err.message });
   }
 };
@@ -150,10 +152,10 @@ exports.update = async (req, res) => {
 exports.deleteaccount = async (req, res) => {
   try {
     const user = await User.findOne({
-        where: {
-          username: req.body.username,
-        },
-      });
+      where: {
+        username: req.body.username,
+      },
+    });
 
     console.log(user)
     if (!user) {
