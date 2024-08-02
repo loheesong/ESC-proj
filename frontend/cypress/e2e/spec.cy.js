@@ -194,12 +194,40 @@ describe('USE CASE: Search hotel', () =>  {
         cy.get('#\\:r1\\:').should('exist').should('have.value', start_date)
     });
 
-    it('HAPPY PATH: number of guests', () => {
-        
+    it('HAPPY PATH: number of guests and rooms', () => {
+        cy.contains('Number of guests')
+        cy.get('#\\:r9\\:').should('exist').should('have.value', '1')
+
+        cy.get('button[aria-controls="\\:r9\\:"]').first().should('exist').should('be.disabled')
+        cy.get('button[aria-controls="\\:r9\\:"]').last().should('exist').then(($button) => {
+            for (let i = 0; i < 8; i++) {
+                cy.wrap($button).click();
+
+                if (i === 0) {
+                    cy.get('#\\:r9\\:').should('exist').should('have.value', '2')
+                }
+            }
+        })
+        cy.get('button[aria-controls="\\:r9\\:"]').last().should('exist').should('be.disabled')
+        cy.get('#\\:r9\\:').should('exist').should('have.value', '9')
     });
 
     it('HAPPY PATH: nummber of rooms', () => {
-        
+        cy.contains('Number of rooms')
+        cy.get('#\\:rb\\:').should('exist').should('have.value', '1')
+
+        cy.get('button[aria-controls="\\:rb\\:"]').first().should('exist').should('be.disabled')
+        cy.get('button[aria-controls="\\:rb\\:"]').last().should('exist').then(($button) => {
+            for (let i = 0; i < 8; i++) {
+                cy.wrap($button).click();
+
+                if (i === 0) {
+                    cy.get('#\\:rb\\:').should('exist').should('have.value', '2')
+                }
+            }
+        })
+        cy.get('button[aria-controls="\\:rb\\:"]').last().should('exist').should('be.disabled')
+        cy.get('#\\:rb\\:').should('exist').should('have.value', '9')
     });
 
     it('HAPPY PATH: can search hotel with Singapore, Singapore', () => {
@@ -248,15 +276,13 @@ describe('USE CASE: View hotel room detail', () => {
     it('HAPPY PATH: able to view hotel room', () => {
         
     });
-    it('SAD PATH: hotel room dont exist', () => {
-        
-    });
 })
 
 describe('USE CASE: Book hotel room', () => { 
     it('HAPPY PATH: able to view hotel room', () => {
         
     });
+
     it('SAD PATH: hotel room dont exist', () => {
         
     });
@@ -266,6 +292,7 @@ describe('USE CASE: Delete booking', () => {
     it('HAPPY PATH: able to delete booking', () => {
         
     });
+
     it('SAD PATH: cannot delete booking', () => {
         
     });
