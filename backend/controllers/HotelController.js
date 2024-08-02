@@ -150,7 +150,7 @@ exports.getHotelPricesByDestinationID = async (req, res) => {
 
     const hotelPrices = await fetchHotelPrices();
     const formattedHotelsPrices = hotelPrices.map((hotel) => {
-      console.log(hotel);
+      
       return {
         id: hotel.id,
         searchRank: hotel.searchRank,
@@ -181,7 +181,7 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
     guests,
     partner_id,
   } = req.query;
-
+  
   if (
     !destination_id ||
     !checkin ||
@@ -203,7 +203,7 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
   try {
     // Fetch hotel details
     const hotelsResponse = await getHotelsDetailsAPI(destination_id);
-
+    console.log("successful hotels details api")
     // Fetch hotel prices
     const fetchHotelPrices = async () => {
       try {
@@ -217,21 +217,21 @@ exports.getHotelsWithDetailsAndPrices = async (req, res) => {
           guests: Array.isArray(guests) ? guests.join("|") : guests,
           partner_id,
         };
-
+        
         const response = await getHotelPricesAPI(params);
-
+        
         if (!response.data.completed) {
           console.log("Search not completed. Retrying...");
           await new Promise((resolve) => setTimeout(resolve, 500)); // Wait for 0.5 seconds before retrying
           return fetchHotelPrices();
         }
-
+        
         return response.data.hotels;
       } catch (error) {
         throw new Error("An error occurred while fetching room prices");
       }
     };
-
+    
     const hotelPrices = await fetchHotelPrices();
 
     // Combine hotel details with prices

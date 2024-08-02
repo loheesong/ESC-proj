@@ -1,22 +1,20 @@
-// import for packages 
-import axios from "axios";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
-// import page components 
+// Import page components
 import SearchHotel from './routes/SearchHotel';
 import SearchRoom from './routes/SearchRoom';
-import Home from "./routes/Home"
+import Home from "./routes/Home";
 import Register from "./routes/Register";
 import EventBus from "./services/EventBus";
 import Login from "./routes/Login";
 import Profile from "./routes/Profile";
 import DisplayBooking from "./routes/DisplayBooking";
-import './App.css';
-
-import AuthService from "./services/AuthService";
 import BookingForm from "./routes/BookingForm";
+import AuthService from "./services/AuthService";
+import './App.css';
 
 function App() {
     // user stuff
@@ -40,102 +38,77 @@ function App() {
         return () => {
           EventBus.remove("logout");
         };
-      }, []);
+    }, []);
     
     const logOut = () => {
-      setTimeout(() => {
-        AuthService.logout();
-      });
+        setTimeout(() => {
+            AuthService.logout();
+        });
         setShowModeratorBoard(false);
         setShowAdminBoard(false);
         setCurrentUser(undefined);
     };
 
     return (
-        <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark p-3">
-        <Link to={"/"} className="navbar-brand">
-            Destination EZ 
-        </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/"} className="nav-link">
-              Home
-            </Link>
-          </li>
+            <div>
+                <nav className="navbar navbar-expand navbar-dark bg-dark p-3">
+                    <Link to={"/"} className="navbar-brand">Destination EZ</Link>
+                    <div className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <Link to={"/"} className="nav-link">Home</Link>
+                        </li>
 
-          {showModeratorBoard && (
-            <li className="nav-item">
-              <Link to={"/mod"} className="nav-link">
-                Moderator Board
-              </Link>
-            </li>
-          )}
+                        {showModeratorBoard && (
+                            <li className="nav-item">
+                                <Link to={"/mod"} className="nav-link">Moderator Board</Link>
+                            </li>
+                        )}
 
-          {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
-                Admin Board
-              </Link>
-            </li>
-          )}
+                        {showAdminBoard && (
+                            <li className="nav-item">
+                                <Link to={"/admin"} className="nav-link">Admin Board</Link>
+                            </li>
+                        )}
 
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/displaybooking"} className="nav-link">
-                Bookings
-              </Link>
-            </li>
-          )}
-        </div>
+                        {currentUser && (
+                            <li className="nav-item">
+                                <Link to={"/displaybooking"} className="nav-link">Bookings</Link>
+                            </li>
+                        )}
+                    </div>
 
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
-              </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
-              </Link>
-            </li>
-          </div>
-        )}
-      </nav>
-
-            <Routes>
-                <Route path="/" 
-                    element={
-                        <div className="App">
-                            <Home/>
+                    {currentUser ? (
+                        <div className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <Link to={"/profile"} className="nav-link">{currentUser.username}</Link>
+                            </li>
+                            <li className="nav-item">
+                                <a href="/login" className="nav-link" onClick={logOut}>LogOut</a>
+                            </li>
                         </div>
-                    } 
-                />
-                <Route path="/searchhotel/:uid" element={<SearchHotel />} />
-                <Route path="/searchroom/:id" element={<SearchRoom />} />
-                <Route path="/register" element={<Register />} />   
-                <Route path="/login" element={<Login />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/displaybooking" element={<DisplayBooking />} />    
-                <Route path="/booking" element={<BookingForm />} />    
-            </Routes>
-        </div>
+                    ) : (
+                        <div className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <Link to={"/login"} className="nav-link">Login</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to={"/register"} className="nav-link">Sign Up</Link>
+                            </li>
+                        </div>
+                    )}
+                </nav>
+
+                <Routes>
+                    <Route path="/" element={<div className="App"><Home /></div>} />
+                    <Route path="/searchhotel/:uid" element={<SearchHotel />} />
+                    <Route path="/searchroom/:id" element={<SearchRoom />} />
+                    <Route path="/register" element={<Register />} />   
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/displaybooking" element={<DisplayBooking />} />    
+                    <Route path="/booking" element={<BookingForm />} />    
+                </Routes>
+            </div>
     );
 }
 
