@@ -59,22 +59,14 @@ const getHotelPricesAPI = async (params) => {
 };
 
 
-const getRoomsAPI = async (id, p) => {
-  try {
-    const res = await axios.get(
-      `https://hotelapi.loyalty.dev/api/hotels/${id}/price`,
-      {
-        params: p,
-      }
-    );
-    if (!res.data || !res.data.hotels || !res.data.completed) {
-      return Error("Invalid parameters or no data available");
-    }
-    return res;
-  } catch (e) {
-    return Error(`Something went wrong while fetching rooms for hotel id: ${id}`);
-  }
-};
+const getRoomsAPI = async (id, p) =>{
+    return await axios.get(
+        `https://hotelapi.loyalty.dev/api/hotels/${id}/price`,
+        {
+          params: p,
+        }
+      );
+}
 
 
 module.exports = {
