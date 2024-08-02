@@ -55,6 +55,62 @@ describe("Profile Component", () => {
     });
   });
 
+  test("invalid username", async () => {
+    
+    render(<Profile />);
+    
+    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "a" } });
+    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: "newuser@example.com" } });
+    
+    fireEvent.click(screen.getByRole('button', { name: /update/i }));
+    
+    await waitFor(() => {
+      expect(screen.getByText(/The username must be between 3 and 20 characters./i)).toBeInTheDocument();
+    });
+  });
+
+  test("invalid email", async () => {
+    
+    render(<Profile />);
+    
+    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "newuser" } });
+    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: "notanemail" } });
+    
+    fireEvent.click(screen.getByRole('button', { name: /update/i }));
+    
+    await waitFor(() => {
+      expect(screen.getByText(/This is not a valid email./i)).toBeInTheDocument();
+    });
+  });
+
+  test("required username", async () => {
+    
+    render(<Profile />);
+    
+    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "" } });
+    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: "newuser@example.com" } });
+    
+    fireEvent.click(screen.getByRole('button', { name: /update/i }));
+    
+    await waitFor(() => {
+      expect(screen.getByText(/This field is required!/i)).toBeInTheDocument();
+    });
+  });
+
+  test("required email", async () => {
+    
+    render(<Profile />);
+    
+    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "newuser" } });
+    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: "" } });
+    
+    fireEvent.click(screen.getByRole('button', { name: /update/i }));
+    
+    await waitFor(() => {
+      expect(screen.getByText(/This field is required!/i)).toBeInTheDocument();
+    });
+  });
+
   test("handles account deletion", async () => {
     AuthService.deleteaccount.mockResolvedValueOnce({ data: { message: "Account deleted successfully" } });
     
