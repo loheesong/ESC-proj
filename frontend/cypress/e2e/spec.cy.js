@@ -289,13 +289,29 @@ describe('USE CASE: Book hotel room', () => {
     const password = 'bbbbbb'
     const hotel_name = 'Wangz Hotel'
 
-    beforeEach(() => {
+    it('SAD PATH: not logged in users cannot book', () => {
+        complete_search_form()
+        select_first_hotel(hotel_name)
+
+        cy.get('.room-card').first().within(() => {
+            cy.get('button').should('have.text', 'Book').click()
+        })
+
+        cy.url().should('include', '/booking')
+
+        // prevent booking when user not logged in 
+        cy.contains('button.submit', 'Create Booking').should('exist').click()
+
+        cy.on('window:alert', (text) => {
+            expect(text).to.contains('You must be logged in to book.');
+        });
+    });
+
+    it('HAPPY PATH: able to book hotel room', () => {
         login_user(username, password)
         complete_search_form()
         select_first_hotel(hotel_name)
-    });
-    
-    it('HAPPY PATH: able to book hotel room', () => {
+
         // start test at hotel page eg page will show Wangz Hotel
 
         cy.get('.room-card').first().within(() => {
@@ -356,25 +372,30 @@ describe('USE CASE: Book hotel room', () => {
         cy.contains('My Bookings')
         cy.contains(hotel_name)
     });
-
-    // it('SAD PATH: not logged in users cannot book', () => {
-    //     cy.get('.room-card').first().within(() => {
-    //         cy.get('button').should('have.text', 'Book').click()
-    //     })
-
-    //     cy.url().should('include', '/booking')
-
-    //     // prevent booking when user not logged in 
-
-    // });
 })
 
 describe('USE CASE: Delete booking', () => { 
+    const username = 'bbb'
+    const password = 'bbbbbb'
+    const hotel_name = 'Wangz Hotel'
+    
     it('HAPPY PATH: able to delete booking', () => {
-        
+        login_user(username, password)
+        cy.visit("http://localhost:3000/displaybooking")
+
+        cy.contains('div', hotel_name).within(() => {
+            cy.get('button.delete-button').click()
+        })
+
+        cy.contains('div', hotel_name).should('not.exist')
     });
 
     it('SAD PATH: cannot delete booking', () => {
+        cy.visit("http://localhost:3000/displaybooking")
+
+        cy.on('window:alert', (text) => {
+            expect(text).to.contains('You must be logged in to view bookings.');
+        });
         
     });
 })
