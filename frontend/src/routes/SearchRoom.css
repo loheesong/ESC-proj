@@ -7,7 +7,6 @@
 .room-info {
   display: flex;
   margin-bottom: 20px;
-  height: 600px;
   background-color: antiquewhite;
   font-size: 14px;
 }

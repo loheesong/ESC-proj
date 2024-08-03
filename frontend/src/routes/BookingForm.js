@@ -75,17 +75,18 @@ function BookingForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validate()) {
-            return; 
-        }
-
-        bookingData.bookingInfo = form;
         try {
             bookingData.userID = AuthService.getCurrentUser().id;
         } catch (e) {
             alert("You must be logged in to book.");
             return;
         }
+        
+        if (!validate()) {
+            return; 
+        }
+
+        bookingData.bookingInfo = form;
 
         axios.post("http://localhost:3001/bookings/submitbooking", bookingData)
             .then((res) => {

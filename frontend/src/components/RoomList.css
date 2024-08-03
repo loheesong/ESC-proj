@@ -22,10 +22,9 @@ flex-direction: column; /* Stack room cards vertically */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: auto;
-    max-height: 250px;
   }
   
-  .room-card img {
+.room-card img {
     display: relative;
     width: auto;
     height: 90%;
@@ -33,7 +32,7 @@ flex-direction: column; /* Stack room cards vertically */
     width: 300px;
     height: 200px;
     overflow: hidden;
-  }
+}
   
   .room-card-content {
     display: flex;
@@ -47,9 +46,27 @@ flex-direction: column; /* Stack room cards vertically */
   }
   
   .amenities-content h3 {
-    margin: 0;
+    margin: 5px;
   }
   
+  .amenities-content {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.amenities-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-wrap: break-word; /* Ensures long words break and wrap */
+    word-wrap: break-word;     /* For older browsers */
+}
+
+.amenities-content ul li {
+    margin: 0 0 0 10px;
+    white-space: normal;       /* Ensures text wraps normally */
+}
+
   .room-card ul {
     list-style: none;
     padding: 0;
